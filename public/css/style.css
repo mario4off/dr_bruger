@@ -1,0 +1,98 @@
+body {
+  width: 100vw;
+}
+
+header {
+  height: auto;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+a,
+p {
+  font-family: "Archivo", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  color: #ffff;
+  width: fit-content;
+}
+li {
+  width: fit-content;
+}
+.upper-banner-header {
+  height: 35px;
+  background-color: #222222;
+}
+.div-upper-header {
+  color: #fedb01;
+  font-weight: 300;
+  height: 100%;
+  padding: 8px;
+}
+.custom-navbar {
+  background-color: #101010;
+  height: 91px;
+}
+
+.header-container {
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: #101010;
+}
+
+#header-logo {
+  height: 70px;
+  width: 70px;
+}
+.navbar-collapse .nav-link,
+.active {
+  color: #ffff !important;
+  padding: 0px !important;
+  margin-right: 18px;
+  margin-bottom: 3px;
+  font-size: 16px;
+  font-weight: 700;
+  width: fit-content;
+  height: auto;
+  padding-bottom: 10px;
+}
+
+.navbar-collapse {
+  background-color: #101010;
+  padding-left: 3vw;
+  width: 200px;
+}
+.header-link:hover {
+  margin-bottom: 0px;
+  color: #ffff;
+  border-bottom: 3px solid #fedb01;
+  margin-right: 18px;
+  margin-bottom: 3px;
+}
+.active {
+  color: #fedb01 !important;
+  font-weight: 700;
+}
+
+#header-toggle {
+  background-color: #fedb01;
+  margin-right: 3vw;
+}
+
+.fa-regular,
+.fa-user,
+.fa-solid,
+.fa-bag-shopping,
+.fa-arrow-right-from-bracket {
+  color: #ffff !important;
+  font-size: 22px;
+  margin: 14px;
+}
+
+.header-icons {
+  margin: 0px;
+}
