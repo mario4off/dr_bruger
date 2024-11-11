@@ -2,6 +2,25 @@ body {
   width: 100vw;
 }
 
+h3 {
+  color: #ffff;
+  font-size: 16px;
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h4 {
+  color: #ffff;
+  font-family: "Archivo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 50px;
+}
+
+.p-white {
+  color: #ffff;
+}
 header {
   height: auto;
   position: sticky;
@@ -14,6 +33,7 @@ p {
   font-size: 14px;
   margin: 0;
   text-decoration: none;
+  color: none;
 }
 ul {
   list-style: none;
@@ -24,54 +44,57 @@ li {
   width: fit-content;
 }
 .upper-banner-header {
-  height: 35px;
   background-color: #222222;
 }
-.div-upper-header {
+.header-promos {
   color: #fedb01;
+  height: 20px;
   font-weight: 300;
-  height: 100%;
-  padding: 8px;
 }
 .custom-navbar {
   background-color: #101010;
-  height: 91px;
+}
+
+.header-promos:hover {
+  border-bottom: 1px solid #fedb01;
+  height: 20px;
 }
 
 .header-container {
   padding-left: 0px;
   padding-right: 0px;
   background-color: #101010;
+  height: auto;
 }
 
 #header-logo {
   height: 70px;
   width: 70px;
+  padding-right: 0px !important;
 }
 .navbar-collapse .nav-link,
 .active {
   color: #ffff !important;
   padding: 0px !important;
   margin-right: 18px;
-  margin-bottom: 3px;
   font-size: 16px;
   font-weight: 700;
   width: fit-content;
-  height: auto;
-  padding-bottom: 10px;
+  height: 25px;
+  padding-bottom: 3px;
 }
 
-.navbar-collapse {
-  background-color: #101010;
-  padding-left: 3vw;
-  width: 200px;
+.header-link {
+  margin-right: 18px;
+  font-weight: 700;
 }
+
 .header-link:hover {
   margin-bottom: 0px;
   color: #ffff;
+  height: 25px;
   border-bottom: 3px solid #fedb01;
-  margin-right: 18px;
-  margin-bottom: 3px;
+  padding-bottom: 0px;
 }
 .active {
   color: #fedb01 !important;
@@ -87,7 +110,8 @@ li {
 .fa-user,
 .fa-solid,
 .fa-bag-shopping,
-.fa-arrow-right-from-bracket {
+.fa-arrow-right-from-bracket,
+.fa-brands {
   color: #ffff !important;
   font-size: 22px;
   margin: 14px;
@@ -95,4 +119,150 @@ li {
 
 .header-icons {
   margin: 0px;
+}
+
+.newsletter-container,
+.container-rights {
+  background-color: #222222;
+  display: flex;
+  justify-content: center;
+}
+
+#newsletter-div {
+  width: 90vw;
+}
+
+.p-highlight {
+  color: #fedb01;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+}
+
+.form-check > label {
+  color: #ffff;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background-color: #222222;
+  border: 1px solid #ffff;
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+  padding-left: 0px;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  transform: rotate(45deg);
+}
+
+.newsletter-form-mail {
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+}
+.newsletter-form-mail > div > input {
+  margin-right: 2px;
+  padding: 0px;
+}
+
+.body-newsletter {
+  width: 60vw;
+  padding: 3vw 0vw;
+}
+.input-textbox {
+  border-style: none;
+  min-width: 18vw;
+  height: 45px;
+  margin-right: 10px;
+  text-align: center;
+}
+.input-mail {
+  padding-left: 0px;
+  padding-right: 0px;
+  width: auto;
+}
+
+.body-newsletter > p {
+  margin-bottom: 10px;
+}
+.input-submit {
+  background-color: #fedb01;
+  color: #101010;
+  height: 45px;
+  font-family: "archivo", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  border-style: none;
+  padding: 10px 15px 10px 15px;
+}
+.input-submit:hover {
+  background-color: #101010;
+  color: #fedb01;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  border-style: none;
+}
+
+.general-links {
+  background-color: #101010;
+}
+.general-links > .container {
+  border-top: 1px solid #ffff;
+}
+
+.p-rights {
+  color: #828282;
+  font-weight: 800;
+}
+
+.main-footer-links {
+  color: #ffff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.main-footer-links:hover {
+  color: #ffff;
+  border-bottom: 1px solid #ffff;
+}
+.payment-icons {
+  height: 30px;
+  width: 32px;
+  margin-right: 5px;
+}
+.link-footer {
+  color: #828282;
+  font-size: 16px;
+}
+.link-footer:hover {
+  color: #828282;
+  border-bottom: 1px solid #828282;
+}
+
+.l-icon {
+  height: 18px;
+  width: 30px;
+}
+
+.ul-footer > li {
+  margin-bottom: 10px;
 }
