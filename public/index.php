@@ -1,7 +1,7 @@
 <?php
 
-include_once('../app/config/params.php');
-include_once('../app/controllers/productController.php');
+include_once('../config/params.php');
+include_once(path_base . 'app/controllers/productController.php');
 
 if (!isset($_GET['controller'])) {
 
