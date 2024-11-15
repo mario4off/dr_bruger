@@ -3,38 +3,30 @@
     include_once(path_base . 'app/views/partials/header_banner.php');
     ?>
     <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID producto</th>
-                    <th>Nombre Producto</th>
-                    <th>Ruta de la foto</th>
-                    <th>Promoción aplicable (id)</th>
-                    <th>Categoría (id)</th>
-                    <th>Precio</th>
-                    <th>Descripción del producto</th>
-                </tr>
-            </thead>
-
-            <?php
-
-            foreach ($products as $product) {
-                echo ' <tr>
-    <td>' . $product->getProduct_id() . '</td>
-    <td>' . $product->getProduct_name() . '</td>
-    <td>' . $product->getMain_photo() . '</td>
-    <td>' . $product->getPromotion_id() . '</td>
-    <td>' . $product->getCategory_id() . '</td>
-    <td>' . $product->getBase_price() . '</td>
-    <td>' . $product->getProduct_description() . '</td>
-</tr>';
-            }
-            ?>
+        <section class="container-fluid">
+            <div class="container d-flex flex-column align-items-center mt-5 mb-5">
+                <h2 class="mb-5">LAS PREFERIDAS</h2>
+                <div class="row justify-content-center">
 
 
-            <?php ?>
+                    <?php
+                    foreach ($products as $product) { ?>
+                        <div class="card div-best-seller col-6 col-sm-6 col-md-3">
+                            <a class="img-best-seller" href=""><img class="card-img-top pb-5 ps-3 pe-3"
+                                    src="/drburger.com/public/images/<?= $product->getMain_photo() ?>"
+                                    alt="Card image cap"></a>
+                            <div class="card-body ps-0 pt-2">
+                                <h5 class="card-title"><?= strtoupper($product->getProduct_name()) ?></h5>
+                                <p class="card-text"><?= $product->getBase_Price() ?>€</p>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="mt-5 mb-4"> <a class=" pri-btn " href="">VER TODOS LOS PRODUCTOS</a>
+                </div>
 
-        </table>
+            </div>
+        </section>
 
         <?php
         include_once(path_base . 'app/views/partials/body_banner.php');

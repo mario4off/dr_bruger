@@ -1,4 +1,4 @@
-<div class="container-fluid p-0">
+<section class="container-fluid p-0">
     <div class="container-fluid upper-header-banner d-flex justify-content-center p-3">
         <a id="link-header-banner" href>ENVÍOS GRATIS CON PEDIDOS SUPERIORES A 20€</a>
     </div>
@@ -14,4 +14,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

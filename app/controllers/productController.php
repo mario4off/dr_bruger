@@ -13,7 +13,7 @@ class productController
     {
 
 
-        $products = ProductDAO::getAll();
+        $products = ProductDAO::getBestSeller();
 
         $view = path_base . 'app/views/pages/home.php';
         include_once(path_base . 'app/views/layouts/main.php');
