@@ -11,7 +11,7 @@
 
                     <?php
                     foreach ($products as $product) { ?>
-                        <div class="card div-best-seller col-6 col-sm-6 col-md-3">
+                        <div class="card div-best-seller col-6 col-sm-6 col-md-2">
                             <a class="img-best-seller" href=""><img class="card-img-top pb-5 ps-3 pe-3"
                                     src="/drburger.com/public/images/<?= $product->getMain_photo() ?>"
                                     alt="Card image cap"></a>
@@ -22,7 +22,7 @@
                         </div>
                     <?php } ?>
                 </div>
-                <div class="mt-5 mb-4"> <a class=" pri-btn " href="">VER TODOS LOS PRODUCTOS</a>
+                <div class=" mt-5 mb-4 "> <a class="col-1 w-25 pri-btn " href="">VER TODOS LOS PRODUCTOS</a>
                 </div>
 
             </div>
