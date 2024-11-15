@@ -1,18 +1,18 @@
 <header>
     <div class="upper-banner-header container-fluid d-flex justify-content-center">
-        <div class="row div-upper-header container p-1">
+        <div class="row div-upper-header container p-1 flex-column flex-md-row">
             <div class="col-12 col-md-6 col-ld-6  d-flex justify-content-center align-items-center mt-1 mb-1">
-                <a class="header-promos h-auto" href="">Regístrate Ahora: -10% de descuento en tu primer pedido</a>
+                <a class="header-promos h-1" href="">Regístrate Ahora: -10% de descuento en tu primer pedido</a>
             </div>
             <div class="col-12 col-md-6 col-ld-6 d-flex justify-content-center align-items-center">
-                <a class="header-promos h-auto" href="">Todos los Martes: TODAS las hamburguesas al mismo precio</a>
+                <a class="header-promos h-1" href="">Todos los Martes: TODAS las hamburguesas al mismo precio</a>
 
             </div>
         </div>
     </div>
     <nav class="container-fluid custom-navbar">
-        <div class=" container header-container p-3 d-flex flex-row align-items-center ">
-            <a href=""><img id="header-logo" class="image-fluid" src="../../../public/images/dr_burger_logo.webp"
+        <div class=" container header-container p-2 d-flex flex-row align-items-center ">
+            <a href=""><img id="header-logo" class="image-fluid" src="/drburger.com/public/images/dr_burger_logo.webp"
                     alt="logo"></a>
 
 

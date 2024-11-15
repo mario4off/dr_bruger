@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="row newsletter-form-mail col-12 col-md-6 mt-sm-3 ">
+                <div class="row newsletter-form-mail col-12 col-md-6 ">
                     <div class="col-12 col-md-8 input-mail">
                         <input class="input-textbox w-99" type="email"
                             placeholder="Introduce tu dirección de correo electrónico" required>
@@ -73,16 +73,17 @@
                 <div class="col-md-2">
                     <h4>COMPRAS SEGURAS EN LÍNEA</h4>
                     <ul class="d-flex justify-content-around ps-0">
-                        <li><img class="payment-icons" src="../../../public/images/visa.webp" alt="visa">
+                        <li><img class="payment-icons" src="/drburger.com/public/images/visa.webp" alt="visa">
                         </li>
-                        <li><img class="payment-icons l-icon" src="../../../public/images/mastercard.webp"
+                        <li><img class="payment-icons l-icon" src="/drburger.com/public/images/mastercard.webp"
                                 alt="mastercad">
                         </li>
-                        <li><img class="payment-icons l-icon" src="../../../public/images/maestro.webp" alt="maestro">
+                        <li><img class="payment-icons l-icon" src="/drburger.com/public/images/maestro.webp"
+                                alt="maestro">
                         </li>
-                        <li><img class="payment-icons" src="../../../public/images/american-express.webp"
+                        <li><img class="payment-icons" src="/drburger.com/public/images/american-express.webp"
                                 alt="american express"></li>
-                        <li><img class="payment-icons" src="../../../public/images/paypal.webp" alt="paypal"></li>
+                        <li><img class="payment-icons" src="/drburger.com/public/images/paypal.webp" alt="paypal"></li>
 
                     </ul>
                 </div>

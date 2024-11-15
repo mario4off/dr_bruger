@@ -9,8 +9,8 @@ class Database
         if ($con->connect_error) {
             die('Error: No se puede establecer la conexión a la base de datos');
         } else {
-            echo "Estoy conectado a la base de datos!";
+            return $con;
         }
-        return $con;
+
     }
 }

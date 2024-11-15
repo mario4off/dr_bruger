@@ -7,7 +7,7 @@ class ProductDAO
 
     public static function getAll()
     {
-        echo "Estoy dentro del DAO";
+
 
         $con = Database::connect();
 
@@ -21,7 +21,7 @@ class ProductDAO
 
         while ($row = $result->fetch_object('Product')) {
 
-            $products = $row;
+            $products[] = $row;
 
         }
 

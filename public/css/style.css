@@ -10,6 +10,13 @@ h3 {
   margin-bottom: 20px;
 }
 
+h2 {
+  color: #101010;
+  font-size: 20px !important;
+  font-weight: 800;
+  font-family: "Archivo", sans-serif;
+}
+
 h4 {
   color: #ffff;
   font-family: "Archivo", sans-serif;
@@ -20,6 +27,7 @@ h4 {
 
 .p-white {
   color: #ffff;
+  margin-bottom: 25px;
 }
 header {
   height: auto;
@@ -50,6 +58,8 @@ li {
   color: #fedb01;
   height: 20px;
   font-weight: 300;
+  width: auto;
+  height: auto;
 }
 .custom-navbar {
   background-color: #101010;
@@ -140,6 +150,7 @@ li {
   display: flex;
   align-items: center;
   padding-left: 0px;
+  height: 20px;
 }
 
 .form-check > label {
@@ -185,7 +196,7 @@ input[type="checkbox"]:checked::before {
 }
 
 .body-newsletter {
-  width: 60vw;
+  width: 65vw;
   padding: 3vw 0vw;
 }
 .input-textbox {
@@ -265,4 +276,148 @@ input[type="checkbox"]:checked::before {
 
 .ul-footer > li {
   margin-bottom: 10px;
+}
+
+.upper-header-banner {
+  background-color: #fedb01;
+}
+
+#link-header-banner {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Archivo", sans-serif;
+  color: #101010 !important;
+  height: 18px;
+}
+#link-header-banner:hover {
+  border-bottom: 1px solid #101010;
+}
+
+.lower-header-banner {
+  padding: 0px;
+}
+
+.imgs-header-banner {
+  height: 605px;
+  position: relative;
+  width: 100%;
+}
+
+.imgs-header-banner > h1 {
+  position: absolute;
+  z-index: 1;
+  align-self: center;
+  margin-top: 10px;
+  color: #ffff;
+  font-weight: 700;
+}
+
+.left-img-header-banner {
+  background-image: url(../images/VICIO_IMAGEN-CAMPANSA-1.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.15);
+  background-blend-mode: darken;
+}
+
+.right-img-header-banner {
+  background-image: url(../images/kiwi-bar-2-1024x768.webp);
+  opacity: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.25);
+  background-blend-mode: darken;
+}
+
+.pri-btn {
+  background-color: #fedb01 !important;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+  height: auto;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+}
+.pri-btn:hover {
+  background-color: #101010 !important;
+  color: #fedb01;
+}
+
+.snd-btn-1 {
+  background-color: #ffff !important;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+  height: auto;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+}
+.snd-btn-1:hover {
+  background-color: #101010 !important;
+  color: #ffff;
+}
+
+.left-img-header-banner > a,
+.right-img-header-banner > a {
+  margin-top: 180px;
+}
+
+.left-img-body-banner {
+  background-image: url(../images/fastival.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 66%;
+}
+
+.right-img-body-banner {
+  background-image: url(../images/princesa.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container-body-banner {
+  position: relative;
+  height: 600px;
+  background-color: #222222;
+  max-height: 600;
+}
+
+.tag-h {
+  position: absolute;
+  top: 28%;
+  z-index: 2;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  height: auto;
+  width: auto;
+  background-color: #101010;
+  color: #fedb01;
+  font-size: 35px !important;
+}
+
+.l-tag-h {
+  position: absolute;
+  top: 24%;
+  z-index: 2;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  height: auto;
+  width: auto;
+  background-color: #101010;
+  color: #fedb01;
+  font-size: 25px !important;
+}
+
+.container-body-banner > .pri-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
 }
