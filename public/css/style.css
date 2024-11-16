@@ -345,11 +345,29 @@ input[type="checkbox"]:checked::before {
   font-family: "archivo", sans-serif;
   font-weight: 800;
   font-size: 20px;
+  width: fit-content;
   padding: 10px 15px;
 }
 .pri-btn:hover {
   background-color: #101010 !important;
   color: #fedb01 !important;
+}
+
+.pri-btn-2 {
+  background-color: #ffff !important;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+  height: auto;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  border: 0.8px solid #101010;
+}
+
+.pri-btn-2:hover {
+  background-color: #101010 !important;
+  color: #ffff;
 }
 
 .snd-btn-1 {
@@ -360,7 +378,7 @@ input[type="checkbox"]:checked::before {
   color: #101010;
   font-family: "archivo", sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 14px;
   border: 0.8px solid #101010;
 }
 .snd-btn-1:hover {
@@ -468,14 +486,14 @@ input[type="checkbox"]:checked::before {
 .title-categories {
   background-color: #101010;
   color: #ffff;
-  width: max-content;
+
   font-size: 1rem;
   font-weight: 700;
 }
 
 .p-index-categories {
   color: #101010;
-  width: max-content;
+  width: 100%;
   font-size: 0.87rem;
   font-weight: 600;
 }
@@ -494,4 +512,8 @@ input[type="checkbox"]:checked::before {
   border-radius: 0px;
   border: 0px;
   height: 410px;
+}
+
+.body-ctagory {
+  width: fit-content;
 }

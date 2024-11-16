@@ -10,7 +10,7 @@
             </div>
             <div
                 class="col-12 col-md-6 d-none  right-img-header-banner d-md-flex justify-content-start align-items-center ps-4">
-                <a class="snd-btn-1" href="">VER CARTA</a>
+                <a class="pri-btn-2" href="">VER CARTA</a>
             </div>
         </div>
     </div>

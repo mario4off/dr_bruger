@@ -36,7 +36,7 @@
         <section class="container-fluid mb-5">
             <div class="container mt-5">
                 <h2>CONCEBIDOS PARA SER DEGUSTADOS</h2>
-                <div class=" mt-4 mb-4 d-flex gap-2 flex-row">
+                <div class=" mt-4 mb-4 d-none d-md-flex gap-2 ">
 
                     <?php foreach ($categories as $category) { ?>
 
@@ -45,41 +45,41 @@
                     <?php }
                     ?>
                 </div>
-                <div class="row justify-content-center mb-4">
+                <div class="row justify-content-center">
 
-                    <article class="col-3 div-category col-sm-12 col-md-4 ">
-                        <a class=" w-100 category-img-link" href=""><img class="card-img-to category-img"
+                    <article class="div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-0">
+                        <a class=" w-100 category-img-link" href=""><img class=" image-fluidcard-img-to category-img"
                                 src="/drburger.com/public/images/ad-burger.avif" alt="Card image cap"></a>
-                        <div class="card-body h-auto ps-0 pt-0">
-                            <h5 class="p-1 title-categories">HAMBURGUESAS CON INGREDIENTES FRESCOS</h5>
-                            <p class="p-index-categories">PROCEDENTES DE PRODUCTORES LOCALES</p>
+                        <div class="card-body body-ctagory h-auto ps-0 pt-0">
+                            <h5 class="card-title p-1 title-categories">PRODUCTOS CON INGREDIENTES FRESCOS</h5>
+                            <p class="card-text p-index-categories">PROCEDENTES DE PRODUCTORES LOCALES</p>
                         </div>
                     </article>
 
 
-                    <article class="col-3 div-category col-sm-12 col-md-4">
-                        <a class=" w-100 category-img-link" href=""><img class="card-img-top category-img"
+                    <article class=" div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-0">
+                        <a class=" w-100 category-img-link" href=""><img class="image-fluid card-img-top category-img"
                                 src="/drburger.com/public/images/fries.jpeg" alt="Card image cap"></a>
-                        <div class="card-body h-auto ps-0 pt-0">
-                            <h5 class="p-1 title-categories">COMPLEMENTOS QUE TE SIENTAN BIEN</h5>
-                            <p class="p-index-categories">COMPLEMENTOS SANOS Y VARIADOS SIN GLUTEN</p>
+                        <div class="card-body body-ctagory h-auto ps-0 pt-0">
+                            <h5 class="card-title p-1 title-categories">COMPLEMENTOS QUE TE SIENTAN BIEN</h5>
+                            <p class="card-text p-index-categories">COMPLEMENTOS SANOS Y VARIADOS SIN GLUTEN</p>
                         </div>
                     </article>
 
 
-                    <article class=" col-3  div-category col-sm-12 col-md-4 ">
-                        <a class="category-img-link  w-100" href=""><img class=" card-img-top category-img"
+                    <article class=" div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-0">
+                        <a class="category-img-link  w-100" href=""><img class="image-fluid card-img-top category-img"
                                 src="/drburger.com/public/images/cola-zero.webp" alt="Card image cap"></a>
-                        <div class="card-body h-auto ps-0 pt-0">
-                            <h5 class="p-1 title-categories">ACOMPAÑA TU COMIDA CON NUESTRAS BEBIDAS</h5>
-                            <p class="p-index-categories">CON REFRESCOS LIBRES DE AZÚCARES</p>
+                        <div class="card-body body-ctagory h-auto ps-0 pt-0 ">
+                            <h5 class="card-title p-1 title-categories">ACOMPÁÑATE DE NUESTRAS BEBIDAS</h5>
+                            <p class="card-text p-index-categories">CON REFRESCOS LIBRES DE AZÚCARES</p>
                         </div>
                     </article>
 
 
                 </div>
-                <div class="container d-flex justify-content-center mt-5">
-                    <div class="text-center">
+                <div class="container  mt-4 mt-md-2">
+                    <div class="w-100 d-flex justify-content-center">
                         <a class="mt-5 pri-btn" href="">VER AHORA</a>
                     </div>
                 </div>
