@@ -2,7 +2,8 @@
 
 include_once(path_base . 'app/models/ProductDAO.php');
 include_once(path_base . 'app/models/Product.php');
-
+include_once(path_base . 'app/models/CategoryDAO.php');
+include_once(path_base . 'app/models/Category.php');
 
 
 class productController
@@ -13,7 +14,8 @@ class productController
     {
 
 
-        $products = ProductDAO::getBestSeller();
+        $topProducts = ProductDAO::getBestSeller();
+        $categories = CategoryDAO::getAllCategories();
 
         $view = path_base . 'app/views/pages/home.php';
         include_once(path_base . 'app/views/layouts/main.php');

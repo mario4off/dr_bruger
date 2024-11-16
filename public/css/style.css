@@ -338,19 +338,18 @@ input[type="checkbox"]:checked::before {
 }
 
 .pri-btn {
-  background-color: #fedb01 !important;
-  padding: 10px 15px 10px 15px;
-  width: auto;
-  height: auto;
-  color: #101010;
+  display: block;
+  background-color: #fedb01;
+  color: #101010 !important;
   text-align: center;
   font-family: "archivo", sans-serif;
   font-weight: 800;
   font-size: 20px;
+  padding: 10px 15px;
 }
 .pri-btn:hover {
   background-color: #101010 !important;
-  color: #fedb01;
+  color: #fedb01 !important;
 }
 
 .snd-btn-1 {
@@ -362,6 +361,7 @@ input[type="checkbox"]:checked::before {
   font-family: "archivo", sans-serif;
   font-weight: 800;
   font-size: 20px;
+  border: 0.8px solid #101010;
 }
 .snd-btn-1:hover {
   background-color: #101010 !important;
@@ -431,6 +431,7 @@ input[type="checkbox"]:checked::before {
   border-radius: 0px;
   border: 0px;
   position: relative;
+  height: auto;
 }
 
 .img-best-seller {
@@ -462,4 +463,35 @@ input[type="checkbox"]:checked::before {
 .card-title {
   font-family: "archivo" sans-serif;
   font-weight: 800;
+}
+
+.title-categories {
+  background-color: #101010;
+  color: #ffff;
+  width: max-content;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.p-index-categories {
+  color: #101010;
+  width: max-content;
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
+.category-img-link {
+  height: 100%;
+}
+
+.category-img {
+  height: 100%;
+  width: 97%;
+  border-radius: 0px;
+}
+
+.div-category {
+  border-radius: 0px;
+  border: 0px;
+  height: 410px;
 }

@@ -56,6 +56,8 @@ class ProductDAO
 
         }
 
+        $con->close();
+
         return $products;
     }
 }
