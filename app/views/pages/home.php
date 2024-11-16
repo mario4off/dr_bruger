@@ -4,7 +4,7 @@
     ?>
     <main>
         <section class="container-fluid">
-            <div class="container d-flex flex-column align-items-center mt-5 mb-5">
+            <div class="container d-flex flex-column justify-content-center align-items-center mt-5 mb-5">
                 <h2 class="mb-5">TOP VENTAS</h2>
                 <div class="row justify-content-center">
                     <?php
@@ -20,7 +20,7 @@
                         </article>
                     <?php } ?>
                 </div>
-                <div class="mt-5 mb-4 col-2">
+                <div class="mt-5 mb-4 col-8 col-md-3 align-self-center">
                     <div class="text-center">
                         <a class="pri-btn" href="">VER TODOS LOS PRODUCTOS</a>
                     </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="row justify-content-center">
 
-                    <article class="div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-0">
+                    <article class="div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-5">
                         <a class=" w-100 category-img-link" href=""><img class=" image-fluidcard-img-to category-img"
                                 src="/drburger.com/public/images/ad-burger.avif" alt="Card image cap"></a>
                         <div class="card-body body-ctagory h-auto ps-0 pt-0">
@@ -78,7 +78,7 @@
 
 
                 </div>
-                <div class="container  mt-4 mt-md-2">
+                <div class="container  mt-4 mt-md-1">
                     <div class="w-100 d-flex justify-content-center">
                         <a class="mt-5 pri-btn" href="">VER AHORA</a>
                     </div>

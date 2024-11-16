@@ -190,12 +190,10 @@ input[type="checkbox"]:checked::before {
 }
 
 .newsletter-form-mail {
-  display: flex;
-  justify-content: flex-end;
   width: auto;
 }
 .newsletter-form-mail > div > input {
-  margin-right: 2px;
+  margin-right: 0px;
   padding: 0px;
 }
 
@@ -205,7 +203,7 @@ input[type="checkbox"]:checked::before {
 }
 .input-textbox {
   border-style: none;
-  min-width: 18vw;
+  min-width: 23vw;
   height: 45px;
   margin-right: 10px;
   text-align: center;
@@ -486,7 +484,7 @@ input[type="checkbox"]:checked::before {
 .title-categories {
   background-color: #101010;
   color: #ffff;
-
+  width: fit-content;
   font-size: 1rem;
   font-weight: 700;
 }

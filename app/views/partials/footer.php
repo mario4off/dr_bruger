@@ -6,7 +6,7 @@
             <p class="p-highlight">10% de descuento para nuevos registros</p>
             <p class="p-white">Me gustaría recibir noticias sobre:</p>
             <form class="form-newsletter mt-1 d-md-flex flex-dm-row" action="">
-                <div class="row checkbox-newsletter col-12 col-md-6">
+                <div class="checkbox-newsletter col-12 col-md-6 d-lg-flex">
                     <div class="input-checkbox col-12 col-md-4 d-flex align-items-center">
                         <div class="form-check">
                             <input type="checkbox" id="burger" name="burger" value="burger">
@@ -19,7 +19,7 @@
                             <label class="form-check-label" for="complements">Complementos</label>
                         </div>
                     </div>
-                    <div class="input-checkbox  col-12 col-md-4 d-flex align-items-center">
+                    <div class="input-checkbox  col-12 col-md-4 d-flex align-items-center pe-5">
                         <div class="form-check">
                             <input type="checkbox" id="promos" name="promos" value="promos">
                             <label class="form-check-label" for="promos">Promos</label>
@@ -27,13 +27,14 @@
                     </div>
                 </div>
 
-                <div class="row newsletter-form-mail col-12 col-md-6 ">
+                <div
+                    class="row newsletter-form-mail col-12 col-md-6 w-md-50 d-flex justify-content-center justify-content-md-end">
                     <div class="col-12 col-md-8 input-mail">
-                        <input class="input-textbox w-99" type="email"
+                        <input class="input-textbox  me-md-1" type="email"
                             placeholder="Introduce tu dirección de correo electrónico" required>
                     </div>
                     <div class="col-12 col-md-4 input-mail">
-                        <button type="submit" class="input-submit w-99">SUSCRIBIRME</button>
+                        <button type="submit" class="input-submit  w-99">SUSCRIBIRME</button>
                     </div>
                 </div>
             </form>
