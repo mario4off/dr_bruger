@@ -1,4 +1,4 @@
-<aside class="col-3 sidebar">
+<aside class="col-12 col-sm-6 col-md-3 sidebar">
 
     <div class="container-fluid">
         <div class="container d-flex flex-column mt-3 mb-3">
