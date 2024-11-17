@@ -17,8 +17,8 @@
 
 
             <ul class="d-flex flex-row d-none d-sm-flex mb-0 justify-content-around">
-                <li><a class="active" aria-current="page" href="#">INICIO</a></li>
-                <li><a class="nav-link header-link" href="#">MENÚ</a></li>
+                <li><a class="active" aria-current="page" href="?controller=product&action=index">INICIO</a></li>
+                <li><a class="nav-link header-link" href="?controller=product&action=showMenu">MENÚ</a></li>
                 <li><a class="nav-link header-link" href="#">CONTACTO</a></li>
             </ul>
             <ul class="d-flex flex-column d-sm-none mb-0 justify-content-center">

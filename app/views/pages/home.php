@@ -10,7 +10,7 @@
                     <?php
                     foreach ($topProducts as $product) { ?>
                         <article class="card div-best-seller col-6 col-sm-6 col-md-2">
-                            <a class="img-best-seller" href=""><img class="card-img-top pb-5 ps-3 pe-3"
+                            <a class="img-product" href=""><img class="card-img-top pb-5 ps-3 pe-3"
                                     src="/drburger.com/public/images/<?= $product->getMain_photo() ?>"
                                     alt="Card image cap"></a>
                             <div class="card-body ps-0 pt-2">

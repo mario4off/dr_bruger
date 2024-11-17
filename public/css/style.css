@@ -2,6 +2,12 @@ body {
   width: 100vw;
 }
 
+h1 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1.9rem;
+}
+
 h3 {
   color: #ffff;
   font-size: 16px;
@@ -122,13 +128,17 @@ li {
 
 .fa-regular,
 .fa-user,
-.fa-solid,
 .fa-bag-shopping,
 .fa-arrow-right-from-bracket,
 .fa-brands {
   color: #ffff !important;
   font-size: 22px;
   margin: 14px;
+}
+
+.fa-add-icon {
+  color: #101010 !important;
+  font-size: 14px !important;
 }
 
 .header-icons {
@@ -376,12 +386,27 @@ input[type="checkbox"]:checked::before {
   color: #101010;
   font-family: "archivo", sans-serif;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 1rem;
   border: 0.8px solid #101010;
 }
 .snd-btn-1:hover {
   background-color: #101010 !important;
   color: #ffff;
+}
+
+.snd-btn-2 {
+  background-color: #ffff !important;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+  height: auto;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 0.8px solid #828282a9;
+}
+.snd-btn-2:hover {
+  background-color: #e2e2e2 !important;
 }
 
 .left-img-header-banner > a,
@@ -450,13 +475,13 @@ input[type="checkbox"]:checked::before {
   height: auto;
 }
 
-.img-best-seller {
+.img-product {
   position: relative;
   display: block;
   background-color: #e2e2e2;
 }
 
-.img-best-seller::before {
+.img-product::before {
   content: "";
   position: absolute;
   top: 0;
@@ -472,7 +497,7 @@ input[type="checkbox"]:checked::before {
   z-index: 1;
 }
 
-.img-best-seller:hover::before {
+.img-product:hover::before {
   opacity: 1;
 }
 
@@ -514,4 +539,12 @@ input[type="checkbox"]:checked::before {
 
 .body-ctagory {
   width: fit-content;
+}
+
+.img-menu-product {
+  height: 100% !important;
+}
+
+.img-menu-product {
+  height: 189px !important;
 }

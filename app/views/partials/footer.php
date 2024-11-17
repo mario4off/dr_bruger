@@ -1,4 +1,4 @@
-<footer>
+<footer id="footer-body">
     <section class="container-fluid newsletter-container">
 
         <div class="container body-newsletter">

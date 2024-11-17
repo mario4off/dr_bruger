@@ -5,32 +5,29 @@ include_once(path_base . 'config/Database.php');
 class ProductDAO
 {
 
-    public static function getAll()
+
+    public static function getAllProducts()
     {
-
-
         $con = Database::connect();
 
-        $stmt = $con->prepare('SELECT * FROM products');
-
-        $stmt->execute();
-
-        $result = $stmt->get_result();
+        $stmnt = $con->prepare("SELECT * FROM products");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
 
         $products = [];
 
         while ($row = $result->fetch_object('Product')) {
-
             $products[] = $row;
 
         }
+        $con->close();
+
 
         return $products;
     }
+
     public static function getBestSeller()
     {
-
-
         $con = Database::connect();
 
         $stmt = $con->prepare(
@@ -56,6 +53,24 @@ class ProductDAO
 
         }
 
+        $con->close();
+
+        return $products;
+    }
+
+    public static function getProductsByCategory($filter)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT * FROM products WHERE category_id = $filter");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        $products = [];
+
+        while ($row = $result->fetch_object('Product')) {
+            $products[] = $row;
+        }
         $con->close();
 
         return $products;
