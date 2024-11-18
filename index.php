@@ -2,6 +2,7 @@
 
 include_once('config/params.php');
 include_once(path_base . 'app/controllers/productController.php');
+include_once(path_base . 'app/controllers/userController.php');
 
 if (!isset($_GET['controller'])) {
 
@@ -31,7 +32,7 @@ if (!isset($_GET['controller'])) {
 
     } else {
 
-        echo "El controlador 'controllerProducts' NO existe";
+        echo 'El controlador ' . $controllerName . ' NO existe';
 
     }
 

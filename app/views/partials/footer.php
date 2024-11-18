@@ -9,19 +9,19 @@
                 <div class="checkbox-newsletter col-12 col-md-6 d-lg-flex">
                     <div class="input-checkbox col-12 col-md-4 d-flex align-items-center">
                         <div class="form-check">
-                            <input type="checkbox" id="burger" name="burger" value="burger">
+                            <input type="checkbox" class="checkbox-footer" name="burger" value="burger">
                             <label class="form-check-label" for="burger">Hamburguesas</label>
                         </div>
                     </div>
                     <div class="input-checkbox  col-12 col-md-4 d-flex align-items-center">
                         <div class="form-check">
-                            <input type="checkbox" id="complements" name="complements" value="complements">
+                            <input type="checkbox" class="checkbox-footer" name="complements" value="complements">
                             <label class="form-check-label" for="complements">Complementos</label>
                         </div>
                     </div>
                     <div class="input-checkbox  col-12 col-md-4 d-flex align-items-center pe-5">
                         <div class="form-check">
-                            <input type="checkbox" id="promos" name="promos" value="promos">
+                            <input type="checkbox" class="checkbox-footer" name="promos" value="promos">
                             <label class="form-check-label" for="promos">Promos</label>
                         </div>
                     </div>

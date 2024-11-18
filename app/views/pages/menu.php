@@ -7,7 +7,7 @@
                 </div>
                 <div class="container-fluid ms-4">
 
-                    <p>24 artículos | Filtrar por: </p>
+                    <p><?= count($products) ?> artículos | Filtrar por: </p>
 
 
                 </div>

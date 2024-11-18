@@ -53,6 +53,7 @@ p {
   text-decoration: none;
   color: none;
 }
+
 ul {
   list-style: none;
   color: #ffff;
@@ -125,9 +126,12 @@ li {
   background-color: #fedb01;
   margin-right: 3vw;
 }
-
+.p-user-page {
+  font-size: 1rem;
+}
 .fa-regular,
 .fa-user,
+.fa-user-large,
 .fa-bag-shopping,
 .fa-arrow-right-from-bracket,
 .fa-brands {
@@ -173,7 +177,7 @@ li {
   margin-right: 10px;
 }
 
-input[type="checkbox"] {
+.checkbox-footer[type="checkbox"] {
   appearance: none;
   width: 20px;
   height: 20px;
@@ -186,7 +190,7 @@ input[type="checkbox"] {
   padding-left: 0px;
 }
 
-input[type="checkbox"]:checked::before {
+.checkbox-footer[type="checkbox"]:checked::before {
   content: "";
   display: block;
   width: 6px;
@@ -547,4 +551,74 @@ input[type="checkbox"]:checked::before {
 
 .img-menu-product {
   height: 189px !important;
+}
+
+.input-user {
+  background-color: #ffff;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  padding: 5px 10px;
+  border-style: none;
+  border: 0.5px solid #828282;
+  border-radius: 1.5px;
+}
+
+.rm-input-style {
+  border: none;
+  background-color: #ffff;
+  font-size: 0.8rem;
+  border: 0px;
+}
+
+.user-page-p {
+  color: #828282;
+}
+
+.label-style {
+  display: none;
+}
+
+.checkbox-user {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background-color: #ffff;
+  border: 1px solid #828282;
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+  padding-left: 0px;
+  border-radius: 1.5px;
+}
+
+.checkbox-user:checked::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 10px;
+  border: solid #101010;
+  border-width: 0 2px 2px 0;
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  transform: rotate(45deg);
+}
+
+.input-submit {
+  display: block;
+  background-color: #fedb01;
+  color: #101010 !important;
+  text-align: center;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  width: 100%;
+  padding: 10px 15px;
+}
+.input-submit:hover {
+  background-color: #101010 !important;
+  color: #fedb01 !important;
 }
