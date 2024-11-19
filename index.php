@@ -17,10 +17,10 @@ if (!isset($_GET['controller'])) {
 
         $controller = new $controllerName;
 
+
         if (isset($_GET['action']) && method_exists($controllerName, $_GET['action'])) {
 
             $action = $_GET['action'];
-
 
         } else {
 
