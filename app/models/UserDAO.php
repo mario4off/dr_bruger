@@ -62,4 +62,27 @@ class UserDAO
 
     }
 
+    public static function updateUser($user)
+    {
+        $con = Database::Connect();
+        $stmnt = $con->prepare('UPDATE users SET name = ?, last_name=?, address=?, mail=?, phone=?, role=?, pass=?, city=?, cp=? WHERE user_id =?');
+        $stmnt->bind_param(
+            "sssssssssi",
+            $user->getName(),
+            $user->getLast_name(),
+            $user->getAddress(),
+            $user->getMail(),
+            $user->getPhone(),
+            $user->getRole(),
+            $user->getPass(),
+            $user->getCity(),
+            $user->getCp(),
+            $user->getUser_id()
+
+        );
+        $stmnt->execute();
+        $con->close();
+
+    }
+
 }

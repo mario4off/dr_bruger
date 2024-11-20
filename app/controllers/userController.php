@@ -44,7 +44,7 @@ class userController
 
             UserDAO::insertUser($user);
 
-            $view = path_base . 'app/views/pages/account.php?controller=user&action=showUser&info=user_registered';
+            $view = path_base . 'app/views/pages/account.php';
             include_once(path_base . 'app/views/layouts/main.php');
         }
 
@@ -80,6 +80,7 @@ class userController
             $_SESSION['phone'] = $result->getPhone($phone);
             $_SESSION['pwd'] = $pass;
             $_SESSION['role'] = $result->getRole($role);
+            $_SESSION['id'] = $result->getUser_id($user_id);
 
             $view = path_base . 'app/views/pages/account.php';
             include_once(path_base . 'app/views/layouts/main.php');
@@ -93,40 +94,46 @@ class userController
     public function editUser($role = 'customer')
     {
 
-        if (UserDAO::destroyUser($_GET['id'])) {
-            header('Location: ?controller=user&action=showUser&error=user_not_found');
-        } else {
+        include_once(path_base . 'config/protection.php');
+        $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
 
-            $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
-
-            if (!$mail) {
-                header('Location: ?controller=user&action=showUser&warning=mail_format');
-            }
-            $name = $_POST['name'];
-            $last_name = $_POST['lastname'];
-            $address = $_POST['address'];
-            $city = $_POST['city'];
-            $cp = $_POST['cp'];
-            $phone = $_POST['phone'];
-            $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
-
-            $user = new User();
-
-            $user->setName($name);
-            $user->setLast_name($last_name);
-            $user->setAddress($address);
-            $user->setMail($mail);
-            $user->setCity($city);
-            $user->setCp($cp);
-            $user->setPhone($phone);
-            $user->setPass($pass);
-            $user->setRole($role);
-
-            UserDAO::insertUser($user);
-
-            header('Location:?controller=user&action=showUser&info=user_updated');
-
+        if (!$mail) {
+            header('Location: ?controller=user&action=showUser&warning=mail_format');
         }
+        $name = $_POST['name'];
+        $last_name = $_POST['lastname'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $cp = $_POST['cp'];
+        $phone = $_POST['phone'];
+        $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+
+        $user = new User();
+
+        $user->setName($name);
+        $user->setLast_name($last_name);
+        $user->setAddress($address);
+        $user->setMail($mail);
+        $user->setCity($city);
+        $user->setCp($cp);
+        $user->setPhone($phone);
+        $user->setPass($pass);
+        $user->setRole($role);
+        $user->setUser_id($_SESSION['id']);
+
+        UserDAO::updateUser($user);
+
+        $_SESSION['name'] = $user->getName();
+        $_SESSION['lastName'] = $user->getLast_name();
+        $_SESSION['address'] = $user->getAddress();
+        $_SESSION['cp'] = $user->getCp();
+        $_SESSION['city'] = $user->getCity();
+        $_SESSION['phone'] = $user->getPhone();
+        $_SESSION['role'] = $user->getRole();
+        $_SESSION['mail'] = $user->getMail();
+
+        $view = path_base . 'app/views/pages/account.php';
+        include_once(path_base . 'app/views/layouts/main.php');
 
     }
 

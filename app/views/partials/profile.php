@@ -13,7 +13,7 @@
         <div class="container">
             <h2 class="mb-1">MI PERFIL</h2>
             <p>Usa este formulario para actualizar tus detalles personales</p>
-            <form action="" method="post">
+            <form action="?controller=user&action=editUser" method="POST">
                 <label class="label-style " for="">Nombre</label><input class="input-user mt-3 mb-2" name="name"
                     type="text" placeholder="Nombre" required value="<?= $_SESSION['name'] ?>">
                 <label class="label-style" for="">Apellidos</label><input class="input-user mt-2 mb-2" name="lastname"
@@ -33,7 +33,8 @@
                     required value="<?= $_SESSION['pwd'] ?>">
 
                 <div class="container-fluid d-flex ps-0 pe-0">
-                    <input class="input-submit w-50 ms-0 m-4" type="submit" value="SALVAR"></input>
+                    <input class="input-submit w-50 ms-0 m-4 d-flex align-items-center justify-content-center"
+                        type="submit" value="SALVAR"></input>
                     <a class="input-snd-submit w-50 me-0 m-4 d-flex align-items-center justify-content-center"
                         href="?controller=product&action=showMenu">CANCELAR</a>
                 </div>

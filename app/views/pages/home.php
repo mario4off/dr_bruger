@@ -80,7 +80,7 @@
                 </div>
                 <div class="container  mt-4 mt-md-1">
                     <div class="w-100 d-flex justify-content-center">
-                        <a class="mt-5 pri-btn" href="">VER AHORA</a>
+                        <a class="mt-5 mb-2 pri-btn" href="">VER AHORA</a>
                     </div>
                 </div>
             </div>
