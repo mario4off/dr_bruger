@@ -11,7 +11,7 @@ class userController
         include_once(path_base . 'app/views/layouts/main.php');
     }
 
-    public function createUser($role = 'client')
+    public function createUser($role = 'customer')
     {
         $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
 
@@ -28,7 +28,7 @@ class userController
             $city = $_POST['city'];
             $cp = $_POST['cp'];
             $phone = $_POST['phone'];
-            $pass = $_POST['pwd'];
+            $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
             $user = new User();
 
@@ -62,10 +62,14 @@ class userController
 
         $result = UserDAO::getUserEmail($mail);
 
-        if ($result->getPass() == $pass) {
-            echo "El usuario existe. LOGIN MADAFACA!";
+        if (!$result) {
+            header('Location: ?controller=user&action=showUser&warning=not_exist_user');
+        }
+
+        if (password_verify($pass, $result->getPass())) {
+            echo "La contraseña es correcta. LOGIN MADAFACA!";
         } else {
-            echo "El usuario no existe";
+            echo "La contraseña no es correcta capullo";
         }
     }
 }
