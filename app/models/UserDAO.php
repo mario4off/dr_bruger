@@ -3,7 +3,7 @@
 class UserDAO
 {
 
-    public static function getUserEmail($mail)
+    public static function getUserByEmail($mail)
     {
 
         $con = Database::connect();
@@ -47,6 +47,17 @@ class UserDAO
 
         );
         $stmnt->execute();
+        $con->close();
+
+    }
+
+    public static function destroyUser($id)
+    {
+
+        $con = Database::connect();
+        $stmt = $con->prepare('DELETE FROM users WHERE user_id = ?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
         $con->close();
 
     }
