@@ -1,6 +1,6 @@
 <?php
 
-include_once(path_base . 'config/Database.php');
+
 
 class ProductDAO
 {
@@ -62,7 +62,8 @@ class ProductDAO
     {
         $con = Database::connect();
 
-        $stmnt = $con->prepare("SELECT * FROM products WHERE category_id = $filter");
+        $stmnt = $con->prepare("SELECT * FROM products WHERE category_id = ?");
+        $stmnt->bind_param("i", $filter);
         $stmnt->execute();
         $result = $stmnt->get_result();
 

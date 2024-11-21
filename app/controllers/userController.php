@@ -1,12 +1,21 @@
 <?php
-
+include_once(path_base . 'config/protection.php');
 include_once(path_base . 'app/models/UserDAO.php');
 include_once(path_base . 'app/models/User.php');
+include_once(path_base . 'app/models/OrderDAO.php');
+include_once(path_base . 'app/models/Order.php');
+include_once(path_base . 'config/params.php');
 
 class userController
 {
     public function showUser()
     {
+        $section = isset($_GET['section']) ? $_GET['section'] : 'profile';
+
+        if ($section === 'orders') {
+            $user_id = $_SESSION['id'];
+            $orders = OrderDAO::getAllOrdersByUser($user_id);
+        }
         $view = path_base . 'app/views/pages/account.php';
         include_once(path_base . 'app/views/layouts/main.php');
     }
@@ -69,18 +78,17 @@ class userController
 
         if (password_verify($pass, $result->getPass())) {
 
-            include_once(path_base . 'config/protecion.php');
 
-            $_SESSION['name'] = $result->getName($name);
-            $_SESSION['lastName'] = $result->getLast_name($last_name);
-            $_SESSION['address'] = $result->getAddress($address);
-            $_SESSION['mail'] = $result->getMail($mail);
-            $_SESSION['city'] = $result->getCity($city);
-            $_SESSION['cp'] = $result->getCp($cp);
-            $_SESSION['phone'] = $result->getPhone($phone);
+            $_SESSION['name'] = $result->getName();
+            $_SESSION['lastName'] = $result->getLast_name();
+            $_SESSION['address'] = $result->getAddress();
+            $_SESSION['mail'] = $result->getMail();
+            $_SESSION['city'] = $result->getCity();
+            $_SESSION['cp'] = $result->getCp();
+            $_SESSION['phone'] = $result->getPhone();
             $_SESSION['pwd'] = $pass;
-            $_SESSION['role'] = $result->getRole($role);
-            $_SESSION['id'] = $result->getUser_id($user_id);
+            $_SESSION['role'] = $result->getRole();
+            $_SESSION['id'] = $result->getUser_id();
 
             $view = path_base . 'app/views/pages/account.php';
             include_once(path_base . 'app/views/layouts/main.php');
@@ -94,7 +102,6 @@ class userController
     public function editUser($role = 'customer')
     {
 
-        include_once(path_base . 'config/protection.php');
         $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
 
         if (!$mail) {
@@ -131,10 +138,15 @@ class userController
         $_SESSION['phone'] = $user->getPhone();
         $_SESSION['role'] = $user->getRole();
         $_SESSION['mail'] = $user->getMail();
+        $_SESSION['pwd'] = $_POST['pwd'];
+
+        $_SESSION['success'] = 'Los datos se han modificado con éxito';
 
         $view = path_base . 'app/views/pages/account.php';
         include_once(path_base . 'app/views/layouts/main.php');
 
     }
+
+
 
 }

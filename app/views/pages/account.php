@@ -5,7 +5,12 @@
         <?php
         if (isset($_SESSION['mail'])) {
 
-            include_once(path_base . 'app/views/partials/profile.php');
+            if (isset($_GET['section']) && $_GET['section'] == 'orders') {
+                include_once(path_base . 'app/views/partials/order_history.php');
+            } else {
+                include_once(path_base . 'app/views/partials/profile.php');
+            }
+
 
         } else {
 

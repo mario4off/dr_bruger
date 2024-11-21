@@ -9,7 +9,7 @@
             </li>
         </ul>
     </div>
-    <div class="col-5 ">
+    <div class="col-5">
         <div class="container">
             <h2 class="mb-1">MI PERFIL</h2>
             <p>Usa este formulario para actualizar tus detalles personales</p>

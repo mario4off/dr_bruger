@@ -1,7 +1,6 @@
 <?php
 
 include_once('config/params.php');
-include_once('config/protection.php');
 include_once(path_base . 'app/controllers/productController.php');
 include_once(path_base . 'app/controllers/userController.php');
 

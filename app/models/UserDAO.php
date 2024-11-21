@@ -8,7 +8,8 @@ class UserDAO
 
         $con = Database::connect();
 
-        $stmnt = $con->prepare("SELECT * FROM users WHERE mail LIKE '$mail'");
+        $stmnt = $con->prepare("SELECT * FROM users WHERE mail LIKE ?");
+        $stmnt->bind_param("s", $mail);
 
         $stmnt->execute();
 
