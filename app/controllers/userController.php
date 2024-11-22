@@ -154,5 +154,11 @@ class userController
     }
 
 
+    public function logout()
+    {
+        session_destroy();
+
+        header('Location:  ?controller=product&action=index&success=logout');
+    }
 
 }

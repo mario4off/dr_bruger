@@ -34,7 +34,7 @@
                             class="fa-solid fa-user-large fa-sm d-sm-none"></i></a></li>
                 <li><a class="nav-link" href="#"><i class="fa-solid fa-bag-shopping fa-lg d-none d-sm-inline"></i><i
                             class="fa-solid fa-bag-shopping fa-sm d-sm-none"></i></a></li>
-                <li><a class="nav-link" href="#"><i
+                <li><a class="nav-link" href="?controller=user&action=logout"><i
                             class="fa-solid fa-arrow-right-from-bracket fa-lg d-none d-sm-inline"></i><i
                             class="fa-solid fa-arrow-right-from-bracket fa-sm d-sm-none"></i></a></li>
             </ul>
