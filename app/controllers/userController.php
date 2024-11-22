@@ -2,8 +2,8 @@
 include_once(path_base . 'config/protection.php');
 include_once(path_base . 'app/models/UserDAO.php');
 include_once(path_base . 'app/models/User.php');
-include_once(path_base . 'app/models/OrderDAO.php');
-include_once(path_base . 'app/models/Order.php');
+include_once(path_base . 'app/models/OrderHistoryDAO.php');
+include_once(path_base . 'app/models/OrderHistory.php');
 include_once(path_base . 'config/params.php');
 
 class userController
@@ -14,7 +14,13 @@ class userController
 
         if ($section === 'orders') {
             $user_id = $_SESSION['id'];
-            $orders = OrderDAO::getAllOrdersByUser($user_id);
+            $orderHistory = OrderHistoryDAO::getOrderHistoryByUser($user_id);
+
+            $productsInOrder = [];
+
+            foreach ($orderHistory as $order) {
+
+            }
         }
         $view = path_base . 'app/views/pages/account.php';
         include_once(path_base . 'app/views/layouts/main.php');

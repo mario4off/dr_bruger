@@ -1,6 +1,6 @@
 <?php
 
-class Order
+class OrderHistory
 {
 
     private $order_id;
@@ -12,6 +12,10 @@ class Order
     private $card_number;
 
     private $payment_mehtod;
+    private $quantity;
+    private $product_name;
+    private $line_price;
+
 
     public function __construct()
     {
@@ -127,6 +131,66 @@ class Order
     public function setPayment_mehtod($payment_mehtod)
     {
         $this->payment_mehtod = $payment_mehtod;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of quantity
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set the value of quantity
+     *
+     * @return  self
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of product_name
+     */
+    public function getProduct_name()
+    {
+        return $this->product_name;
+    }
+
+    /**
+     * Set the value of product_name
+     *
+     * @return  self
+     */
+    public function setProduct_name($product_name)
+    {
+        $this->product_name = $product_name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of line_price
+     */
+    public function getLine_price()
+    {
+        return $this->line_price;
+    }
+
+    /**
+     * Set the value of line_price
+     *
+     * @return  self
+     */
+    public function setLine_price($line_price)
+    {
+        $this->line_price = $line_price;
 
         return $this;
     }
