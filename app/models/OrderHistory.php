@@ -11,7 +11,7 @@ class OrderHistory
     private $total_amount;
     private $card_number;
 
-    private $payment_mehtod;
+    private $payment_method;
     private $quantity;
     private $product_name;
     private $line_price;
@@ -122,15 +122,15 @@ class OrderHistory
     }
 
 
-    public function getPayment_mehtod()
+    public function getPayment_method()
     {
-        return $this->payment_mehtod;
+        return $this->payment_method;
     }
 
 
-    public function setPayment_mehtod($payment_mehtod)
+    public function setPayment_method($payment_method)
     {
-        $this->payment_mehtod = $payment_mehtod;
+        $this->payment_method = $payment_method;
 
         return $this;
     }

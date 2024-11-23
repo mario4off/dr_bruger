@@ -74,6 +74,10 @@
                         ?>
                         <h3 class="text-dark mt-3 mb-1">TOTAL PEDIDO</h3>
                         <p><?= str_replace('.', ',', $order->getTotal_amount()) ?>€</p>
+                        <p class="mt-2 small mb-3"><?= $order->getPayment_method() == 'Card' ? 'Pagado con tarjeta acabada en ' . $order->getCard_number() :
+                            'Pagado con ' . strtoupper($order->getPayment_method()) ?></p>
+                        <a class="snd-btn-1 "
+                            href="?controller=user&action=repeatOrder&pedidoId=<?= $order->getPedidoId() ?>">Repetir pedido</a>
                     </div>
                     <?php
                 }
