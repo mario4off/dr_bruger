@@ -26,6 +26,23 @@ class ProductDAO
         return $products;
     }
 
+    public static function getProduct($id)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT * FROM products WHERE product_id = ?");
+        $stmnt->bind_param("i", $id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        $product = $result->fetch_object('Product');
+
+        $con->close();
+
+        return $product;
+
+    }
+
     public static function getBestSeller()
     {
         $con = Database::connect();

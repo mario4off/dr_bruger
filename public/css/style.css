@@ -56,7 +56,6 @@ p {
 
 ul {
   list-style: none;
-  color: #ffff;
   width: fit-content;
 }
 li {
@@ -92,9 +91,7 @@ li {
   width: 70px;
   padding-right: 0px !important;
 }
-.navbar-collapse .nav-link,
-.active {
-  color: #ffff !important;
+.navbar-collapse .nav-link {
   padding: 0px !important;
   margin-right: 18px;
   font-size: 16px;
@@ -102,11 +99,13 @@ li {
   width: fit-content;
   height: 25px;
   padding-bottom: 3px;
+  color: #ffff !important;
 }
 
 .header-link {
   margin-right: 18px;
   font-weight: 700;
+  color: #ffff;
 }
 
 .header-link:hover {
@@ -127,16 +126,6 @@ li {
 }
 .p-user-page {
   font-size: 1rem;
-}
-.fa-regular,
-.fa-user,
-.fa-user-large,
-.fa-bag-shopping,
-.fa-arrow-right-from-bracket,
-.fa-brands {
-  color: #ffff !important;
-  font-size: 22px;
-  margin: 14px;
 }
 
 .fa-add-icon {
@@ -313,7 +302,7 @@ li {
 }
 
 .imgs-header-banner {
-  height: 605px;
+  height: 607px;
   position: relative;
   width: 100%;
 }
@@ -658,4 +647,19 @@ li {
 .container-order {
   border: 1px solid #101010;
   margin-left: 0px !important;
+}
+
+.fa-regular,
+.fa-user,
+.fa-user-large,
+.fa-bag-shopping,
+.fa-arrow-right-from-bracket,
+.fa-brands {
+  color: #ffff !important;
+  font-size: 22px;
+  margin: 14px;
+}
+
+.icon-active {
+  color: #fedb01 !important;
 }

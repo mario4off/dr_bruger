@@ -35,14 +35,16 @@
 
                     $lastIdChecked = $order->getOrder_id();
                     ?>
-                    <div class="container container-order w-50 mb-3">
-                        <div class="order_data mb-2">
+                    <div class="container container-order w-50 mb-3 p-2 pt-3 pb-3">
+                        <div class="order_data mb-3">
                             <div class="order-data-time d-flex gap-1">
                                 <p class=""><?= str_replace(' ', '<strong> | </strong>', $order->getDate_time()) ?></p>
                             </div>
-                            <div class="gap-2 d-flex">
-                                <p>PEDIDO ID</p>
-                                <p><?= $order->getOrder_id() ?></p>
+                            <div>
+                                <strong class="gap-2 d-flex">
+                                    <p>PEDIDO ID</p>
+                                    <p><?= $order->getOrder_id() ?></p>
+                                </strong>
                             </div>
                         </div>
                         <?php
@@ -52,9 +54,9 @@
 
                                 <div class="w-100 d-flex gap-3 mt-1 ">
 
-                                    <div class="w-50 d-flex justify-content-start gap-5">
-                                        <p><?= $product->getQuantity() ?><strong>x</strong></p>
-                                        <p><?= $product->getProduct_name() ?></p>
+                                    <div class="w-75 d-flex justify-content-start gap-5">
+                                        <p><strong><?= $product->getQuantity() ?>x</strong></p>
+                                        <p><?= strtoupper($product->getProduct_name()) ?></p>
                                     </div>
                                     <p><?= $product->getLine_price() ?>€</p>
                                 </div>
