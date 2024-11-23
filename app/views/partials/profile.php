@@ -1,15 +1,21 @@
 <div class="container-fluid row ps-0">
 
-    <div class="col-3 d-flex justify-content-start">
-        <ul class="ps-0">
-            <li class="mt-3"><a class="links-on-white" href="?controller=user&action=showUser&section=profile">MI
+    <div class="col-sm-12 col-md-3 ">
+        <ul class="ps-0 mb-5">
+            <li class="mt-3"><a class="links-on-white d-none d-md-block"
+                    href="?controller=user&action=showUser&section=profile">MI
                     PERFIL</a></li>
-            <li class="mt-3"><a class="links-on-white" href="?controller=user&action=showUser&section=orders">MIS
+            <li class="mt-3"><a class="links-on-white d-none d-md-block"
+                    href="?controller=user&action=showUser&section=orders">MIS
+                    PEDIDOS</a>
+            </li>
+            <li class="mt-3 mb-4"><a class="snd-btn-1 fs-4 d-md-none"
+                    href="?controller=user&action=showUser&section=orders">MIS
                     PEDIDOS</a>
             </li>
         </ul>
     </div>
-    <div class="col-5">
+    <div class="col-sm-12 col-md-5">
         <div class="container">
             <h2 class="mb-1">MI PERFIL</h2>
             <p>Usa este formulario para actualizar tus detalles personales</p>

@@ -464,7 +464,8 @@ li {
   border-radius: 0px;
   border: 0px;
   position: relative;
-  height: auto;
+  height: 265px;
+  width: 180px;
 }
 
 .img-product {
