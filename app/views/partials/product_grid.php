@@ -1,7 +1,8 @@
 <div class="container row grid-products-area mt-3 w-100 ">
     <?php
     foreach ($products as $product) { ?>
-        <article class="card div-best-seller col-5 col-sm-3 col-md-2 me-2 mb-4 p-1 pt-0 d-flex flex-column">
+        <article id="#anchor-menu"
+            class="card div-best-seller col-5 col-sm-3 col-md-2 me-2 mb-4 p-1 pt-0 d-flex flex-column">
             <a class="img-product "
                 href="?controller=product&action=addtoCart&productId=<?= $product->getProduct_id() ?>"><img
                     class="card-img-top pb-5 ps-3 pe-3" src="/drburger.com/public/images/<?= $product->getMain_photo() ?>"

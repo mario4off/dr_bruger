@@ -37,6 +37,40 @@ class productController
         include_once(path_base . 'app/views/layouts/main.php');
     }
 
+    public function addToCart()
+    {
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
 
+        $productId = $_GET['productId'];
+
+        $product = ProductDAO::getProduct($productId);
+
+        if (!isset($_SESSION['cart'][$productId])) {
+            $_SESSION['cart'][$productId] = [
+                'product_id' => $product->getProduct_id(),
+                'quantity' => 1
+            ];
+        } else {
+            $_SESSION['cart'][$productId]['quantity']++;
+        }
+        $reference = explode('=', ($_SERVER['HTTP_REFERER']));
+
+        if (end($reference) == 'index') {
+            header('Location: ?controller=product&action=index#home-anchor');
+        } else {
+            header('Location: ?controller=product&action=showMenu#menu-anchor');
+        }
+
+    }
+
+    public function RepeatOrder()
+    {
+        $pedidoId = $_SESSION['id'];
+
+        $products = OrderHistoryDAO::getProductsByHistory($pedidoId);
+
+    }
 
 }

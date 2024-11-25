@@ -10,6 +10,7 @@ class OrderHistory
     private $status;
     private $total_amount;
     private $card_number;
+    private $product_id;
 
     private $payment_method;
     private $quantity;
