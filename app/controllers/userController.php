@@ -161,15 +161,6 @@ class userController
         header('Location:  ?controller=product&action=index&success=logout');
     }
 
-    public function repeatOrder()
-    {
 
-        if (isset($_GET['pedidoId'])) {
-            $pedidoId = $_GET['pedidoId'];
-
-
-        }
-
-    }
 
 }

@@ -12,6 +12,7 @@ class OrderHistory
     private $card_number;
     private $product_id;
 
+    private $pedido_id;
     private $payment_method;
     private $quantity;
     private $product_name;
@@ -192,6 +193,35 @@ class OrderHistory
     public function setLine_price($line_price)
     {
         $this->line_price = $line_price;
+
+        return $this;
+    }
+
+
+    public function getPedido_id()
+    {
+        return $this->pedido_id;
+    }
+
+
+
+    public function setPedido_id($pedido_id)
+    {
+        $this->pedido_id = $pedido_id;
+
+        return $this;
+    }
+
+
+    public function getProduct_id()
+    {
+        return $this->product_id;
+    }
+
+
+    public function setProduct_id($product_id)
+    {
+        $this->product_id = $product_id;
 
         return $this;
     }

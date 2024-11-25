@@ -77,7 +77,8 @@
                         <p class="mt-2 small mb-3"><?= $order->getPayment_method() == 'Card' ? 'Pagado con tarjeta acabada en ' . $order->getCard_number() :
                             'Pagado con ' . strtoupper($order->getPayment_method()) ?></p>
                         <a class="snd-btn-1 "
-                            href="?controller=user&action=repeatOrder&pedidoId=<?= $order->getPedidoId() ?>">Repetir pedido</a>
+                            href="?controller=order&action=repeatOrder&orderId=<?= $order->getOrder_id() ?>">REPETIR
+                            PEDIDO</a>
                     </div>
                     <?php
                 }

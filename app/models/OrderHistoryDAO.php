@@ -29,29 +29,28 @@ class OrderHistoryDAO
         return $orderHistory;
     }
 
-    public static function getProductsByHistory($id)
+    public static function getProductsByOrder($id)
     {
         $con = Database::connect();
 
-        $stmnt = $con->prepare("SELECT order_details.quantity, products.product_name 
-        FROM orders JOIN order_details ON orders.order_id = order_details.order_id
-        JOIN products ON  products.product_id = order_details.product_id 
-        WHERE user_id = ? ORDER BY orders.date_time");
+        $stmnt = $con->prepare("SELECT order_details.quantity, products.product_id
+        FROM order_details JOIN products ON  products.product_id = order_details.product_id 
+        WHERE order_details.order_id = ? ORDER BY product_id");
         $stmnt->bind_param("i", $id);
 
         $stmnt->execute();
 
         $result = $stmnt->get_result();
 
-        $orderHistory = [];
+        $products = [];
 
         while ($row = $result->fetch_object('OrderHistory')) {
 
-            $orderHistory[] = $row;
+            $products[] = $row;
         }
 
         $con->close();
 
-        return $orderHistory;
+        return $products;
     }
 }

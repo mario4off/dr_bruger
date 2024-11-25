@@ -49,7 +49,6 @@ class productController
 
         if (!isset($_SESSION['cart'][$productId])) {
             $_SESSION['cart'][$productId] = [
-                'product_id' => $product->getProduct_id(),
                 'quantity' => 1
             ];
         } else {
@@ -65,12 +64,6 @@ class productController
 
     }
 
-    public function RepeatOrder()
-    {
-        $pedidoId = $_SESSION['id'];
 
-        $products = OrderHistoryDAO::getProductsByHistory($pedidoId);
-
-    }
 
 }
