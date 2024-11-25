@@ -48,11 +48,10 @@ class productController
         $product = ProductDAO::getProduct($productId);
 
         if (!isset($_SESSION['cart'][$productId])) {
-            $_SESSION['cart'][$productId] = [
-                'quantity' => 1
-            ];
+            $_SESSION['cart'][$productId] = 1;
+
         } else {
-            $_SESSION['cart'][$productId]['quantity']++;
+            $_SESSION['cart'][$productId] += 1;
         }
         $reference = explode('=', ($_SERVER['HTTP_REFERER']));
 

@@ -28,9 +28,15 @@ class orderController
             }
         }
 
-        $view = path_base . 'app/views/pages/home.php';
+        $view = path_base . 'app/views/pages/checkout.php';
         include_once(path_base . 'app/views/layouts/main.php');
 
+    }
+
+    public function getCheckout()
+    {
+        $view = path_base . 'app/views/pages/checkout.php';
+        include_once(path_base . 'app/views/layouts/main.php');
     }
 
 }

@@ -26,9 +26,13 @@
                         #">CONTACTO</a></li>
             </ul>
             <ul class="d-flex flex-column d-sm-none mb-0 justify-content-center">
-                <li><a class="active" aria-current="page" href="#">INICIO</a></li>
-                <li><a class="nav-link header-link" href="#">MENÚ</a></li>
-                <li><a class="nav-link header-link" href="#">CONTACTO</a></li>
+                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                        aria-current="page" href="#">INICIO</a></li>
+                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                        href="?controller=product&action=showMenu">MENÚ</a>
+                </li>
+                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                        href="#">CONTACTO</a></li>
             </ul>
 
 
@@ -36,7 +40,7 @@
                 <li><a class="nav-link" href="?controller=user&action=showUser"><i
                             class="fa-solid fa-user-large fa-lg d-none d-sm-inline <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>""></i><i
                             class=" fa-solid fa-user-large fa-sm d-sm-none <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i></a></li>
-                <li><a class="nav-link" href="#"><i
+                <li><a class="nav-link" href="?controller=order&action=getCheckout"><i
                             class="fa-solid fa-bag-shopping fa-lg d-none d-sm-inline <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>"></i><i
                             class="fa-solid fa-bag-shopping fa-sm d-sm-none <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>"></i></a>
                 </li>
