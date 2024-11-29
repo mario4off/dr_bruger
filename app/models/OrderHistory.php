@@ -11,6 +11,8 @@ class OrderHistory
     private $total_amount;
     private $card_number;
     private $product_id;
+    private $base_price;
+    private $main_photo;
 
     private $pedido_id;
     private $payment_method;
@@ -222,6 +224,46 @@ class OrderHistory
     public function setProduct_id($product_id)
     {
         $this->product_id = $product_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of base_price
+     */
+    public function getBase_price()
+    {
+        return $this->base_price;
+    }
+
+    /**
+     * Set the value of base_price
+     *
+     * @return  self
+     */
+    public function setBase_price($base_price)
+    {
+        $this->base_price = $base_price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of main_photo
+     */
+    public function getMain_photo()
+    {
+        return $this->main_photo;
+    }
+
+    /**
+     * Set the value of main_photo
+     *
+     * @return  self
+     */
+    public function setMain_photo($main_photo)
+    {
+        $this->main_photo = $main_photo;
 
         return $this;
     }

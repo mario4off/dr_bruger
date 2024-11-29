@@ -17,7 +17,7 @@
                                     alt="Card image cap"></a>
                             <div class="card-body ps-0 pt-2">
                                 <h5 class="card-title"><?= strtoupper($product->getProduct_name()) ?></h5>
-                                <p class="card-text"><?= $product->getBase_Price() ?>€</p>
+                                <p class="card-text"><?= number_format($product->getBase_Price(), '2', ',') ?>€</p>
                             </div>
                         </article>
                     <?php } ?>

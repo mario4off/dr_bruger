@@ -640,6 +640,16 @@ li {
 .links-on-white:hover {
   border-bottom: 1px solid #101010;
 }
+.rm-link-checkout {
+  font-family: "archivo", sans-serif;
+  color: #101010;
+  font-size: 0.9rem;
+  font-weight: 400;
+  height: 1.1rem;
+}
+.rm-link-checkout:hover {
+  border-bottom: 1px solid #101010;
+}
 
 #bottom-decoration-account {
   background-color: #e2e2e2;
@@ -650,6 +660,7 @@ li {
 .container-order {
   border: 1px solid #101010;
   margin-left: 0px !important;
+  border-radius: 2px;
 }
 
 .fa-regular,
@@ -659,10 +670,98 @@ li {
 .fa-arrow-right-from-bracket,
 .fa-brands {
   color: #ffff !important;
-  font-size: 22px;
+  font-size: 30px;
   margin: 14px;
+  z-index: 1;
+}
+
+.icon-header-size {
+  font-size: 25px !important;
+}
+
+.cart-container {
+  position: relative;
+}
+
+.cart-count {
+  background-color: #ffff;
+  height: 1.3rem;
+  width: 1.3rem;
+  z-index: 10;
+  border-radius: 100rem;
+  position: absolute;
+  right: 0.1rem;
+  font-size: 0.8rem;
+  color: #101010;
+  top: 0px;
+  font-family: "archivo", sans-serif;
 }
 
 .icon-active {
   color: #fedb01 !important;
+}
+
+.add-quantity-btn {
+  background-color: #ffff !important;
+  padding: 6px;
+  width: auto;
+  height: auto;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 0.9px solid #101010;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.add-quantity-btn:hover {
+  background-color: #101010 !important;
+  color: #ffff;
+}
+
+.rm-quantity-btn {
+  background-color: #ffff !important;
+  padding: 6px;
+  width: auto;
+  height: auto;
+  color: #101010;
+  font-family: "archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 0.9px solid #101010;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.rm-quantity-btn:hover {
+  background-color: #101010 !important;
+  color: #ffff;
+}
+
+.p-items-checkout {
+  font-size: 1rem;
+  font-weight: 800 !important;
+}
+
+.snd-p-items-checkout {
+  font-size: 0.9rem;
+  font-weight: 800 !important;
+}
+
+.checkout-border {
+  border-bottom: 1px solid #e2e2e2 !important;
+}
+
+.p-total-checkout {
+  font-size: 1.25rem;
+}
+
+.checkout-box {
+  border: solid 1px #101010;
+  border-radius: 2px;
+  min-height: 318px;
+}
+
+.burger-icon {
+  font-size: 10rem;
+  color: #e2e2e2;
 }

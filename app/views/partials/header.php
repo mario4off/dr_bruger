@@ -12,7 +12,7 @@
     </div>
     <nav class="container-fluid custom-navbar">
         <div class=" container header-container p-2 d-flex flex-row align-items-center ">
-            <a href=""><img id="header-logo" class="image-fluid" src="/drburger.com/public/images/dr_burger_logo.webp"
+            <a href=""><img id="header-logo" class="image-fluid" src="/drburger.com/public/images/dr_burger_logo.svg"
                     alt="logo"></a>
 
 
@@ -37,15 +37,28 @@
 
 
             <ul class="navbar-nav-right ms-auto d-md-flex header-icons">
-                <li><a class="nav-link" href="?controller=user&action=showUser"><i
-                            class="fa-solid fa-user-large fa-lg d-none d-sm-inline <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>""></i><i
-                            class=" fa-solid fa-user-large fa-sm d-sm-none <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i></a></li>
-                <li><a class="nav-link" href="?controller=order&action=getCheckout"><i
-                            class="fa-solid fa-bag-shopping fa-lg d-none d-sm-inline <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>"></i><i
-                            class="fa-solid fa-bag-shopping fa-sm d-sm-none <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>"></i></a>
+                <li class="pt-2 pb-2"><a class="nav-link" href="?controller=user&action=showUser"><i
+                            class="fa-solid fa-user-large fa-lg d-none d-sm-inline icon-header-size <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i><i
+                            class=" fa-solid fa-user-large fa-sm d-sm-none <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i></a>
                 </li>
-                <li><a class="nav-link" href="?controller=user&action=logout"><i
-                            class="fa-solid fa-arrow-right-from-bracket fa-lg d-none d-sm-inline"></i><i
+                <li class="cart-container pt-2"><a class="nav-link" href="?controller=order&action=getCheckout"><i
+                            class="fa-solid fa-bag-shopping fa-lg d-none d-sm-inline icon-header-size <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>">
+                            <?php if (isset($_SESSION['cart'])) {
+                                ?><span class="cart-count d-flex justify-content-center align-items-center">
+                                    <?php $count = 0;
+                                    ;
+                                    foreach ($_SESSION['cart'] as $item) {
+                                        $count += $item->getQuantity();
+                                    }
+                                    echo $count; ?>
+                                </span>
+                            <?php } ?> </i><i
+                            class="fa-solid fa-bag-shopping fa-sm d-sm-none <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>"></i>
+
+                    </a>
+                </li>
+                <li class="pt-2"><a class="nav-link" href="?controller=user&action=logout"><i
+                            class="fa-solid fa-arrow-right-from-bracket fa-lg d-none d-sm-inline icon-header-size"></i><i
                             class="fa-solid fa-arrow-right-from-bracket fa-sm d-sm-none"></i></a></li>
             </ul>
             </ul>
