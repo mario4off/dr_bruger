@@ -376,7 +376,7 @@ li {
   background-color: #ffff !important;
   padding: 10px 15px 10px 15px;
   width: auto;
-  height: auto;
+  height: fit-content;
   color: #101010;
   font-family: "archivo", sans-serif;
   font-weight: 800;
@@ -774,11 +774,13 @@ li {
   border: 0.5px solid #101010 !important;
   box-shadow: 1px 1px 1px 1px #828282 !important;
   width: 47%;
+  border-radius: 2px;
 }
 
 .delivery-option {
   border: 0.5px solid #101010;
   width: 47%;
+  border-radius: 2px;
 }
 
 .p-link {
@@ -787,11 +789,13 @@ li {
 
 .payment-option {
   border: 0.5px solid #101010 !important;
+  border-radius: 2px;
 }
 
 .payment-option-active {
   border: 0.5px solid #101010 !important;
   box-shadow: 1px 1px 1px 1px #828282 !important;
+  border-radius: 2px;
 }
 
 .circle-checkbox {
@@ -813,4 +817,9 @@ li {
   height: 14px;
   border-radius: 50%;
   background-color: #101010;
+}
+
+.toggle-payment {
+  border: 1px solid #828282a9;
+  border-radius: 2px;
 }

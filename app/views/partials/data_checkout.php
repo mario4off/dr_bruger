@@ -29,16 +29,17 @@
         <div class=" justify-content-between">
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="cash-paymeny">
+                        name="payment-option" required>
                     <p class="p-1 p-link">Pago en efectivo</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <img class="payment-icons" src="/drburger.com/public/images/euro.webp" alt="">
                 </div>
             </label>
-            <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
+            <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="cash-paymeny">
+                        name="payment-option" required>
                     <p class="p-1 p-link">Trajeta bancaria</p>
                 </div>
                 <div class="d-flex align-items-center">
@@ -51,15 +52,62 @@
                     <img class="payment-icons" src="/drburger.com/public/images/american-express.webp"
                         alt="american express">
                 </div>
-            </label> <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
-                <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="cash-paymeny">
+
+            </label>
+            <div class="collapse" id="collapseExample">
+                <div class="mb-3 toggle-payment p-3">
+                    <div class="d-flex flex-column">
+                        <label for="card-num">Número de tarjeta</label><input type="text" name="card-num"
+                            pattern="\d{4} \d{4} \d{4} \d{4}" placeholder="1234 5678 9012 3456" maxlength="16">
+                    </div>
+                    <div class="d-flex justify-content-between w-75 mt-2 mb-2">
+                        <div class="d-flex flex-column">
+                            <label for="expiration">Fecha de expiración</label><input type="text"
+                                pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/AA" name="expiration"
+                                maxlength="5">
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="security-code">Código de seguridad</label><input placeholder="3 dígitos"
+                                type="text" name="card-num" minlength="3" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label for="card-num">Nombre de la tarjeta</label><input type="text" placeholder="Juan Pérez"
+                            name="card-num">
+                    </div>
+                </div>
+            </div> <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
+                <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio" required
+                        name="payment-option">
                     <p class="p-1 p-link">PayPal</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <img class="payment-icons" src="/drburger.com/public/images/paypal.webp" alt="">
                 </div>
             </label>
+        </div>
+        <div class="delivery-div">
+            <h2 class="mt-4 mb-4">INFORMACIÓN DEL PEDIDO</h2>
+        </div>
+        <div class="d-flex flex-column mb-4">
+            <div class="d-flex justify-content-between w-100 mb-3">
+                <div class="d-flex flex-column"><label class="mb-1" for="discount-code">¿Tienes algún código de
+                        descuento?</label><input type="text" name="discount-code" placeholder="Intoduce el código">
+                </div>
+                <div class="d-flex align-items-end"> <a class="snd-btn-1"
+                        href="?controller=order&action=applyPromo">APLICAR</a></div>
+            </div>
+            <div class="d-flex justify-content-between w-100">
+                <div class="d-flex flex-column w-100"><label class="mb-1" for="allergies">¿Tienes alguna alergia
+                        alimenticia o quieres hacernos algún comentario tu pedido?</label><textarea name="allergies"
+                        class="w-100"
+                        placeholder="Escribe aquí sobre tus alergias o lo que quieras comentar"></textarea>
+                </div>
+
+            </div>
+            <p class="mt-4">Al realizar este pedido acepto todos los <a
+                    class="text-decoration-underline text-reset href="">Términos y Condiciones</a></p>
+            <input class=" rm-input-style input-submit mt-4" type="submit" value="REALIZAR PEDIDO Y PAGAR">
 
         </div>
     </form>

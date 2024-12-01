@@ -13,13 +13,15 @@ foreach ($_SESSION['cart'] as $product) {
                 </p>
             </div>
             <div class="d-flex justify-content-between h-50 align-items-center">
-                <p class="snd-p-items-checkout">CANTIDAD: <?= $product->getQuantity() ?></p>
-                <div><a class="add-quantity-btn"
-                        href="?controller=order&action=addUnit&productId=<?= $product->getProduct_id() ?>"><i
-                            class="fa-solid fa-plus"></i></a><a class="rm-quantity-btn"
-                        href="?controller=order&action=removeUnit&productId=<?= $product->getProduct_id() ?>"><i
-                            class="fa-solid fa-minus"></i></a></div>
-                </a><a class="rm-link-checkout"
+                <div class="d-flex gap-4">
+                    <p class="snd-p-items-checkout">CANTIDAD: <?= $product->getQuantity() ?></p>
+                    <div><a class="add-quantity-btn"
+                            href="?controller=order&action=addUnit&productId=<?= $product->getProduct_id() ?>"><i
+                                class="fa-solid fa-plus"></i></a><a class="rm-quantity-btn"
+                            href="?controller=order&action=removeUnit&productId=<?= $product->getProduct_id() ?>"><i
+                                class="fa-solid fa-minus"></i></a></div>
+                    </a>
+                </div> <a class="rm-link-checkout"
                     href="?controller=order&action=removeItem&productId=<?= $product->getProduct_id() ?>">Eliminar</a>
             </div>
         </div>
