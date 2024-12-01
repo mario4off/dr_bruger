@@ -41,7 +41,8 @@
                             class="fa-solid fa-user-large fa-lg d-none d-sm-inline icon-header-size <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i><i
                             class=" fa-solid fa-user-large fa-sm d-sm-none <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i></a>
                 </li>
-                <li class="cart-container pt-2"><a class="nav-link" href="?controller=order&action=getCheckout"><i
+                <li class="cart-container pt-2"><a class="nav-link"
+                        href="?controller=order&action=getCheckout&delivery=false"><i
                             class="fa-solid fa-bag-shopping fa-lg d-none d-sm-inline icon-header-size <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>">
                             <?php if (isset($_SESSION['cart'])) {
                                 ?><span class="cart-count d-flex justify-content-center align-items-center">

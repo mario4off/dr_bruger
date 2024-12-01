@@ -3,7 +3,7 @@ $totalAmount = 0;
 foreach ($_SESSION['cart'] as $product) {
     ?>
 
-    <article class="d-flex gap-3 checkout-border pb-4 pt-4">
+    <article class="d-flex gap-3 checkout-border pb-4 pt-1">
         <img class="w-25 p-3 img-product" src="/drburger.com/public/images/<?= $product->getMain_photo() ?>">
         <div class=" w-75  d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
@@ -30,14 +30,16 @@ foreach ($_SESSION['cart'] as $product) {
 <div class="checkout-border pt-2 pb-2">
     <div class="d-flex w-100 justify-content-between mb-2">
         <p class="snd-p-items-checkout">SUBTOTAL</p>
-        <p>2,00€</p>
+        <p><?= number_format($totalAmount, '2', ',') ?>€</p>
     </div>
     <div class="d-flex w-100 justify-content-between">
         <p class="snd-p-items-checkout">ENVÍO</p>
-        <p>0,00€</p>
+        <p><?= $_GET['delivery'] == 'true' ? '3,50€' : '0,00€' ?></p>
     </div>
 </div>
-<div class="pt-2 pb-3 d-flex w-100 justify-content-between">
+<div class="pt-3 pb-3 d-flex w-100 justify-content-between">
     <p class="p-items-checkout p-total-checkout ">TOTAL</p>
-    <p class="p-items-checkout p-total-checkout "><?= number_format($totalAmount, 2, ',') ?>€</p>
+    <p class="p-items-checkout p-total-checkout ">
+        <?= number_format($_GET['delivery'] == 'true' ? $totalAmount + 3.5 : $totalAmount, 2, ',') ?>€
+    </p>
 </div>

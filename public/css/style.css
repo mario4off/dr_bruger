@@ -276,8 +276,8 @@ li {
 }
 
 .l-icon {
-  height: 18px;
-  width: 30px;
+  height: 22px;
+  width: 32px;
 }
 
 .ul-footer > li {
@@ -758,10 +758,59 @@ li {
 .checkout-box {
   border: solid 1px #101010;
   border-radius: 2px;
-  min-height: 318px;
+  height: fit-content;
 }
 
 .burger-icon {
   font-size: 10rem;
   color: #e2e2e2;
+}
+
+.delivery-div {
+  border-top: 1px solid #e2e2e2;
+}
+
+.delivery-option-active {
+  border: 0.5px solid #101010 !important;
+  box-shadow: 1px 1px 1px 1px #828282 !important;
+  width: 47%;
+}
+
+.delivery-option {
+  border: 0.5px solid #101010;
+  width: 47%;
+}
+
+.p-link {
+  color: #101010 !important;
+}
+
+.payment-option {
+  border: 0.5px solid #101010 !important;
+}
+
+.payment-option-active {
+  border: 0.5px solid #101010 !important;
+  box-shadow: 1px 1px 1px 1px #828282 !important;
+}
+
+.circle-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #101010;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.circle-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 9%;
+  left: 10%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #101010;
 }
