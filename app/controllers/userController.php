@@ -96,8 +96,17 @@ class userController
             $_SESSION['role'] = $result->getRole();
             $_SESSION['id'] = $result->getUser_id();
 
-            $view = path_base . 'app/views/pages/account.php';
-            include_once(path_base . 'app/views/layouts/main.php');
+
+            $reference = explode('=', ($_SERVER['HTTP_REFERER']));
+            $method = explode('&', $reference[2]);
+
+            if ($method[0] == 'getCheckout') {
+                $view = path_base . 'app/views/pages/checkout.php';
+                include_once(path_base . 'app/views/layouts/main.php');
+            } else {
+                $view = path_base . 'app/views/pages/account.php';
+                include_once(path_base . 'app/views/layouts/main.php');
+            }
 
         } else {
             header('Location: ?controller=user&action=showUser&warning=wrong_password');

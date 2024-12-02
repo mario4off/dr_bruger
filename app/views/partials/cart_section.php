@@ -3,7 +3,7 @@ $totalAmount = 0;
 foreach ($_SESSION['cart'] as $product) {
     ?>
 
-    <article class="d-flex gap-3 checkout-border pb-4 pt-1">
+    <article class="d-flex gap-3 checkout-border pb-3 pt-3">
         <img class="w-25 p-3 img-product" src="/drburger.com/public/images/<?= $product->getMain_photo() ?>">
         <div class=" w-75  d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
@@ -28,6 +28,7 @@ foreach ($_SESSION['cart'] as $product) {
     </article>
     <?php
     $totalAmount += $product->getBase_price() * $product->getQuantity();
+    $_SESSION['totalAmount'] = $totalAmount;
 } ?>
 <div class="checkout-border pt-2 pb-2">
     <div class="d-flex w-100 justify-content-between mb-2">
@@ -42,6 +43,7 @@ foreach ($_SESSION['cart'] as $product) {
 <div class="pt-3 pb-3 d-flex w-100 justify-content-between">
     <p class="p-items-checkout p-total-checkout ">TOTAL</p>
     <p class="p-items-checkout p-total-checkout ">
-        <?= number_format($_GET['delivery'] == 'true' ? $totalAmount + 3.5 : $totalAmount, 2, ',') ?>€
+        <?php
+        echo number_format($_GET['delivery'] == 'true' ? $totalAmount + 3.5 : $totalAmount, 2, ',') ?>€
     </p>
 </div>

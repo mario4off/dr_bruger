@@ -1,5 +1,5 @@
 <section class="col-md-6 mt-4">
-    <form action="">
+    <form action="?controller=order&action=makeOrder&delivery=<?= $_SESSION['delivery'] ?>" method="POST">
         <div class="delivery-div">
             <h2 class="mt-4 mb-4">OPCIONES DE ENTREGA</h2>
         </div>
@@ -29,7 +29,7 @@
         <div class=" justify-content-between">
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="payment-option" required>
+                        name="payment-option" value="Efectivo" required>
                     <p class="p-1 p-link">Pago en efectivo</p>
                 </div>
                 <div class="d-flex align-items-center">
@@ -39,8 +39,8 @@
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1" data-bs-toggle="collapse"
                 data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="payment-option" required>
-                    <p class="p-1 p-link">Trajeta bancaria</p>
+                        name="payment-option" value="Tarjeta" required>
+                    <p class="p-1 p-link">Tarjeta bancaria</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <img class="payment-icons" src="/drburger.com/public/images/visa.webp" alt="visa">
@@ -68,17 +68,17 @@
                         </div>
                         <div class="d-flex flex-column">
                             <label for="security-code">Código de seguridad</label><input placeholder="3 dígitos"
-                                type="text" name="card-num" minlength="3" maxlength="4">
+                                type="text" name="cvv" minlength="3" maxlength="4">
                         </div>
                     </div>
                     <div class="d-flex flex-column">
                         <label for="card-num">Nombre de la tarjeta</label><input type="text" placeholder="Juan Pérez"
-                            name="card-num">
+                            name="cardholder">
                     </div>
                 </div>
             </div> <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio" required
-                        name="payment-option">
+                        name="payment-option" value="PayPal">
                     <p class="p-1 p-link">PayPal</p>
                 </div>
                 <div class="d-flex align-items-center">
@@ -92,15 +92,16 @@
         <div class="d-flex flex-column mb-4">
             <div class="d-flex justify-content-between w-100 mb-3">
                 <div class="d-flex flex-column"><label class="mb-1" for="discount-code">¿Tienes algún código de
-                        descuento?</label><input type="text" name="discount-code" placeholder="Intoduce el código">
+                        descuento?</label><input class="p-1" type="text" name="discount-code"
+                        placeholder="Intoduce el código">
                 </div>
                 <div class="d-flex align-items-end"> <a class="snd-btn-1"
                         href="?controller=order&action=applyPromo">APLICAR</a></div>
             </div>
             <div class="d-flex justify-content-between w-100">
                 <div class="d-flex flex-column w-100"><label class="mb-1" for="allergies">¿Tienes alguna alergia
-                        alimenticia o quieres hacernos algún comentario tu pedido?</label><textarea name="allergies"
-                        class="w-100"
+                        alimenticia o quieres hacernos algún comentario sobre tu pedido?</label><textarea class="p-1"
+                        name="allergies" class="w-100"
                         placeholder="Escribe aquí sobre tus alergias o lo que quieras comentar"></textarea>
                 </div>
 
