@@ -12,7 +12,7 @@ class userController
     {
         $section = isset($_GET['section']) ? $_GET['section'] : 'profile';
 
-        if ($section === 'orders') {
+        if ($section == 'orders') {
             $user_id = $_SESSION['id'];
             $orderHistory = OrderHistoryDAO::getOrderHistoryByUser($user_id);
 

@@ -91,10 +91,10 @@ class orderController
             // $promotion_id = $_POST[''];
             $status = 'Pendiente de aceptación';
             $total_amount = $_SESSION['totalAmount'];
-            $card_number = (isset($_POST['card-num']) && !empty($_POST['card-num'])) ? substr($_POST['card-num'], '8') : '';
+            $card_number = (isset($_POST['card-num']) && !empty($_POST['card-num'])) ? substr($_POST['card-num'], 12, 16) : '';
             $payment_method = $_POST['payment-option'];
             $delivery_cost = $_GET['delivery'] == 'true' ? 3.5 : 0;
-            $iva = self::calculateTax($total_amount, $delivery_cost);
+            $iva = round(self::calculateTax($total_amount, $delivery_cost), 2);
 
             $order = new Order();
 
@@ -106,9 +106,11 @@ class orderController
             $order->setDelivery_cost($delivery_cost);
             $order->setIva($iva);
 
-            $result = OrderDAO::insertOrder($order);
+            $result1 = OrderDAO::insertOrder($order);
 
-            if ($result) {
+
+
+            if ($result1) {
                 unset($_SESSION['cart']);
                 unset($_SESSION['totalAmount']);
                 header('Location: ?controller=user&action=showUser&section=orders');

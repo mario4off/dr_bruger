@@ -1,5 +1,6 @@
 <section class="col-md-6 mt-4">
-    <form action="?controller=order&action=makeOrder&delivery=<?= $_SESSION['delivery'] ?>" method="POST">
+    <form id="form-checkout" action="?controller=order&action=makeOrder&delivery=<?= $_SESSION['delivery'] ?>"
+        method="POST">
         <div class="delivery-div">
             <h2 class="mt-4 mb-4">OPCIONES DE ENTREGA</h2>
         </div>
@@ -29,7 +30,7 @@
         <div class=" justify-content-between">
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="payment-option" value="Efectivo" required>
+                        name="payment-option" value="Efectivo" required id="input-cash">
                     <p class="p-1 p-link">Pago en efectivo</p>
                 </div>
                 <div class="d-flex align-items-center">
@@ -37,9 +38,11 @@
                 </div>
             </label>
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1" data-bs-toggle="collapse"
-                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio"
-                        name="payment-option" value="Tarjeta" required>
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                id="collapse-Element">
+                <div class="d-flex gap-4 align-items-center">
+                    <input id="input-card" class="ms-1 circle-checkbox" type="radio" name="payment-option"
+                        value="Tarjeta">
                     <p class="p-1 p-link">Tarjeta bancaria</p>
                 </div>
                 <div class="d-flex align-items-center">
@@ -57,29 +60,29 @@
             <div class="collapse" id="collapseExample">
                 <div class="mb-3 toggle-payment p-3">
                     <div class="d-flex flex-column">
-                        <label for="card-num">Número de tarjeta</label><input type="text" name="card-num"
-                            pattern="\d{4} \d{4} \d{4} \d{4}" placeholder="1234 5678 9012 3456" maxlength="16">
+                        <label for="card-num">Número de tarjeta</label><input id="event-num" type="text" name="card-num"
+                            pattern="\d{16}" placeholder="1234 5678 9012 3456" maxlength="16">
                     </div>
                     <div class="d-flex justify-content-between w-75 mt-2 mb-2">
                         <div class="d-flex flex-column">
-                            <label for="expiration">Fecha de expiración</label><input type="text"
+                            <label for="expiration">Fecha de expiración</label><input id="event-expiration" type="text"
                                 pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/AA" name="expiration"
                                 maxlength="5">
                         </div>
                         <div class="d-flex flex-column">
-                            <label for="security-code">Código de seguridad</label><input placeholder="3 dígitos"
-                                type="text" name="cvv" minlength="3" maxlength="4">
+                            <label for="security-code">Código de seguridad</label><input id="event-cvv"
+                                placeholder="3 dígitos" type="text" name="cvv" minlength="3" maxlength="4">
                         </div>
                     </div>
                     <div class="d-flex flex-column">
-                        <label for="card-num">Nombre de la tarjeta</label><input type="text" placeholder="Juan Pérez"
-                            name="cardholder">
+                        <label for="card-num">Nombre de la tarjeta</label><input id="event-name" type="text"
+                            placeholder="Juan Pérez" name="cardholder">
                     </div>
                 </div>
             </div> <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1">
                 <div class="d-flex gap-4 align-items-center"><input class="ms-1 circle-checkbox" type="radio" required
-                        name="payment-option" value="PayPal">
-                    <p class="p-1 p-link">PayPal</p>
+                        name="payment-option" value="PayPal" id="input-paypal">
+                    <p class=" p-1 p-link">PayPal</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <img class="payment-icons" src="/drburger.com/public/images/paypal.webp" alt="">
