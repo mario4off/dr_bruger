@@ -1,14 +1,12 @@
 <?php
 
 include_once(path_base . 'config/protection.php');
-include_once(path_base . 'app/models/UserDAO.php');
-include_once(path_base . 'app/models/User.php');
-include_once(path_base . 'app/models/OrderHistoryDAO.php');
-include_once(path_base . 'app/models/OrderHistory.php');
 include_once(path_base . 'app/models/CartItemDAO.php');
 include_once(path_base . 'app/models/CartItem.php');
 include_once(path_base . 'app/models/Order.php');
 include_once(path_base . 'app/models/OrderDAO.php');
+include_once(path_base . 'app/models/OrderDetails.php');
+include_once(path_base . 'app/models/OrderDetailsDAO.php');
 include_once(path_base . 'config/params.php');
 
 class orderController
@@ -106,11 +104,11 @@ class orderController
             $order->setDelivery_cost($delivery_cost);
             $order->setIva($iva);
 
-            $result1 = OrderDAO::insertOrder($order);
+            $orderId = OrderDAO::insertOrder($order);
 
+            $result = OrderDetailsDAO::insertOrderLines($orderId);
 
-
-            if ($result1) {
+            if ($result) {
                 unset($_SESSION['cart']);
                 unset($_SESSION['totalAmount']);
                 header('Location: ?controller=user&action=showUser&section=orders');

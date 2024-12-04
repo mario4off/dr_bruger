@@ -1,5 +1,5 @@
 <section class="col-md-6 mt-4">
-    <form id="form-checkout" action="?controller=order&action=makeOrder&delivery=<?= $_SESSION['delivery'] ?>"
+    <form id="form-checkout" action="?controller=order&action=makeOrder&delivery=<?= $_GET['delivery'] ?>"
         method="POST">
         <div class="delivery-div">
             <h2 class="mt-4 mb-4">OPCIONES DE ENTREGA</h2>

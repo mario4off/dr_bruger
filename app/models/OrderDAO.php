@@ -25,7 +25,7 @@ class OrderDAO
 
         $con->close();
 
-        return true;
+        return $stmnt->insert_id;
     }
 
 }
