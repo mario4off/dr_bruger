@@ -93,14 +93,7 @@
             <h2 class="mt-4 mb-4">INFORMACIÓN DEL PEDIDO</h2>
         </div>
         <div class="d-flex flex-column mb-4">
-            <div class="d-flex justify-content-between w-100 mb-3">
-                <div class="d-flex flex-column"><label class="mb-1" for="discount-code">¿Tienes algún código de
-                        descuento?</label><input class="p-1" type="text" name="discount-code"
-                        placeholder="Intoduce el código">
-                </div>
-                <div class="d-flex align-items-end"> <a class="snd-btn-1"
-                        href="?controller=order&action=applyPromo">APLICAR</a></div>
-            </div>
+
             <div class="d-flex justify-content-between w-100">
                 <div class="d-flex flex-column w-100"><label class="mb-1" for="allergies">¿Tienes alguna alergia
                         alimenticia o quieres hacernos algún comentario sobre tu pedido?</label><textarea class="p-1"

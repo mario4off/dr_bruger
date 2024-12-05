@@ -39,7 +39,23 @@ foreach ($_SESSION['cart'] as $product) {
         <p class="snd-p-items-checkout">ENVÍO</p>
         <p><?= $_GET['delivery'] == 'true' ? '3,50€' : '0,00€' ?></p>
     </div>
+    <?php if ($priceWithDiscount) { ?>
+        <div class="d-flex w-100 justify-content-between">
+            <p class="snd-p-items-checkout">DESCUENTO</p>
+            <p><?= $priceWithDiscount ?></p>
+        </div>
+        <?php $totalAmount -= $priceWithDiscount;
+    } ?>
 </div>
+<form action="?controller=order&action=applyPromo" method="POST" class="d-flex justify-content-between w-100 mb-2 mt-3">
+    <div class="d-flex flex-column"><label class="mb-1 fs-6" hidden for="discount-code">¿Tienes algún código de
+            descuento?</label><input class="p-1" type="text" name="discount-code" placeholder="Código de descuento">
+        <input type="number" name="orderAmount" hidden value="<?= $totalAmount ?>">
+    </div>
+    <div class="d-flex align-items-center"> <input type="submit" class="snd-btn-1"
+            href="?controller=order&action=applyPromo" value="APLICAR">
+    </div>
+</form>
 <div class="pt-3 pb-3 d-flex w-100 justify-content-between">
     <p class="p-items-checkout p-total-checkout ">TOTAL</p>
     <p class="p-items-checkout p-total-checkout ">

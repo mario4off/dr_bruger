@@ -5,6 +5,8 @@ include_once(path_base . 'app/models/CartItemDAO.php');
 include_once(path_base . 'app/models/CartItem.php');
 include_once(path_base . 'app/models/Order.php');
 include_once(path_base . 'app/models/OrderDAO.php');
+include_once(path_base . 'app/models/Promotion.php');
+include_once(path_base . 'app/models/PromotionDAO.php');
 include_once(path_base . 'app/models/OrderDetails.php');
 include_once(path_base . 'app/models/OrderDetailsDAO.php');
 include_once(path_base . 'config/params.php');
@@ -123,6 +125,60 @@ class orderController
     private function calculateTax($amount, $delivery_cost, $tax = 0.21)
     {
         return ($amount + $delivery_cost) * $tax;
+    }
+
+    public function applyPromo()
+    {
+
+        $promo = $_POST['discount-code'];
+        $orderAmount = $_POST['orderAmount'];
+
+        if (isset($_SESSION['id'])) {
+            $discount = PromotionDAO::checkPromo($promo);
+
+            $currentDate = date('Y-m-d');
+
+            if ($discount->getStart_date() < $currentDate && $currentDate < $discount->getEnd_date()) {
+
+
+                if ($discount->getObject() == 'order') {
+
+                    $result = PromotionDAO::isOrderPromoApplied($discount->getPromotion_id());
+
+                    if (!$result) {
+
+                        if ($discount->getDiscount_type() == 'percentage') {
+
+                            $priceWithDiscount = $orderAmount * ($discount->getDiscount_value() / 100);
+
+                            $view = path_base . 'app/views/pages/checkout.php';
+                            include_once(path_base . 'app/views/layouts/main.php');
+
+                        }
+
+                    }
+
+                } else {
+
+                }
+
+
+            } else {
+
+                header('Location: ?controller=order&action=getCheckout&warning=promo_expired');
+
+            }
+
+        } else {
+
+            header('Location: ?controller=order&action=getCheckout&warning=login_needed');
+
+        }
+
+
+
+
+
     }
 
 }
