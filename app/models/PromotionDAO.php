@@ -14,6 +14,17 @@ class PromotionDAO
 
         $promo = $result->fetch_object('promotion');
 
+        if ($promo->getObject == 'product') {
+            $stmnt = $con->prepare("SELECT * FROM products WHERE promotion_id = ?");
+            $stmnt->bind_param('s', $promo->getPromotion_id());
+            $stmnt->execute();
+            $result = $stmnt->get_result();
+
+            if (!$result) {
+                return false;
+            }
+        }
+
         $con->close();
 
         return $promo;
@@ -29,12 +40,28 @@ class PromotionDAO
         $stmnt->execute();
         $result = $stmnt->get_result();
 
-        $order = $result->fetch_object('order');
+        $order = $result->fetch_assoc();
 
         $con->close();
 
         return $order;
     }
 
+    public static function isProductPromoApplied($promoId, $userId)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT * FROM order_details JOIN orders ON order_details.order_id = orders.order_id 
+        WHERE order_details.promotion_id = ? AND orders.user_id = ?");
+        $stmnt->bind_param('ii', $promoId, $userId);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        $order = $result->fetch_assoc();
+
+        $con->close();
+
+        return $order;
+    }
 
 }

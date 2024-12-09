@@ -94,5 +94,19 @@ class ProductDAO
         return $products;
     }
 
+    public static function getProductPriceByPromoId($id)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT base_price FROM products WHERE promotion_id = ?");
+        $stmnt->bind_param("i", $filter);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        $price = $result->fetch_assoc();
+
+        $con->close();
+
+        return $price;
+    }
 
 }

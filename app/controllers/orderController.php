@@ -136,6 +136,11 @@ class orderController
         if (isset($_SESSION['id'])) {
             $discount = PromotionDAO::checkPromo($promo);
 
+            if (empty($discount)) {
+
+                header('Location: ?controller=order&action=getCheckout&warning=invalid_code');
+            }
+
             $currentDate = date('Y-m-d');
 
             if ($discount->getStart_date() < $currentDate && $currentDate < $discount->getEnd_date()) {
@@ -149,16 +154,47 @@ class orderController
 
                         if ($discount->getDiscount_type() == 'percentage') {
 
-                            $priceWithDiscount = $orderAmount * ($discount->getDiscount_value() / 100);
+                            $_SESSION['discount']['amount'] = $orderAmount * ($discount->getDiscount_value() / 100);
+                            $_SESSION['discount']['code'] = $promo;
 
                             $view = path_base . 'app/views/pages/checkout.php';
                             include_once(path_base . 'app/views/layouts/main.php');
 
+                        } else {
+                            $_SESSION['discount']['amount'] = $discount->getDiscount_value();
+                            $_SESSION['discount']['code'] = $promo;
+                            $view = path_base . 'app/views/pages/checkout.php';
+                            include_once(path_base . 'app/views/layouts/main.php');
                         }
 
+                    } else {
+                        header('Location: ?controller=order&action=getCheckout&warning=code_already_applied');
                     }
 
                 } else {
+
+                    $result = PromotionDAO::isProductPromoApplied($discount->getPromotion_id(), $_SESSION['id']);
+
+                    if (!$result) {
+                        $productPrice = ProductDAO::getProductPriceByPromoId($discount->getPromotion_id());
+                        if ($discount->getDiscount_type() == 'percentage') {
+
+                            $_SESSION['discount']['amount'] = $productPrice * ($discount->getDiscount_value() / 100);
+                            $_SESSION['discount']['code'] = $promo;
+
+                            $view = path_base . 'app/views/pages/checkout.php';
+                            include_once(path_base . 'app/views/layouts/main.php');
+
+                        } else {
+                            $_SESSION['discount']['amount'] = $discount->getDiscount_value();
+                            $_SESSION['discount']['code'] = $promo;
+                            $view = path_base . 'app/views/pages/checkout.php';
+                            include_once(path_base . 'app/views/layouts/main.php');
+                        }
+
+                    } else {
+                        header('Location: ?controller=order&action=getCheckout&warning=code_already_applied');
+                    }
 
                 }
 
@@ -174,11 +210,13 @@ class orderController
             header('Location: ?controller=order&action=getCheckout&warning=login_needed');
 
         }
+    }
 
-
-
-
-
+    public function removeDiscount()
+    {
+        unset($_SESSION['discount']);
+        $view = path_base . 'app/views/pages/checkout.php';
+        include_once(path_base . 'app/views/layouts/main.php');
     }
 
 }
