@@ -4,6 +4,7 @@ include_once('config/params.php');
 include_once(path_base . 'app/controllers/productController.php');
 include_once(path_base . 'app/controllers/userController.php');
 include_once(path_base . 'app/controllers/orderController.php');
+include_once(path_base . 'app/controllers/adminController.php');
 
 if (!isset($_GET['controller'])) {
 

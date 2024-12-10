@@ -41,6 +41,7 @@ include_once(path_base . 'app/views/partials/footer.php');
     crossorigin="anonymous"></script>
 <script src="public/js/effectsCheckout.js
 "></script>
+<script src="app/api/orderService.js"></script>
 
 <body>
 

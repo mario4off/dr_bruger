@@ -24,6 +24,17 @@
                         ?controller=product&action=showMenu">MENÚ</a></li>
                 <li><a class="nav-link header-link <?= $_GET['action'] == 'showContact' ? 'active' : '' ?>" href="
                         #">CONTACTO</a></li>
+                <?php
+
+                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                    ?>
+
+                    <li><a class="nav-link header-link <?= $_GET['action'] == 'showPannel' ? 'active' : '' ?>"
+                            href="?controller=admin&action=showPannel">ADMINISTRACIÓN</a></li>
+
+                    <?php
+                }
+                ?>
             </ul>
             <ul class="d-flex flex-column d-sm-none mb-0 justify-content-center">
                 <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
@@ -33,6 +44,17 @@
                 </li>
                 <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
                         href="#">CONTACTO</a></li>
+                <?php
+
+                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                    ?>
+
+                    <li><a class="nav-link header-link <?= $_GET['action'] == 'showPannel' ? 'active' : '' ?>"
+                            href="?controller=admin&action=showPannel">ADMINISTRACIÓN</a></li>
+
+                    <?php
+                }
+                ?>
             </ul>
 
 

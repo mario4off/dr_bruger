@@ -28,4 +28,24 @@ class OrderDAO
         return $stmnt->insert_id;
     }
 
+    public static function findAllOrders()
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT * FROM orders");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        $orders = [];
+
+        while ($row = $result->fetch_assoc()) {
+
+            $orders[] = $row;
+
+        }
+        $con->close();
+
+        return $orders;
+    }
+
 }

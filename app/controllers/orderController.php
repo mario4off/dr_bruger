@@ -10,6 +10,7 @@ include_once(path_base . 'app/models/PromotionDAO.php');
 include_once(path_base . 'app/models/OrderDetails.php');
 include_once(path_base . 'app/models/OrderDetailsDAO.php');
 include_once(path_base . 'config/params.php');
+include_once(path_base . 'config/Database.php');
 
 class orderController
 {
@@ -218,5 +219,9 @@ class orderController
         $view = path_base . 'app/views/pages/checkout.php';
         include_once(path_base . 'app/views/layouts/main.php');
     }
+
+
+
+
 
 }
