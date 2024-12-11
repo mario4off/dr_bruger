@@ -5,6 +5,7 @@ include_once(path_base . 'app/controllers/productController.php');
 include_once(path_base . 'app/controllers/userController.php');
 include_once(path_base . 'app/controllers/orderController.php');
 include_once(path_base . 'app/controllers/adminController.php');
+include_once(path_base . 'app/controllers/apiController.php');
 
 if (!isset($_GET['controller'])) {
 

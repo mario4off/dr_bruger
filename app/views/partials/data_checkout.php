@@ -109,3 +109,5 @@
         </div>
     </form>
 </section>
+<script src="public/js/effectsCheckout.js
+"></script>

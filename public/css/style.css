@@ -45,6 +45,12 @@ header {
   top: 0;
   z-index: 10;
 }
+th {
+  font-size: 0.9rem;
+  padding: 5px;
+  min-width: 80px;
+}
+
 a,
 p {
   font-family: "Archivo", sans-serif;
