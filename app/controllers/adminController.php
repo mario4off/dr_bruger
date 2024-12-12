@@ -9,7 +9,7 @@ class AdminController
 
     public function showPannel()
     {
-        $view = path_base . 'app/views/partials/pannel.php';
+        $view = path_base . 'app/views/pages/pannel.php';
         include_once(path_base . 'app/views/layouts/main.php');
     }
 
