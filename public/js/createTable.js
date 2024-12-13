@@ -3,8 +3,11 @@ import { Order } from "/drburger.com/public/js/models/Order.js";
 const API_URL = "?controller=api&action=show";
 
 const button = document.getElementById("save-btn");
+const orderSelect = document.getElementById("select-order");
+const tBody = document.querySelector("tbody");
 
 document.addEventListener("DOMContentLoaded", initTable);
+//button.addEventListener("click", updateData);
 
 async function initTable() {
   const response = await fetch(API_URL);
@@ -30,7 +33,7 @@ async function initTable() {
     );
   }
   console.log(allOrders);
-  const tBody = document.querySelector("tbody");
+
   createHTMLTable(allOrders, tBody);
 
   tBody.addEventListener("click", (e) => {
@@ -51,8 +54,6 @@ async function initTable() {
     }
   });
 
-  const orderSelect = document.getElementById("select-order");
-  button.addEventListener("click", updateData);
   orderSelect.addEventListener("change", () => {
     const option = orderSelect.value;
 
@@ -60,7 +61,15 @@ async function initTable() {
 
     tBody.innerHTML = "";
 
-    const newOrder = allOrders.sort((a, b) => a[option] - b[option]);
+    let newOrder = "";
+
+    if (option == "dateTime") {
+      newOrder = allOrders.sort(
+        (a, b) => new Date(a[option]) - new Date(b[option])
+      );
+    } else {
+      newOrder = allOrders.sort((a, b) => a[option] - b[option]);
+    }
 
     console.log(newOrder);
 
@@ -84,16 +93,16 @@ function keepData(cell, change) {
   sessionStorage.setItem(orderId, JSON.stringify(order));
 }
 
-async function updateData() {
-  const ordersToUpdate = [];
+// async function updateData() {
+//   const ordersToUpdate = [];
 
-  for (const orderId of Object.keys(sessionStorage)) {
-    const order = JSON.parse(sessionStorage.getItem(orderId));
-    order.orderId = orderId;
-    ordersToUpdate.push(order);
-  }
-  console.log(ordersToUpdate);
-}
+//   for (const orderId of Object.keys(sessionStorage)) {
+//     const order = JSON.parse(sessionStorage.getItem(orderId));
+//     order.orderId = orderId;
+//     ordersToUpdate.push(order);
+//   }
+//   console.log(ordersToUpdate);
+// }
 
 function createHTMLTable(data, tBody) {
   for (const obj of data) {
@@ -112,8 +121,36 @@ function createHTMLTable(data, tBody) {
 <td class="text-center border-table">${obj.iva ?? "-"}</td>
 <td class="text-center border-table">${obj.promotionId ?? "-"}</td>
 <td class="text-center border-table">${obj.deliveryPrice ?? "-"}</td>
-<td class="text-center border-table"><button class="button-to-link" ><i class="fa-solid fa-trash"></i></button></td>
+<td class="text-center border-table"><button data-id="${
+      obj.orderId
+    }" class="remove-order-button"><i class="fa-solid fa-trash"></i></button></td>
 `;
     tBody.append(tr);
+  }
+
+  const removeButtons = document.querySelectorAll(".remove-order-button");
+  for (const button of removeButtons) {
+    button.addEventListener("click", (e) => {
+      const buttonSelected = e.target.closest(".remove-order-button");
+      const id = buttonSelected.getAttribute("data-id");
+      removeOrder(id);
+    });
+  }
+}
+
+async function removeOrder(id) {
+  const API_URL = "?controller=api&action=show";
+  const question = confirm(
+    `¿Estás seguro que quieres elminar el pedido con ID ${id}?`
+  );
+  if (question) {
+    const response = await fetch(API_URL, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(id),
+    });
+
+    if ((await response.json().status) == 200)
+      alert(`Pedido con ID ${id} ha sido borrado con éxito`);
   }
 }

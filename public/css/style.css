@@ -839,12 +839,12 @@ li {
   border-top: 2px solid #828282;
 }
 
-.button-to-link {
+.remove-order-button {
   all: unset;
   height: 1.5rem;
 }
 
-.button-to-link:hover {
+.remove-order-button:hover {
   border-bottom: 1px solid #101010;
   height: 1.5rem;
 }

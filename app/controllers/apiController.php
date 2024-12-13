@@ -21,6 +21,18 @@ class apiController
 
                 break;
 
+            case 'DELETE':
+                $id = json_decode(file_get_contents('php://input'), true);
+                $response = self::deleteOrder($id);
+
+                if ($response == 'ok') {
+                    echo json_encode(['status' => 200, 'data' => 'Borrado con éxito']);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(['status' => 404, 'data' => 'Pedido no encontrado']);
+                }
+
+                break;
         }
     }
 
@@ -37,6 +49,19 @@ class apiController
         }
     }
 
+    private function deleteOrder($id)
+    {
+
+
+        $response = OrderDAO::removeOrderDetails($id);
+
+        if ($response) {
+            return OrderDAO::removeOrder($id);
+        } else {
+            header('Location: ?controller=admin&action=pannel&error=unable_to_delete');
+        }
+
+    }
     // function showWithFilter()
 // {
 //     $data = adminController::getFilteredOrders();

@@ -5,7 +5,7 @@
             <form class="mb-4">
                 <div class="d-flex gap-3 mb-2">
                     <p>Ordenar por:</p><select name="order" id="select-order">
-                        <option value="" selected disabled>...</option>
+
                         <option value="orderId">Pedido ID</option>
                         <option value="userId">Usuario ID</option>
                         <option value="dateTime">Fecha</option>
@@ -20,7 +20,7 @@
 
             <button class="snd-btn-1 mb-2 w-100 mt-5">ADMINISTRAR PEDIDOS</button>
             <button class="snd-btn-1 w-100">HISTORIAL DE ACTIVIDAD</button>
-            <button id="save-btn" type="button" class="pri-btn mb-2 mt-5" hidden>GUARDAR CAMBIOS</button>
+
         </aside>
         <div class="col-10 ">
 

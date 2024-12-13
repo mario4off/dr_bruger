@@ -48,4 +48,25 @@ class OrderDAO
         return $orders;
     }
 
+    public static function removeOrderDetails($id)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("DELETE FROM order_details WHERE order_id = ?");
+        $stmnt->bind_param("i", $id);
+        $stmnt->execute();
+        $con->close();
+        return 'ok';
+    }
+    public static function removeOrder($id)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("DELETE FROM orders WHERE order_id = ?");
+        $stmnt->bind_param("i", $id);
+        $stmnt->execute();
+        $con->close();
+        return 'ok';
+    }
+
 }
