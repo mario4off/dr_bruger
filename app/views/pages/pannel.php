@@ -36,18 +36,18 @@
             <table>
                 <thead>
                     <tr>
-                        <th class="text-center">PEDIDO_ID</th>
-                        <th class="text-center">USUARIO_ID</th>
-                        <th class="text-center">ESTADO</th>
-                        <th class="text-center">FECHA & HORA</th>
-                        <th class="text-center">MÉTODO DE PAGO</th>
-                        <th class="text-center">NÚM. TARJETA</th>
-                        <th class="text-center">ALERGIAS & COMENTARIOS</th>
-                        <th class="text-center">PRECIO TOTAL</th>
-                        <th class="text-center">IVA</th>
-                        <th class="text-center">PROMOCION_ID</th>
-                        <th class="text-center">PRECIO ENVÍO</th>
-                        <th class="text-center"></th>
+                        <th class="text-center align-top">PEDIDO ID</th>
+                        <th class="text-center align-top">USUARIO ID</th>
+                        <th class="text-center align-top">ESTADO</th>
+                        <th class="text-center align-top">FECHA & HORA</th>
+                        <th class="text-center align-top">MÉTODO DE PAGO</th>
+                        <th class="text-center align-top">NÚM. TARJETA</th>
+                        <th class="text-center align-top">ALERGIAS & COMENTARIOS</th>
+                        <th class="text-center align-top">PRECIO TOTAL</th>
+                        <th class="text-center align-top">IVA</th>
+                        <th class="text-center align-top">PROMOCION_ID</th>
+                        <th class="text-center align-top">PRECIO ENVÍO</th>
+                        <th class="text-center align-top"></th>
                     </tr>
                 </thead>
                 <tbody>

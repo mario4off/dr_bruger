@@ -69,4 +69,21 @@ class OrderDAO
         return 'ok';
     }
 
+    public static function updateOrder($order)
+    {
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("UPDATE orders SET status = ?, payment_method = ?, card_number = ? WHERE order_id = ?");
+        $stmnt->bind_param(
+            "ssii",
+            $order['status'],
+            $order['paymentMethod'],
+            $order['cardNumber'],
+            $order['id']
+        );
+        $stmnt->execute();
+        $con->close();
+        return 'ok';
+    }
+
 }

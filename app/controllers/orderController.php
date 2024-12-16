@@ -92,7 +92,7 @@ class orderController
             // $promotion_id = $_POST[''];
             $status = 'Pendiente de aceptación';
             $total_amount = $_SESSION['totalAmount'];
-            $card_number = (isset($_POST['card-num']) && !empty($_POST['card-num'])) ? substr($_POST['card-num'], 12, 16) : '';
+            $card_number = (isset($_POST['card-num']) && !empty($_POST['card-num'])) ? substr($_POST['card-num'], 12, 16) : null;
             $payment_method = $_POST['payment-option'];
             $delivery_cost = $_GET['delivery'] == 'true' ? 3.5 : 0;
             $iva = round(self::calculateTax($total_amount, $delivery_cost), 2);

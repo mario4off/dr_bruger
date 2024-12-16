@@ -23,19 +23,6 @@ class apiController
             echo json_encode(['status' => 404, 'data' => 'No data found']);
         }
 
-        //     case 'DELETE':
-        //         $id = json_decode(file_get_contents('php://input'), true);
-        //         $response = self::deleteOrder($id);
-
-        //         if ($response == 'ok') {
-        //             echo json_encode(['status' => 200, 'data' => 'Borrado con éxito']);
-        //         } else {
-        //             http_response_code(404);
-        //             echo json_encode(['status' => 404, 'data' => 'Pedido no encontrado']);
-        //         }
-
-        //         break;
-        // }
     }
 
 
@@ -44,7 +31,7 @@ class apiController
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: DELETE");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         $id = json_decode(file_get_contents('php://input'), true);
         $response = OrderDAO::removeOrderDetails($id);
@@ -62,20 +49,32 @@ class apiController
             }
 
         } else {
-            header('Location: ?controller=admin&action=pannel&error=unable_to_delete');
+            http_response_code(500);
+            echo json_encode(['status' => 500, 'message' => 'Error al borrar los detalles del pedido']);
         }
 
     }
-    // function showWithFilter()
-// {
-//     $data = adminController::getFilteredOrders();
+    public function updateOrder()
+    {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-    //     if (!empty($data)) {
+        $order = json_decode(file_get_contents('php://input'), true);
+        var_dump($order);
+        $response = OrderDAO::updateOrder($order);
 
-    //         echo json_encode(['status' => 200, 'data' => $data]);
-//     } else {
-//         http_response_code(404);
-//         echo json_encode([['status' => 404, 'data' => 'No data found']]);
-//     }
-// }
+        if ($response) {
+
+            http_response_code(200);
+            echo json_encode(['status' => 200, 'message' => 'Pedido eliminado con éxito']);
+
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 500, 'message' => 'No se pudo eliminar el pedido principal']);
+        }
+
+    }
+
 }
