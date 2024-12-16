@@ -139,7 +139,7 @@ function createHTMLTable(data, tBody) {
 }
 
 async function removeOrder(id) {
-  const API_URL = "?controller=api&action=show";
+  const API_URL = "?controller=api&action=deleteOrder";
   const question = confirm(
     `¿Estás seguro que quieres elminar el pedido con ID ${id}?`
   );
@@ -150,7 +150,13 @@ async function removeOrder(id) {
       body: JSON.stringify(id),
     });
 
-    if ((await response.json().status) == 200)
-      alert(`Pedido con ID ${id} ha sido borrado con éxito`);
+    console.log(response);
+
+    if (response.ok) {
+      alert("Pedido el eliminado con éxito");
+      document.querySelector(`button[data-id="${id}"]`).closest("tr").remove();
+    } else {
+      alert("No se pudo eliminar el pedido.");
+    }
   }
 }
