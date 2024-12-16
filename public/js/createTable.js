@@ -197,6 +197,8 @@ async function updateOrder(order) {
 
     if (response.ok) {
       alert("Pedido editado con éxito");
+      tBody.innerHTML = "";
+      createHTMLTable(allOrders);
     } else {
       alert("No se pudo editar el pedido.");
     }
