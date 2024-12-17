@@ -847,3 +847,7 @@ li {
 .fa-check {
   color: green;
 }
+
+.filters-admin-div {
+  border: 1px solid #828282;
+}

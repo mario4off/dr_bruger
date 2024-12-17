@@ -4,6 +4,9 @@ const API_URL = "?controller=api&action=show";
 
 const orderSelect = document.getElementById("select-order");
 const tBody = document.querySelector("tbody");
+const userFilter = document.querySelector("#user-filter");
+console.log(userFilter);
+
 let allOrders = [];
 
 document.addEventListener("DOMContentLoaded", initTable);
@@ -36,9 +39,44 @@ async function initTable() {
   tBody.addEventListener("click", (e) => {
     const cell = e.target;
 
-    if (cell.cellIndex == 2 || cell.cellIndex == 4 || cell.cellIndex == 5) {
+    if (cell.cellIndex == 2 || cell.cellIndex == 4) {
       const currenValue = cell.innerText;
-      cell.innerHTML = `<input class="mod" type="text" value="${currenValue}">`;
+      const row = cell.parentElement;
+      const cellNumCard = row.children[5];
+
+      switch (cell.cellIndex) {
+        case 2:
+          cell.innerHTML = `<select class="mod" value="${currenValue}"><option>Pendiente de aceptación</option>
+      <option>En preparación</option><option>Listo para recoger</option><option>Recogido/Enviado</option></select>`;
+          addConfirmButton(row);
+          break;
+        case 4:
+          cell.innerHTML = `<select class="mod card-input" value="${currenValue}"><option>Efectivo</option>
+      <option>Tarjeta</option><option>PayPal</option></select>`;
+          document
+            .querySelector(".card-input")
+            .addEventListener("change", (e) => {
+              e.preventDefault();
+
+              cellNumCard.innerText = "";
+
+              if (e.target.value === "Tarjeta") {
+                alert("Introduce los últimos 4 dígitos de la tarjeta de pago.");
+
+                cellNumCard.innerHTML = `<input class="mod card-num-input" type="number" value="${currenValue}" maxlength="4" pattern="[0-9]* required">`;
+              } else if (
+                e.target.value === "PayPal" ||
+                e.target.value === "Efectivo"
+              ) {
+                cellNumCard.innerHTML = "-";
+              }
+            });
+          addConfirmButton(row);
+          break;
+
+        default:
+          console.log("Campo no disponible para edición");
+      }
       const input = cell.querySelector(".mod");
       input.focus();
 
@@ -86,8 +124,6 @@ async function initTable() {
 
     console.log(option);
 
-    tBody.innerHTML = "";
-
     let newOrder = "";
 
     if (option == "dateTime") {
@@ -105,6 +141,7 @@ async function initTable() {
 }
 
 function createHTMLTable(data) {
+  tBody.innerHTML = "";
   for (const obj of data) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -123,7 +160,7 @@ function createHTMLTable(data) {
 <td class="text-center border-table">${obj.deliveryPrice ?? "-"}</td>
 <td class="text-center border-table"><div class="d-flex gap-3"><button data-id="${
       obj.orderId
-    }" class="update-order-button order-button"><i class="fa-solid fa-check"></i></button><button data-id="${
+    }" class="update-order-button order-button" hidden><i class="fa-solid fa-check"></i></button><button data-id="${
       obj.orderId
     }" class="remove-order-button order-button"><i class="fa-solid fa-trash"></i></button></div></td>
 `;
@@ -136,9 +173,14 @@ function createHTMLTable(data) {
   for (const button of updateButtons) {
     button.addEventListener("click", (e) => {
       const buttonSelected = e.target.closest(".update-order-button");
+      buttonSelected.setAttribute("hidden", true);
       const id = buttonSelected.getAttribute("data-id");
       const order = allOrders.find((order) => order.orderId == id);
-      console.log(order);
+
+      if (order.paymentMethod != "Tarjeta") {
+        order.cardNumber = null;
+      }
+
       updateOrder(order);
     });
   }
@@ -189,7 +231,7 @@ async function updateOrder(order) {
         id: order.orderId,
         status: order.status,
         paymentMethod: order.paymentMethod,
-        cardNumber: order.cardNumber,
+        cardNumber: order.cardNumber == "-" ? null : order.cardNumber,
       }),
     });
 
@@ -197,10 +239,27 @@ async function updateOrder(order) {
 
     if (response.ok) {
       alert("Pedido editado con éxito");
-      tBody.innerHTML = "";
       createHTMLTable(allOrders);
     } else {
       alert("No se pudo editar el pedido.");
     }
   }
 }
+
+function addConfirmButton(row) {
+  const confirmButton = row.querySelector(".update-order-button");
+  confirmButton.removeAttribute("hidden");
+}
+
+userFilter.addEventListener("input", (e) => {
+  e.preventDefault();
+  const userId = e.target.value;
+
+  if (!userId) {
+    createHTMLTable(allOrders);
+  } else {
+    const newOrderList = allOrders.filter((e) => e.userId == userId);
+
+    createHTMLTable(newOrderList);
+  }
+});

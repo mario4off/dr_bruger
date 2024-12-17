@@ -7,10 +7,7 @@ class apiController
 
     public function show()
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        include_once(path_base . 'config/apiHeaders.php');
 
 
         $data = OrderDAO::findAllOrders();
@@ -29,10 +26,7 @@ class apiController
 
     public function deleteOrder()
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        include_once(path_base . 'config/apiHeaders.php');
         $id = json_decode(file_get_contents('php://input'), true);
         $response = OrderDAO::removeOrderDetails($id);
 
@@ -56,10 +50,7 @@ class apiController
     }
     public function updateOrder()
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        include_once(path_base . 'config/apiHeaders.php');
 
         $order = json_decode(file_get_contents('php://input'), true);
         var_dump($order);

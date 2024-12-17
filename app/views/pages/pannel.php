@@ -13,13 +13,31 @@
                     </select>
                 </div>
 
-                <!-- <label for="id"><strong>Valor de búsqueda:<strong></label>
-                <input type="number" id="id">
-                <input id="until" hidden> -->
+                <div class="filters-admin-div p-2 mt-4">
+                    <h2 class="fs-6 mb-2">FILTROS</h2>
+
+                    <label for="">USUARIO ID</label>
+                    <input id="user-filter" type="number">
+                    <p class="mt-2">FECHA</p>
+                    <div class="d-flex flex-column"><label for="">Desde:</label>
+                        <input class="me-3 mt-1 mb-1" type="date">
+                        <label for="">Hasta:</label>
+                        <input class="me-3 mt-1" type="date">
+                    </div>
+                    <p class="mt-2">PRECIO
+                    </p>
+                    <div class="d-flex flex-column"><label for="">Desde:</label>
+                        <input class="me-3 mt-1 mb-1" type="number">
+                        <label for="">Hasta:</label>
+                        <input class="me-3 mt-1" type="number">
+                    </div>
+
+                </div>
+                <button class="snd-btn-1 mb-2 w-100 mt-2">ADMINISTRAR PEDIDOS</button>
+                <button class="snd-btn-1 w-100">HISTORIAL DE ACTIVIDAD</button>
             </form>
 
-            <button class="snd-btn-1 mb-2 w-100 mt-5">ADMINISTRAR PEDIDOS</button>
-            <button class="snd-btn-1 w-100">HISTORIAL DE ACTIVIDAD</button>
+
 
         </aside>
         <div class="col-10 ">
