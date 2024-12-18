@@ -51,9 +51,9 @@
             <div>
 
             </div>
-            <table>
+            <table class="mt-3">
                 <thead>
-                    <tr>
+                    <!-- <tr>
                         <th class="text-center align-top">PEDIDO ID</th>
                         <th class="text-center align-top">USUARIO ID</th>
                         <th class="text-center align-top">ESTADO</th>
@@ -66,7 +66,7 @@
                         <th class="text-center align-top">PROMOCION_ID</th>
                         <th class="text-center align-top">PRECIO ENVÍO</th>
                         <th class="text-center align-top"></th>
-                    </tr>
+                    </tr> -->
                 </thead>
                 <tbody>
 

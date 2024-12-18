@@ -3,6 +3,7 @@ import { Order } from "/drburger.com/public/js/models/Order.js";
 const API_URL = "?controller=api&action=show";
 
 const orderSelect = document.getElementById("select-order");
+const tHead = document.querySelector("thead");
 const tBody = document.querySelector("tbody");
 const userFilter = document.querySelector("#user-filter");
 const dateFrom = document.querySelector(".date-from");
@@ -11,6 +12,19 @@ const priceFrom = document.querySelector(".price-from");
 const priceUntil = document.querySelector(".price-until");
 
 let allOrders = [];
+let headersOrders = [
+  "PEDIDO",
+  "USUARIO",
+  "ESTADO",
+  "FECHA",
+  "MÉTODO",
+  "NÚM",
+  "ALERGIAS",
+  "PRECIO",
+  "IVA",
+  "PROMOCION",
+  "PRECIO",
+];
 
 document.addEventListener("DOMContentLoaded", initTable);
 
@@ -153,8 +167,20 @@ async function initTable() {
   });
 }
 
-function createHTMLTable(data) {
+function createHTMLTable(data, headers = headersOrders) {
   tBody.innerHTML = "";
+  tHead.innerHTML = "";
+
+  const tr = document.createElement("tr");
+  for (const header of headers) {
+    const th = document.createElement("th");
+    th.innerText = header;
+    tr.append(th);
+    th.classList.add("text-center");
+    th.classList.add("align-top");
+  }
+  tHead.append(tr);
+
   for (const obj of data) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -300,7 +326,7 @@ dateFrom.addEventListener("input", (e) => {
   e.preventDefault();
   let dateFilter = e.target.value;
 
-  dateFromFilter = new Date(dateFilter);
+  dateFromFilter = dateFilter ? new Date(dateFilter) : null;
   if (dateFromFilter) {
     dateFromFilter.setHours(0, 0, 0);
   }
@@ -312,7 +338,7 @@ dateUntil.addEventListener("input", (e) => {
   e.preventDefault();
   let dateFilter = e.target.value;
 
-  dateUntilFilter = new Date(dateFilter);
+  dateUntilFilter = dateFilter ? new Date(dateFilter) : null;
   if (dateUntilFilter) {
     dateUntilFilter.setHours(23, 59, 59);
   }
