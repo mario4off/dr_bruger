@@ -48,10 +48,13 @@ header {
 th {
   font-size: 0.9rem;
   padding: 5px;
-  min-width: 30px;
+  min-width: 50px;
   color: #222222;
 }
 
+table {
+  width: 100%;
+}
 td {
   padding: 5px;
 }
@@ -849,5 +852,6 @@ li {
 }
 
 .filters-admin-div {
+  margin-top: 15px !important;
   border: 1px solid #828282;
 }

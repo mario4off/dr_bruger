@@ -10,6 +10,7 @@ const dateFrom = document.querySelector(".date-from");
 const dateUntil = document.querySelector(".date-until");
 const priceFrom = document.querySelector(".price-from");
 const priceUntil = document.querySelector(".price-until");
+const table = document.querySelector("table");
 
 let allOrders = [];
 let headersOrders = [
@@ -31,140 +32,147 @@ document.addEventListener("DOMContentLoaded", initTable);
 async function initTable() {
   const response = await fetch(API_URL);
   const data = await response.json();
+  console.log(data);
 
-  for (const el of data.data) {
-    allOrders.push(
-      new Order(
-        el.order_id,
-        el.user_id,
-        el.promotion_id,
-        el.date_time,
-        el.status,
-        el.allergies_comments,
-        el.payment_method,
-        el.card_number,
-        el.iva,
-        el.delivery_cost,
-        el.total_amount
-      )
-    );
-  }
+  if (!response.ok) {
+    table.innerHTML = "<p>No hay pedidos por mostrar</p>";
+  } else {
+    for (const el of data.data) {
+      allOrders.push(
+        new Order(
+          el.order_id,
+          el.user_id,
+          el.promotion_id,
+          el.date_time,
+          el.status,
+          el.allergies_comments,
+          el.payment_method,
+          el.card_number,
+          el.iva,
+          el.delivery_cost,
+          el.total_amount
+        )
+      );
+    }
 
-  console.log(allOrders);
+    console.log(allOrders);
 
-  createHTMLTable(allOrders);
+    createHTMLTable(allOrders);
 
-  tBody.addEventListener("click", (e) => {
-    const cell = e.target;
+    tBody.addEventListener("click", (e) => {
+      const cell = e.target;
 
-    if (cell.cellIndex == 2 || cell.cellIndex == 4) {
-      const currenValue = cell.innerText;
-      const row = cell.parentElement;
-      const cellNumCard = row.children[5];
+      if (cell.cellIndex == 2 || cell.cellIndex == 4) {
+        const currenValue = cell.innerText;
+        const row = cell.parentElement;
+        const cellNumCard = row.children[5];
 
-      switch (cell.cellIndex) {
-        case 2:
-          cell.innerHTML = `<select class="mod" value="${currenValue}"><option>Pendiente de aceptación</option>
-      <option>En preparación</option><option>Listo para recoger</option><option>Recogido/Enviado</option></select>`;
-          addConfirmButton(row);
-          break;
-        case 4:
-          cell.innerHTML = `<select class="mod card-input" value="${currenValue}"><option>Efectivo</option>
-      <option>Tarjeta</option><option>PayPal</option></select>`;
-          document
-            .querySelector(".card-input")
-            .addEventListener("change", (e) => {
-              e.preventDefault();
-
-              cellNumCard.innerText = "";
-
-              if (e.target.value === "Tarjeta") {
-                alert("Introduce los últimos 4 dígitos de la tarjeta de pago.");
-
-                cellNumCard.innerHTML = `<input class="mod card-num-input" type="number" value="${currenValue}" maxlength="4" pattern="[0-9]* required">`;
-
-                const inputCardNum =
-                  cellNumCard.querySelector(".card-num-input");
-
-                inputCardNum.addEventListener("blur", () => {
-                  cellNumCard.innerHTML = "···· " + inputCardNum.value;
-                  const orderId =
-                    cell.parentElement.querySelector("td").innerHTML;
-
-                  allOrders = allOrders.map((e) => {
-                    if (e.orderId == orderId) {
-                      e.cardNumber = inputCardNum.value;
-                    }
-                    return e;
-                  });
-                  console.log(allOrders);
-                });
-              } else if (
-                e.target.value === "PayPal" ||
-                e.target.value === "Efectivo"
-              ) {
-                cellNumCard.innerHTML = "-";
-              }
-            });
-          addConfirmButton(row);
-          break;
-
-        default:
-          console.log("Campo no disponible para edición");
-      }
-      const input = cell.querySelector(".mod");
-      input.focus();
-
-      input.addEventListener("blur", () => {
-        const updateValue = input.value;
-
-        cell.innerHTML = updateValue;
-        const orderId = cell.parentElement.querySelector("td").innerHTML;
         switch (cell.cellIndex) {
           case 2:
-            allOrders = allOrders.map((e) => {
-              if (e.orderId == orderId) {
-                alert(updateValue);
-                e.status = updateValue;
-              }
-              return e;
-            });
+            cell.innerHTML = `<select class="mod" value="${currenValue}"><option>Pendiente de aceptación</option>
+      <option>En preparación</option><option>Listo para recoger</option><option>Recogido/Enviado</option></select>`;
+            addConfirmButton(row);
             break;
           case 4:
-            allOrders = allOrders.map((e) => {
-              if (e.orderId == orderId) {
-                e.paymentMethod = updateValue;
-              }
-              return e;
-            });
+            cell.innerHTML = `<select class="mod card-input" value="${currenValue}"><option>Efectivo</option>
+      <option>Tarjeta</option><option>PayPal</option></select>`;
+            document
+              .querySelector(".card-input")
+              .addEventListener("change", (e) => {
+                e.preventDefault();
+
+                cellNumCard.innerText = "";
+
+                if (e.target.value === "Tarjeta") {
+                  alert(
+                    "Introduce los últimos 4 dígitos de la tarjeta de pago."
+                  );
+
+                  cellNumCard.innerHTML = `<input class="mod card-num-input" type="number" value="${currenValue}" maxlength="4" pattern="[0-9]* required">`;
+
+                  const inputCardNum =
+                    cellNumCard.querySelector(".card-num-input");
+
+                  inputCardNum.addEventListener("blur", () => {
+                    cellNumCard.innerHTML = "···· " + inputCardNum.value;
+                    const orderId =
+                      cell.parentElement.querySelector("td").innerHTML;
+
+                    allOrders = allOrders.map((e) => {
+                      if (e.orderId == orderId) {
+                        e.cardNumber = inputCardNum.value;
+                      }
+                      return e;
+                    });
+                    console.log(allOrders);
+                  });
+                } else if (
+                  e.target.value === "PayPal" ||
+                  e.target.value === "Efectivo"
+                ) {
+                  cellNumCard.innerHTML = "-";
+                }
+              });
+            addConfirmButton(row);
             break;
+
           default:
-            console.log(
-              "El índice pertenece a una casilla que no se puede modificar"
-            );
-            break;
+            console.log("Campo no disponible para edición");
         }
-      });
-    }
-  });
+        const input = cell.querySelector(".mod");
+        input.focus();
 
-  orderSelect.addEventListener("change", () => {
-    const option = orderSelect.value;
+        input.addEventListener("blur", () => {
+          const updateValue = input.value;
 
-    let newOrder = "";
+          cell.innerHTML = updateValue;
+          const orderId = cell.parentElement.querySelector("td").innerHTML;
+          switch (cell.cellIndex) {
+            case 2:
+              allOrders = allOrders.map((e) => {
+                if (e.orderId == orderId) {
+                  alert(updateValue);
+                  e.status = updateValue;
+                }
+                return e;
+              });
+              break;
+            case 4:
+              allOrders = allOrders.map((e) => {
+                if (e.orderId == orderId) {
+                  e.paymentMethod = updateValue;
+                }
+                return e;
+              });
+              break;
+            default:
+              console.log(
+                "El índice pertenece a una casilla que no se puede modificar"
+              );
+              break;
+          }
+        });
+      }
+    });
 
-    if (option == "dateTime") {
-      newOrder = allOrders.sort(
-        (a, b) => new Date(a[option]) - new Date(b[option])
-      );
-    } else {
-      newOrder = allOrders.sort((a, b) => a[option] - b[option]);
-    }
+    orderSelect.addEventListener("change", () => {
+      const option = orderSelect.value;
 
-    console.log(newOrder);
+      let newOrder = "";
 
-    createHTMLTable(newOrder);
-  });
+      if (option == "dateTime") {
+        newOrder = allOrders.sort(
+          (a, b) => new Date(a[option]) - new Date(b[option])
+        );
+      } else {
+        newOrder = allOrders.sort((a, b) => a[option] - b[option]);
+      }
+
+      console.log(newOrder);
+
+      createHTMLTable(newOrder);
+    });
+  }
 }
 
 function createHTMLTable(data, headers = headersOrders) {
