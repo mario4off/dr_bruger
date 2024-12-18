@@ -1,6 +1,6 @@
 <?php
-include_once(path_base . 'config/Database.php');
-include_once(path_base . 'app/models/Category.php');
+include_once('config/Database.php');
+include_once('app/models/Category.php');
 class CategoryDAO
 {
 

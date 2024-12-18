@@ -1,13 +1,13 @@
 <?php
 
 include_once('/Applications/XAMPP/xamppfiles/htdocs/drburger.com/config/params.php');
-include_once(path_base . 'app/models/OrderDAO.php');
+include_once('app/models/OrderDAO.php');
 class apiController
 {
 
     public function show()
     {
-        include_once(path_base . 'config/apiHeaders.php');
+        include_once('config/apiHeaders.php');
 
 
         $data = OrderDAO::findAllOrders();
@@ -26,7 +26,7 @@ class apiController
 
     public function deleteOrder()
     {
-        include_once(path_base . 'config/apiHeaders.php');
+        include_once('config/apiHeaders.php');
         $id = json_decode(file_get_contents('php://input'), true);
         $response = OrderDAO::removeOrderDetails($id);
 
@@ -50,7 +50,7 @@ class apiController
     }
     public function updateOrder()
     {
-        include_once(path_base . 'config/apiHeaders.php');
+        include_once('config/apiHeaders.php');
 
         $order = json_decode(file_get_contents('php://input'), true);
         var_dump($order);

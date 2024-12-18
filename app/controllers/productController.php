@@ -1,11 +1,11 @@
 <?php
 
-include_once(path_base . 'app/models/ProductDAO.php');
-include_once(path_base . 'app/models/Product.php');
-include_once(path_base . 'app/models/CategoryDAO.php');
-include_once(path_base . 'app/models/Category.php');
-include_once(path_base . 'app/models/CartItemDAO.php');
-include_once(path_base . 'app/models/CartItem.php');
+include_once('app/models/ProductDAO.php');
+include_once('app/models/Product.php');
+include_once('app/models/CategoryDAO.php');
+include_once('app/models/Category.php');
+include_once('app/models/CartItemDAO.php');
+include_once('app/models/CartItem.php');
 
 
 class productController
@@ -17,8 +17,8 @@ class productController
         $topProducts = ProductDAO::getBestSeller();
         $categories = CategoryDAO::getAllCategories();
 
-        $view = path_base . 'app/views/pages/home.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/home.php';
+        include_once('app/views/layouts/main.php');
 
     }
 
@@ -35,8 +35,8 @@ class productController
             $products = ProductDAO::getProductsByCategory($filter);
         }
 
-        $view = path_base . 'app/views/pages/menu.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/menu.php';
+        include_once('app/views/layouts/main.php');
     }
 
     public function addToCart()

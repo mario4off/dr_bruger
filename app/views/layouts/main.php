@@ -22,7 +22,7 @@
 
 <?php
 
-include_once(path_base . 'app/views/partials/header.php');
+include_once('app/views/partials/header.php');
 
 
 
@@ -32,7 +32,7 @@ include_once $view;
 
 // echo "<br>";
 
-include_once(path_base . 'app/views/partials/footer.php');
+include_once('app/views/partials/footer.php');
 
 ?>
 

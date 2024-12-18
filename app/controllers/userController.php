@@ -1,10 +1,10 @@
 <?php
-include_once(path_base . 'config/protection.php');
-include_once(path_base . 'app/models/UserDAO.php');
-include_once(path_base . 'app/models/User.php');
-include_once(path_base . 'app/models/OrderHistoryDAO.php');
-include_once(path_base . 'app/models/OrderHistory.php');
-include_once(path_base . 'config/params.php');
+include_once('config/protection.php');
+include_once('app/models/UserDAO.php');
+include_once('app/models/User.php');
+include_once('app/models/OrderHistoryDAO.php');
+include_once('app/models/OrderHistory.php');
+include_once('config/params.php');
 
 class userController
 {
@@ -22,8 +22,8 @@ class userController
 
             }
         }
-        $view = path_base . 'app/views/pages/account.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/account.php';
+        include_once('app/views/layouts/main.php');
     }
 
     public function createUser($role = 'customer')
@@ -59,8 +59,8 @@ class userController
 
             UserDAO::insertUser($user);
 
-            $view = path_base . 'app/views/pages/account.php';
-            include_once(path_base . 'app/views/layouts/main.php');
+            $view = 'app/views/pages/account.php';
+            include_once('app/views/layouts/main.php');
         }
 
 
@@ -101,11 +101,11 @@ class userController
             $method = explode('&', $reference[2]);
 
             if ($method[0] == 'getCheckout') {
-                $view = path_base . 'app/views/pages/checkout.php';
-                include_once(path_base . 'app/views/layouts/main.php');
+                $view = 'app/views/pages/checkout.php';
+                include_once('app/views/layouts/main.php');
             } else {
-                $view = path_base . 'app/views/pages/account.php';
-                include_once(path_base . 'app/views/layouts/main.php');
+                $view = 'app/views/pages/account.php';
+                include_once('app/views/layouts/main.php');
             }
 
         } else {
@@ -157,8 +157,8 @@ class userController
 
         $_SESSION['success'] = 'Los datos se han modificado con éxito';
 
-        $view = path_base . 'app/views/pages/account.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/account.php';
+        include_once('app/views/layouts/main.php');
 
     }
 

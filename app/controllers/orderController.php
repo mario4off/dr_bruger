@@ -1,16 +1,16 @@
 <?php
 
-include_once(path_base . 'config/protection.php');
-include_once(path_base . 'app/models/CartItemDAO.php');
-include_once(path_base . 'app/models/CartItem.php');
-include_once(path_base . 'app/models/Order.php');
-include_once(path_base . 'app/models/OrderDAO.php');
-include_once(path_base . 'app/models/Promotion.php');
-include_once(path_base . 'app/models/PromotionDAO.php');
-include_once(path_base . 'app/models/OrderDetails.php');
-include_once(path_base . 'app/models/OrderDetailsDAO.php');
-include_once(path_base . 'config/params.php');
-include_once(path_base . 'config/Database.php');
+include_once('config/protection.php');
+include_once('app/models/CartItemDAO.php');
+include_once('app/models/CartItem.php');
+include_once('app/models/Order.php');
+include_once('app/models/OrderDAO.php');
+include_once('app/models/Promotion.php');
+include_once('app/models/PromotionDAO.php');
+include_once('app/models/OrderDetails.php');
+include_once('app/models/OrderDetailsDAO.php');
+include_once('config/params.php');
+include_once('config/Database.php');
 
 class orderController
 {
@@ -35,15 +35,15 @@ class orderController
         }
 
 
-        $view = path_base . 'app/views/pages/checkout.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/checkout.php';
+        include_once('app/views/layouts/main.php');
 
     }
 
     public function getCheckout()
     {
-        $view = path_base . 'app/views/pages/checkout.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/checkout.php';
+        include_once('app/views/layouts/main.php');
     }
 
     public function removeItem()
@@ -55,8 +55,8 @@ class orderController
         if (count($_SESSION['cart']) == 0) {
             unset($_SESSION['cart']);
         }
-        $view = path_base . 'app/views/pages/checkout.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/checkout.php';
+        include_once('app/views/layouts/main.php');
     }
 
     public function addUnit()
@@ -64,8 +64,8 @@ class orderController
         $productId = $_GET['productId'];
 
         $_SESSION['cart'][$productId]->setQuantity($_SESSION['cart'][$productId]->getQuantity() + 1);
-        $view = path_base . 'app/views/pages/checkout.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/checkout.php';
+        include_once('app/views/layouts/main.php');
     }
     public function removeUnit()
     {
@@ -79,8 +79,8 @@ class orderController
             }
         }
 
-        $view = path_base . 'app/views/pages/checkout.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/checkout.php';
+        include_once('app/views/layouts/main.php');
     }
 
     public function makeOrder()
@@ -158,14 +158,14 @@ class orderController
                             $_SESSION['discount']['amount'] = $orderAmount * ($discount->getDiscount_value() / 100);
                             $_SESSION['discount']['code'] = $promo;
 
-                            $view = path_base . 'app/views/pages/checkout.php';
-                            include_once(path_base . 'app/views/layouts/main.php');
+                            $view = 'app/views/pages/checkout.php';
+                            include_once('app/views/layouts/main.php');
 
                         } else {
                             $_SESSION['discount']['amount'] = $discount->getDiscount_value();
                             $_SESSION['discount']['code'] = $promo;
-                            $view = path_base . 'app/views/pages/checkout.php';
-                            include_once(path_base . 'app/views/layouts/main.php');
+                            $view = 'app/views/pages/checkout.php';
+                            include_once('app/views/layouts/main.php');
                         }
 
                     } else {
@@ -183,14 +183,14 @@ class orderController
                             $_SESSION['discount']['amount'] = $productPrice * ($discount->getDiscount_value() / 100);
                             $_SESSION['discount']['code'] = $promo;
 
-                            $view = path_base . 'app/views/pages/checkout.php';
-                            include_once(path_base . 'app/views/layouts/main.php');
+                            $view = 'app/views/pages/checkout.php';
+                            include_once('app/views/layouts/main.php');
 
                         } else {
                             $_SESSION['discount']['amount'] = $discount->getDiscount_value();
                             $_SESSION['discount']['code'] = $promo;
-                            $view = path_base . 'app/views/pages/checkout.php';
-                            include_once(path_base . 'app/views/layouts/main.php');
+                            $view = 'app/views/pages/checkout.php';
+                            include_once('app/views/layouts/main.php');
                         }
 
                     } else {
@@ -216,8 +216,8 @@ class orderController
     public function removeDiscount()
     {
         unset($_SESSION['discount']);
-        $view = path_base . 'app/views/pages/checkout.php';
-        include_once(path_base . 'app/views/layouts/main.php');
+        $view = 'app/views/pages/checkout.php';
+        include_once('app/views/layouts/main.php');
     }
 
 

@@ -12,8 +12,8 @@
 
                 </div>
                 <div class="container-fluid d-flex flex-column flex-md-row">
-                    <?php include_once(path_base . 'app/views/partials/menu_sidebar.php'); ?>
-                    <?php include_once(path_base . 'app/views/partials/product_grid.php'); ?>
+                    <?php include_once('app/views/partials/menu_sidebar.php'); ?>
+                    <?php include_once('app/views/partials/product_grid.php'); ?>
                 </div>
             </section>
         </main>

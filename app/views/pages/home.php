@@ -1,6 +1,6 @@
 <body>
     <?php
-    include_once(path_base . 'app/views/partials/header_banner.php');
+    include_once('app/views/partials/header_banner.php');
     ?>
     <main>
         <section class="container-fluid">
@@ -32,7 +32,7 @@
         </section>
 
         <?php
-        include_once(path_base . 'app/views/partials/body_banner.php');
+        include_once('app/views/partials/body_banner.php');
         ?>
 
         <section class="container-fluid mb-5">

@@ -6,16 +6,16 @@
         if (isset($_SESSION['mail'])) {
 
             if (isset($_GET['section']) && $_GET['section'] == 'orders') {
-                include_once(path_base . 'app/views/partials/order_history.php');
+                include_once('app/views/partials/order_history.php');
             } else {
-                include_once(path_base . 'app/views/partials/profile.php');
+                include_once('app/views/partials/profile.php');
             }
 
 
         } else {
 
-            include_once(path_base . 'app/views/partials/register.php');
-            include_once(path_base . 'app/views/partials/login.php');
+            include_once('app/views/partials/register.php');
+            include_once('app/views/partials/login.php');
         }
 
         ?>

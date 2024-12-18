@@ -4,13 +4,13 @@
 
 
         <?php if (isset($_SESSION['name'])) {
-            include_once(path_base . 'app/views/partials/data_checkout.php');
+            include_once('app/views/partials/data_checkout.php');
         } else {
-            include_once(path_base . 'app/views/partials/login.php');
+            include_once('app/views/partials/login.php');
         } ?>
         <section class="col-5 cart p-3 pt-0 pb-1  mt-4 mb-4 checkout-box d-flex flex-column justify-content-between">
             <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                include_once(path_base . 'app/views/partials/cart_section.php');
+                include_once('app/views/partials/cart_section.php');
             } else {
                 ?>
                 <div class="h-100 d-flex align-items-center flex-column justify-content-center">

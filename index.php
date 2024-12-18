@@ -1,11 +1,11 @@
 <?php
 
 include_once('config/params.php');
-include_once(path_base . 'app/controllers/productController.php');
-include_once(path_base . 'app/controllers/userController.php');
-include_once(path_base . 'app/controllers/orderController.php');
-include_once(path_base . 'app/controllers/adminController.php');
-include_once(path_base . 'app/controllers/apiController.php');
+include_once('app/controllers/productController.php');
+include_once('app/controllers/userController.php');
+include_once('app/controllers/orderController.php');
+include_once('app/controllers/adminController.php');
+include_once('app/controllers/apiController.php');
 
 if (!isset($_GET['controller'])) {
 
