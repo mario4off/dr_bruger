@@ -20,16 +20,16 @@
                     <input id="user-filter" type="number">
                     <p class="mt-2">FECHA</p>
                     <div class="d-flex flex-column"><label for="">Desde:</label>
-                        <input class="me-3 mt-1 mb-1" type="date">
+                        <input class="date-from me-3 mt-1 mb-1" type="date">
                         <label for="">Hasta:</label>
-                        <input class="me-3 mt-1" type="date">
+                        <input class="date-until me-3 mt-1" type="date">
                     </div>
                     <p class="mt-2">PRECIO
                     </p>
                     <div class="d-flex flex-column"><label for="">Desde:</label>
-                        <input class="me-3 mt-1 mb-1" type="number">
+                        <input class="price-from me-3 mt-1 mb-1" type="number">
                         <label for="">Hasta:</label>
-                        <input class="me-3 mt-1" type="number">
+                        <input class="price-until me-3 mt-1" type="number">
                     </div>
 
                 </div>

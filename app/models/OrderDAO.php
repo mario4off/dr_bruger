@@ -32,7 +32,7 @@ class OrderDAO
     {
         $con = Database::connect();
 
-        $stmnt = $con->prepare("SELECT * FROM orders");
+        $stmnt = $con->prepare("SELECT * FROM orders ORDER BY date_time DESC");
         $stmnt->execute();
         $result = $stmnt->get_result();
 
@@ -73,7 +73,7 @@ class OrderDAO
     {
         $con = Database::connect();
 
-        $stmnt = $con->prepare("UPDATE orders SET status = ?, payment_method = ?, card_number = ? WHERE order_id = ?");
+        $stmnt = $con->prepare("UPDATE orders SET status = ?, payment_method = ?, card_number = ? WHERE order_id = ? ORDER BY date_time DESC");
         $stmnt->bind_param(
             "ssii",
             $order['status'],

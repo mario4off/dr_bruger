@@ -5,6 +5,10 @@ const API_URL = "?controller=api&action=show";
 const orderSelect = document.getElementById("select-order");
 const tBody = document.querySelector("tbody");
 const userFilter = document.querySelector("#user-filter");
+const dateFrom = document.querySelector(".date-from");
+const dateUntil = document.querySelector(".date-until");
+const priceFrom = document.querySelector(".price-from");
+const priceUntil = document.querySelector(".price-until");
 
 let allOrders = [];
 
@@ -31,6 +35,7 @@ async function initTable() {
       )
     );
   }
+
   console.log(allOrders);
 
   createHTMLTable(allOrders);
@@ -132,8 +137,6 @@ async function initTable() {
   orderSelect.addEventListener("change", () => {
     const option = orderSelect.value;
 
-    console.log(option);
-
     let newOrder = "";
 
     if (option == "dateTime") {
@@ -216,8 +219,6 @@ async function removeOrder(id) {
       body: JSON.stringify(id),
     });
 
-    console.log(response);
-
     if (response.ok) {
       alert("Pedido el eliminado con éxito");
       document.querySelector(`button[data-id="${id}"]`).closest("tr").remove();
@@ -272,4 +273,88 @@ userFilter.addEventListener("input", (e) => {
 
     createHTMLTable(newOrderList);
   }
+});
+
+let dateFromFilter;
+let dateUntilFilter;
+
+function applyDateFilters() {
+  let filteredOrders = allOrders;
+
+  if (dateFromFilter) {
+    filteredOrders = filteredOrders.filter(
+      (order) => new Date(order.dateTime) >= dateFromFilter
+    );
+  }
+
+  if (dateUntilFilter) {
+    filteredOrders = filteredOrders.filter(
+      (order) => new Date(order.dateTime) <= dateUntilFilter
+    );
+  }
+
+  createHTMLTable(filteredOrders);
+}
+
+dateFrom.addEventListener("input", (e) => {
+  e.preventDefault();
+  let dateFilter = e.target.value;
+
+  dateFromFilter = new Date(dateFilter);
+  if (dateFromFilter) {
+    dateFromFilter.setHours(0, 0, 0);
+  }
+
+  applyDateFilters();
+});
+
+dateUntil.addEventListener("input", (e) => {
+  e.preventDefault();
+  let dateFilter = e.target.value;
+
+  dateUntilFilter = new Date(dateFilter);
+  if (dateUntilFilter) {
+    dateUntilFilter.setHours(23, 59, 59);
+  }
+
+  applyDateFilters();
+});
+
+let priceFromFilter;
+let priceUntilFilter;
+
+function applyPriceFilters() {
+  let filteredOrders = allOrders;
+
+  if (priceFromFilter) {
+    filteredOrders = filteredOrders.filter(
+      (order) => order.totalAmount >= priceFromFilter
+    );
+  }
+
+  if (priceUntilFilter) {
+    filteredOrders = filteredOrders.filter(
+      (order) => order.totalAmount <= priceUntilFilter
+    );
+  }
+
+  createHTMLTable(filteredOrders);
+}
+
+priceFrom.addEventListener("input", (e) => {
+  e.preventDefault();
+  let priceFilter = e.target.value;
+
+  priceFromFilter = priceFilter;
+
+  applyPriceFilters();
+});
+
+priceUntil.addEventListener("input", (e) => {
+  e.preventDefault();
+  let priceFilter = e.target.value;
+
+  priceUntilFilter = priceFilter;
+
+  applyPriceFilters();
 });
