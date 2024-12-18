@@ -5,7 +5,6 @@ const API_URL = "?controller=api&action=show";
 const orderSelect = document.getElementById("select-order");
 const tBody = document.querySelector("tbody");
 const userFilter = document.querySelector("#user-filter");
-console.log(userFilter);
 
 let allOrders = [];
 
@@ -64,6 +63,23 @@ async function initTable() {
                 alert("Introduce los últimos 4 dígitos de la tarjeta de pago.");
 
                 cellNumCard.innerHTML = `<input class="mod card-num-input" type="number" value="${currenValue}" maxlength="4" pattern="[0-9]* required">`;
+
+                const inputCardNum =
+                  cellNumCard.querySelector(".card-num-input");
+
+                inputCardNum.addEventListener("blur", () => {
+                  cellNumCard.innerHTML = "···· " + inputCardNum.value;
+                  const orderId =
+                    cell.parentElement.querySelector("td").innerHTML;
+
+                  allOrders = allOrders.map((e) => {
+                    if (e.orderId == orderId) {
+                      e.cardNumber = inputCardNum.value;
+                    }
+                    return e;
+                  });
+                  console.log(allOrders);
+                });
               } else if (
                 e.target.value === "PayPal" ||
                 e.target.value === "Efectivo"
@@ -82,12 +98,14 @@ async function initTable() {
 
       input.addEventListener("blur", () => {
         const updateValue = input.value;
+
         cell.innerHTML = updateValue;
         const orderId = cell.parentElement.querySelector("td").innerHTML;
         switch (cell.cellIndex) {
           case 2:
             allOrders = allOrders.map((e) => {
               if (e.orderId == orderId) {
+                alert(updateValue);
                 e.status = updateValue;
               }
               return e;
@@ -97,14 +115,6 @@ async function initTable() {
             allOrders = allOrders.map((e) => {
               if (e.orderId == orderId) {
                 e.paymentMethod = updateValue;
-              }
-              return e;
-            });
-            break;
-          case 5:
-            allOrders = allOrders.map((e) => {
-              if (e.orderId == orderId) {
-                e.cardNumber = updateValue;
               }
               return e;
             });
@@ -177,7 +187,7 @@ function createHTMLTable(data) {
       const id = buttonSelected.getAttribute("data-id");
       const order = allOrders.find((order) => order.orderId == id);
 
-      if (order.paymentMethod != "Tarjeta") {
+      if (order.paymentMethod !== "Tarjeta") {
         order.cardNumber = null;
       }
 
