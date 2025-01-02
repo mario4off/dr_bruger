@@ -13,7 +13,7 @@
             foreach ($categories as $category) {
                 ?>
 
-                <a href="?controller=product&action=showMenu&filter=<?= $category->getCategory_id() ?>"
+                <a href="?controller=product&action=showMenu&filter=<?= $category->getCategory_name() ?>"
                     class="snd-btn-2 d-flex justify-content-between align-items-center mb-2">
                     <p><?= strtoupper($category->getCategory_name()) ?></p>
                     <i class="fa-solid fa-plus fa-add-icon"></i>

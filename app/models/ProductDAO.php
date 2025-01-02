@@ -10,7 +10,7 @@ class ProductDAO
     {
         $con = Database::connect();
 
-        $stmnt = $con->prepare("SELECT * FROM products");
+        $stmnt = $con->prepare("SELECT * FROM products ORDER BY category_id ASC");
         $stmnt->execute();
         $result = $stmnt->get_result();
 

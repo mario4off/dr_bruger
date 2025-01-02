@@ -6,7 +6,18 @@ include_once('app/models/CategoryDAO.php');
 include_once('app/models/Category.php');
 include_once('app/models/CartItemDAO.php');
 include_once('app/models/CartItem.php');
-
+include_once('app/models/BurgerDAO.php');
+include_once('app/models/Burger.php');
+include_once('app/models/ComboDAO.php');
+include_once('app/models/Combo.php');
+include_once('app/models/ComplementDAO.php');
+include_once('app/models/Complement.php');
+include_once('app/models/DrinkDAO.php');
+include_once('app/models/Drink.php');
+include_once('app/models/DessertDAO.php');
+include_once('app/models/Dessert.php');
+include_once('app/models/SauceDAO.php');
+include_once('app/models/Sauce.php');
 
 class productController
 {
@@ -32,7 +43,31 @@ class productController
         } else {
 
             $filter = $_GET['filter'];
-            $products = ProductDAO::getProductsByCategory($filter);
+
+            switch ($filter) {
+                case 'Hamburguesas':
+                    $products = BurgerDAO::getAll($filter);
+                    break;
+                case 'Complementos':
+                    $products = ComplementDAO::getAll($filter);
+                    break;
+                case 'Bebidas':
+                    $products = DrinkDAO::getAll($filter);
+                    break;
+                case 'Combos':
+                    $products = ComboDAO::getAll($filter);
+                    break;
+                case 'Salsas':
+                    $products = SauceDAO::getAll($filter);
+                    break;
+                case 'Postres':
+                    $products = DessertDAO::getAll($filter);
+                    break;
+
+                default:
+                    header('Location: ?controller=product&action=showMenu&error=category_not_found');
+
+            }
         }
 
         $view = 'app/views/pages/menu.php';
