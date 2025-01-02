@@ -104,10 +104,43 @@
             </div>
             <p class="mt-4">Al realizar este pedido acepto todos los <a
                     class="text-decoration-underline text-reset href="">Términos y Condiciones</a></p>
-            <input class=" rm-input-style input-submit mt-4" type="submit" value="REALIZAR PEDIDO Y PAGAR">
+            <input class=" rm-input-style input-submit mt-4 mb-2" type="submit" value="REALIZAR PEDIDO Y PAGAR">
 
         </div>
     </form>
+
+    <?php
+    if (isset($_COOKIE['suggest']) && !empty($_COOKIE['suggest'])) {
+
+        ?>
+        <div class="mt-4">
+            <h2>TAMBIÉN TE PUEDE INTERESAR</h2>
+            <div class="row"> <?php
+            $suggestion = unserialize($_COOKIE['suggest']);
+
+            foreach ($suggestion as $product) {
+                ?>
+                    <article class="card div-best-seller col-6 col-sm-6 col-md-3 justify-content-around">
+                        <a class="img-product"
+                            href="?controller=product&action=addToCart&productId=<?= $product['product_id'] ?>"><img
+                                class="card-img-top pb-5 ps-3 pe-3"
+                                src="/drburger.com/public/images/<?= $product['main_photo'] ?>" alt="Card image cap"></a>
+                        <div class="card-body ps-0 pt-2 d-flex flex-column justify-content-between">
+                            <h5 class="card-title"><?= strtoupper($product['product_name']) ?></h5>
+                            <p class="card-text"><?= number_format($product['base_price'], '2', ',') ?>€</p>
+                        </div>
+                    </article>
+
+                    <?php
+            }
+            ?>
+
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+
 </section>
 <script src="public/js/effectsCheckout.js
 "></script>
