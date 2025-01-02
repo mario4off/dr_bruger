@@ -110,7 +110,7 @@
     </form>
 
     <?php
-    if (isset($_COOKIE['suggest']) && !empty($_COOKIE['suggest'])) {
+    if (isset($_COOKIE['suggest']) && !empty($_COOKIE['suggest']) && ($_COOKIE['suggest']) != "a:0:{}") {
 
         ?>
         <div class="mt-4">

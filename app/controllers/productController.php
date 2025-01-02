@@ -99,8 +99,10 @@ class productController
 
         if (end($reference) == 'index' || end($reference) == 'logout') {
             header('Location: ?controller=product&action=index#home-anchor');
+        } else if ($reference[1] == 'order&action') {
+            header('Location: ?controller=order&action=getCheckout#anchor');
         } else {
-            header('Location: ?controller=product&action=showMenu#menu-anchor');
+            header('Location: ?controller=product&action=showMenu&filter=' . $reference[3]);
         }
 
     }
