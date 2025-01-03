@@ -14,11 +14,11 @@
             } else {
                 ?>
                 <div class="h-100 d-flex align-items-center flex-column justify-content-center">
-                    <h2 class="mb-2 mt-2 fs-2">EL CARRITO ESTÁ VACÍO</h2>
+                    <h2 class="mb-2 mt-5 fs-2">EL CARRITO ESTÁ VACÍO</h2>
 
-                    <i class="fa-solid fa-burger burger-icon mb-3"></i>
-                    <p class="mb-3">Aún estás a tiempo de añadir alguno de tus productos favoritos</p>
-                    <a class="snd-btn-1 mb-3" href="?controller=product&action=showMenu">VER PRODUCTOS</a>
+                    <i class="fa-solid fa-burger burger-icon mb-4"></i>
+                    <p class="mb-4">Aún estás a tiempo de añadir alguno de tus productos favoritos</p>
+                    <a class="snd-btn-1 mb-5" href="?controller=product&action=showMenu">VER PRODUCTOS</a>
                 </div>
                 <?php
 

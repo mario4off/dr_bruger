@@ -873,3 +873,9 @@ li {
   font-size: 1rem !important;
   color: #e01b1b !important;
 }
+
+.separator {
+  width: 50%;
+  height: 1px;
+  background-color: black;
+}

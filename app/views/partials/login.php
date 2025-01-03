@@ -33,4 +33,16 @@
         <input class="rm-input-style text-center p-2 rm-input-style input-submit text-center mt-4 p-2" type="submit"
             value="INICIAR SESION">
     </form>
+    <?php
+    if ($_GET["controller"] == 'order') {
+        ?>
+        <div class="mb-3 d-flex w-100 align-items-center gap-3 mt-3">
+            <div class="separator"></div>
+            <p>O</p>
+            <div class="separator"></div>
+        </div>
+        <a class="text-decoration-underline text-reset" href="?controller=user&action=showUser">Regístrate si aún no tienes
+            una cuenta</a>
+    <?php } ?>
+
 </div>

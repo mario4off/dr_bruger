@@ -65,26 +65,26 @@ foreach ($_SESSION['cart'] as $product) {
     if (isset($_GET['warning']) && $_GET['warning'] == 'invalid_code') {
 
         ?>
-        <div class="warning p-1 mb-4 w-100 text-center">
+        <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">EL CÓDIGO DE DESCUENTO NO EXISTE</p>
         </div>
 
         <?php
     } elseif (isset($_GET['warning']) && $_GET['warning'] == 'code_already_applied') {
         ?>
-        <div class="warning p-1 mb-4 w-100 text-center">
+        <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">EL CÓDIGO YA HA SIDO USADO</p>
         </div>
 
     <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'promo_expired') {
         ?>
-        <div class="warning p-1 mb-4 w-100 text-center">
+        <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">LA PROMOCIÓN YA HA EXPIRADO</p>
         </div>
 
     <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'login_needed') {
         ?>
-        <div class="warning p-1 mb-4 w-100 text-center">
+        <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">INICIA SESIÓN PARA APLICAR EL CÓDIGO</p>
         </div>
 
