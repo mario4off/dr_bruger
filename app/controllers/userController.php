@@ -32,36 +32,39 @@ class userController
 
         if (!$mail) {
             header('Location: ?controller=user&action=showUser&warning=mail_format');
-        }
-
-        if (UserDAO::getUserByEmail($mail)) {
-            header('Location: ?controller=user&action=showUser&warning=user_exist');
+        } else if ($_POST['pwd'] != $_POST['pwd-r']) {
+            header('Location: ?controller=user&action=showUser&warning=missmatch_password');
         } else {
-            $name = $_POST['name'];
-            $last_name = $_POST['lastname'];
-            $address = $_POST['address'];
-            $city = $_POST['city'];
-            $cp = $_POST['cp'];
-            $phone = $_POST['phone'];
-            $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+            if (UserDAO::getUserByEmail($mail)) {
+                header('Location: ?controller=user&action=showUser&warning=user_exist');
+            } else {
+                $name = $_POST['name'];
+                $last_name = $_POST['lastname'];
+                $address = $_POST['address'];
+                $city = $_POST['city'];
+                $cp = $_POST['cp'];
+                $phone = $_POST['phone'];
+                $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
-            $user = new User();
+                $user = new User();
 
-            $user->setName($name);
-            $user->setLast_name($last_name);
-            $user->setAddress($address);
-            $user->setMail($mail);
-            $user->setCity($city);
-            $user->setCp($cp);
-            $user->setPhone($phone);
-            $user->setPass($pass);
-            $user->setRole($role);
+                $user->setName($name);
+                $user->setLast_name($last_name);
+                $user->setAddress($address);
+                $user->setMail($mail);
+                $user->setCity($city);
+                $user->setCp($cp);
+                $user->setPhone($phone);
+                $user->setPass($pass);
+                $user->setRole($role);
 
-            UserDAO::insertUser($user);
+                UserDAO::insertUser($user);
 
-            $view = 'app/views/pages/account.php';
-            include_once('app/views/layouts/main.php');
+                header('Location: ?controller=user&action=showUser&success=user_created');
+            }
+
         }
+
 
 
     }
@@ -72,7 +75,7 @@ class userController
         $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
 
         if (!$mail) {
-            header('Location: ?controller=user&action=showUser&warning=mail_format_login');
+            header('Location: ?controller=user&action=showUser&warning=mail_format');
         }
         $pass = $_POST['pwd'];
 
@@ -167,7 +170,7 @@ class userController
     {
         session_destroy();
 
-        header('Location:  ?controller=product&action=index&success=logout');
+        header('Location:  ?controller=product&action=index');
     }
 
 

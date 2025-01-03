@@ -855,3 +855,15 @@ li {
   margin-top: 15px !important;
   border: 1px solid #828282;
 }
+
+.warning {
+  background-color: #ffd28a55 !important;
+  font-size: 1rem !important;
+  color: #fb9f14 !important;
+}
+
+.success {
+  background-color: #7add814a !important;
+  font-size: 1rem !important;
+  color: #12c424 !important;
+}

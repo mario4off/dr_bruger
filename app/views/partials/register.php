@@ -1,4 +1,36 @@
 <div class="col-12 col-md-5 d-flex flex-column align-items-center mt-sm-4 p-3">
+    <?php
+    if (isset($_GET['warning']) && $_GET['warning'] == 'user_exist') {
+
+        ?>
+        <div class="warning mb-4 w-100 text-center">
+            <p class="m-2"><strong>EL USUARIO YA ESTÁ REGISTRADO</strong></p>
+            <p class="m-2">Los datos de usuario introducidos pertenenecen a un usuario ya registrado.</p>
+        </div>
+
+        <?php
+    } elseif (isset($_GET['warning']) && $_GET['warning'] == 'mail_format') {
+        ?>
+        <div class="warning mb-4 w-100 text-center">
+            <p class="m-2"><strong>EL FORMATO DEL CORREO ELECTRÓNICO NO ES VÁLIDO</strong></p>
+            <p class="m-2">Por favor, vuelve a introducir el correo electrónico con un formato válido.</p>
+        </div>
+
+    <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'missmatch_password') {
+        ?>
+        <div class="warning mb-4 w-100 text-center">
+            <p class="m-2"><strong>LAS CONTRASEÑAS INTRODUCIDAS NO COINCIDEN</strong></p>
+            <p class="m-2">Por favor, vuelve a introducir las contraseñas de forma coincidente con el formato requerido.</p>
+        </div>
+
+    <?php } elseif (isset($_GET['success']) && $_GET['success'] == 'user_created') {
+        ?>
+        <div class="success mb-4 w-100 text-center">
+            <p class="m-2"><strong>USUARIO REGISTRADO CON ÉXITO</strong></p>
+            <p class="m-2">Por favor, inicia sesión para comenzar tus compras.</p>
+        </div>
+
+    <?php } ?>
     <h2>CLIENTE NUEVO</h2>
     <div class="w-100 d-flex justify-content-start mt-1">
         <p class="p-user-page ">Crea una cuenta para finalizar tus compras más
@@ -24,7 +56,7 @@
                 contraseña</button></div>
         <label class="label-style" for="">Contraseña</label><input class="input-user mt-2 mb-3" name="pwd"
             type="password" placeholder="Contraseña" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}" required>
-        <label class="label-style" for="">Repite la contraseña</label><input class="input-user mt-2 mb-1" name="pwd"
+        <label class="label-style" for="">Repite la contraseña</label><input class="input-user mt-2 mb-1" name="pwd-r"
             type="password" placeholder="Vuelve a introducir la contraseña"
             pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}" required>
         <div class="container m-2">

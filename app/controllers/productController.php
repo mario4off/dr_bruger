@@ -69,9 +69,11 @@ class productController
 
             }
         }
+        if ($filter) {
+            $suggestedProducts = ProductDAO::getBestSellerByCategory($filter);
+            setcookie('suggest', serialize($suggestedProducts), time() + 1000, '/');
+        }
 
-        $suggestedProducts = ProductDAO::getBestSellerByCategory($filter);
-        setcookie('suggest', serialize($suggestedProducts), time() + 1000, '/');
 
 
         $view = 'app/views/pages/menu.php';

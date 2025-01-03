@@ -1,4 +1,22 @@
 <div class="col-12 col-md-5 d-flex flex-column align-items-center p-3 mt-sm-4">
+    <?php
+    if (isset($_GET['warning']) && $_GET['warning'] == 'not_exist_user') {
+
+        ?>
+        <div class="warning mb-4 w-100 text-center">
+            <p class="m-2">EL USUARIO NO EXISTE</p>
+            <p class="m-2">Las credenciales introducidas no se corresponden con las de ningún usuario registrado</p>
+        </div>
+
+        <?php
+    } elseif (isset($_GET['warning']) && $_GET['warning'] == 'wrong_password') {
+        ?>
+        <div class="warning mb-4 w-100 text-center">
+            <p class="m-2"><strong>LA CONTRASEÑA NO ES CORRECTA</strong></p>
+            <p class="m-2">Por favor, introduce la contraseña asociada a esta cuenta.</p>
+        </div>
+
+    <?php } ?>
     <h2><?= $_GET['action'] == 'showUser' ? 'CLIENTE REGISTRADO' : '¿TIENES UNA CUENTA?' ?>
     </h2>
     <p class="p-user-page mb-2 mt-1">
