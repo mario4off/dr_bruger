@@ -35,7 +35,7 @@ if (!isset($_GET['controller'])) {
 
     } else {
 
-        echo 'El controlador ' . $controllerName . ' NO existe';
+        header('Location: ' . url_base . 'index.php?controller=product');
 
     }
 

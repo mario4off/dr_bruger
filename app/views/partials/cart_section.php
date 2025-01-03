@@ -59,7 +59,36 @@ foreach ($_SESSION['cart'] as $product) {
         <div class="d-flex align-items-center"> <input type="submit" class="snd-btn-1"
                 href="?controller=order&action=applyPromo" value="APLICAR">
         </div>
+
     </form>
+    <?php
+    if (isset($_GET['warning']) && $_GET['warning'] == 'invalid_code') {
+
+        ?>
+        <div class="warning p-1 mb-4 w-100 text-center">
+            <p class="m-2">EL CÓDIGO DE DESCUENTO NO EXISTE</p>
+        </div>
+
+        <?php
+    } elseif (isset($_GET['warning']) && $_GET['warning'] == 'code_already_applied') {
+        ?>
+        <div class="warning p-1 mb-4 w-100 text-center">
+            <p class="m-2">EL CÓDIGO YA HA SIDO USADO</p>
+        </div>
+
+    <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'promo_expired') {
+        ?>
+        <div class="warning p-1 mb-4 w-100 text-center">
+            <p class="m-2">LA PROMOCIÓN YA HA EXPIRADO</p>
+        </div>
+
+    <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'login_needed') {
+        ?>
+        <div class="warning p-1 mb-4 w-100 text-center">
+            <p class="m-2">INICIA SESIÓN PARA APLICAR EL CÓDIGO</p>
+        </div>
+
+    <?php } ?>
 </div>
 
 <div class="pt-3 pb-3 d-flex w-100 justify-content-between">

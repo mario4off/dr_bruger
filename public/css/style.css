@@ -867,3 +867,9 @@ li {
   font-size: 1rem !important;
   color: #12c424 !important;
 }
+
+.error {
+  background-color: #ec42425a !important;
+  font-size: 1rem !important;
+  color: #e01b1b !important;
+}

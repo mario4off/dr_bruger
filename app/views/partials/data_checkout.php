@@ -1,4 +1,16 @@
 <section class="col-md-6 mt-4">
+    <?php
+    if (isset($_GET['error']) && $_GET['error'] == 'insert_order') {
+
+        ?>
+        <div class="error mb-4 w-100 text-center">
+            <p class="m-2"><strong>NO SE HA PODIDO INTRODUCIR LOS DETALLES DEL PEDIDO</strong></p>
+            <p class="m-2">Ha habido un error al introducir los detalles del pedido en el sistema. Por favor, vuelve a
+                intentarlo más tarde.</p>
+        </div>
+
+        <?php
+    } ?>
     <form id="form-checkout" action="?controller=order&action=makeOrder&delivery=<?= $_GET['delivery'] ?>"
         method="POST">
         <div class="delivery-div">

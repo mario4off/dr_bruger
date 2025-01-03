@@ -89,7 +89,6 @@ class orderController
         if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 
             $user_id = $_SESSION['id'];
-            // $promotion_id = $_POST[''];
             $status = 'Pendiente de aceptación';
             $total_amount = $_SESSION['totalAmount'];
             $card_number = (isset($_POST['card-num']) && !empty($_POST['card-num'])) ? substr($_POST['card-num'], 12, 16) : null;
@@ -114,6 +113,9 @@ class orderController
             }
 
             $orderId = OrderDAO::insertOrder($order);
+            if (!$orderId) {
+                header('Location: ?controller=order&action=getCheckout&error=insert_order');
+            }
 
             if (isset($_SESSION['discount']['productId']) && !empty($_SESSION['discount']['productId'])) {
                 $productId = $_SESSION['discount']['prodcutId'];
