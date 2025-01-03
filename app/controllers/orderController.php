@@ -106,14 +106,29 @@ class orderController
             $order->setPayment_method($payment_method);
             $order->setDelivery_cost($delivery_cost);
             $order->setIva($iva);
+            if (isset($_SESSION['discount']['discountId']) && !empty($_SESSION['discount']['discountId'])) {
+                $order->setPromotion_id($_SESSION['discount']['discountId']);
+                $promoId = $order->getPromotion_id();
+            } else {
+                $order->setPromotion_id(null);
+            }
 
             $orderId = OrderDAO::insertOrder($order);
 
-            $result = OrderDetailsDAO::insertOrderLines($orderId);
+            if (isset($_SESSION['discount']['productId']) && !empty($_SESSION['discount']['productId'])) {
+                $productId = $_SESSION['discount']['prodcutId'];
+                $discountedPrice = $_SESSION['discount']['amount'];
+
+                $result = OrderDetailsDAO::insertOrderLines($orderId, $promoId, $productId, $discountedPrice);
+            } else {
+                $result = OrderDetailsDAO::insertOrderLines($orderId);
+            }
+
 
             if ($result) {
                 unset($_SESSION['cart']);
                 unset($_SESSION['totalAmount']);
+                unset($_SESSION['discount']);
                 header('Location: ?controller=user&action=showUser&section=orders');
             } else {
                 header('Location: ?controller=order&action=getCheckout&error=insert_order');
@@ -144,10 +159,10 @@ class orderController
 
             $currentDate = date('Y-m-d');
 
-            if ($discount->getStart_date() < $currentDate && $currentDate < $discount->getEnd_date()) {
+            if ($discount->getStart_date() < $currentDate && $currentDate <= $discount->getEnd_date()) {
 
 
-                if ($discount->getObject() == 'order') {
+                if ($discount->getProduct_id() == null) {
 
                     $result = PromotionDAO::isOrderPromoApplied($discount->getPromotion_id());
 
@@ -157,13 +172,14 @@ class orderController
 
                             $_SESSION['discount']['amount'] = $orderAmount * ($discount->getDiscount_value() / 100);
                             $_SESSION['discount']['code'] = $promo;
-
+                            $_SESSION['discount']['discountId'] = $discount->getPromotion_id();
                             $view = 'app/views/pages/checkout.php';
                             include_once('app/views/layouts/main.php');
 
                         } else {
                             $_SESSION['discount']['amount'] = $discount->getDiscount_value();
                             $_SESSION['discount']['code'] = $promo;
+                            $_SESSION['discount']['discountId'] = $discount->getPromotion_id();
                             $view = 'app/views/pages/checkout.php';
                             include_once('app/views/layouts/main.php');
                         }
@@ -177,11 +193,13 @@ class orderController
                     $result = PromotionDAO::isProductPromoApplied($discount->getPromotion_id(), $_SESSION['id']);
 
                     if (!$result) {
-                        $productPrice = ProductDAO::getProductPriceByPromoId($discount->getPromotion_id());
+                        $product = ProductDAO::getProductPriceByPromoId($discount->getPromotion_id());
                         if ($discount->getDiscount_type() == 'percentage') {
 
-                            $_SESSION['discount']['amount'] = $productPrice * ($discount->getDiscount_value() / 100);
+                            $_SESSION['discount']['amount'] = $product->getBase_price() * ($discount->getDiscount_value() / 100);
                             $_SESSION['discount']['code'] = $promo;
+                            $_SESSION['discount']['discountId'] = $discount->getPromotion_id();
+                            $_SESSION['discount']['productId'] = $product->getProduct_id();
 
                             $view = 'app/views/pages/checkout.php';
                             include_once('app/views/layouts/main.php');
@@ -189,6 +207,8 @@ class orderController
                         } else {
                             $_SESSION['discount']['amount'] = $discount->getDiscount_value();
                             $_SESSION['discount']['code'] = $promo;
+                            $_SESSION['discount']['discountId'] = $discount->getPromotion_id();
+                            $_SESSION['discount']['productId'] = $product->getProduct_id();
                             $view = 'app/views/pages/checkout.php';
                             include_once('app/views/layouts/main.php');
                         }

@@ -2,7 +2,7 @@
 
 class OrderDetailsDAO
 {
-    public static function insertOrderLines($orderId, $promo = null)
+    public static function insertOrderLines($orderId, $promo = null, $promoProductId = null, $discountedPrice = null)
     {
         $con = Database::connect();
 
@@ -10,15 +10,30 @@ class OrderDetailsDAO
         VALUES (?,?,?,?,?)");
 
         foreach ($_SESSION['cart'] as $item) {
+
             $linePrice = $item->getBase_price() * $item->getQuantity();
-            $stmn->bind_param(
-                "diiii",
-                $linePrice,
-                $item->getQuantity(),
-                $orderId,
-                $item->getProduct_id(),
-                $promo
-            );
+            $defPromo = null;
+            if ($item->getProduct_id() == $promoProductId) {
+                $stmn->bind_param(
+                    "diiii",
+                    $discountedPrice,
+                    $item->getQuantity(),
+                    $orderId,
+                    $item->getProduct_id(),
+                    $promo
+                );
+                $promoProductId = null;
+            } else {
+                $stmn->bind_param(
+                    "diiii",
+                    $linePrice,
+                    $item->getQuantity(),
+                    $orderId,
+                    $item->getProduct_id(),
+                    $defPromo
+                );
+            }
+
 
             $stmn->execute();
 

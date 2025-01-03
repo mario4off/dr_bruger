@@ -127,15 +127,16 @@ class ProductDAO
     {
         $con = Database::connect();
 
-        $stmnt = $con->prepare("SELECT base_price FROM products WHERE promotion_id = ?");
-        $stmnt->bind_param("i", $filter);
+        $stmnt = $con->prepare("SELECT base_price, p.product_id FROM products p JOIN promotions promo ON p.product_id = promo.product_id
+where promo.promotion_id  = ?");
+        $stmnt->bind_param("i", $id);
         $stmnt->execute();
         $result = $stmnt->get_result();
-        $price = $result->fetch_assoc();
+        $product = $result->fetch_object('Product');
 
         $con->close();
 
-        return $price;
+        return $product;
     }
 
 }

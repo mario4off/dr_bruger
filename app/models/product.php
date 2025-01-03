@@ -7,7 +7,7 @@ class Product
     protected $base_price;
     protected $main_photo;
 
-    protected $promotion_id;
+
     protected $category_id;
     protected $product_description;
 
@@ -100,25 +100,6 @@ class Product
         return $this;
     }
 
-    /**
-     * Get the value of promotion_id
-     */
-    public function getPromotion_id()
-    {
-        return $this->promotion_id;
-    }
-
-    /**
-     * Set the value of promotion_id
-     *
-     * @return  self
-     */
-    public function setPromotion_id($promotion_id)
-    {
-        $this->promotion_id = $promotion_id;
-
-        return $this;
-    }
 
     /**
      * Get the value of category_id

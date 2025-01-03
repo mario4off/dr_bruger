@@ -42,7 +42,7 @@ foreach ($_SESSION['cart'] as $product) {
     <?php if ($_SESSION['discount']) { ?>
         <div class="d-flex w-100 mt-2 justify-content-between">
             <p class="snd-p-items-checkout">DESCUENTO</p>
-            <p><?= number_format($_SESSION['discount']['amount'], 2, ',') ?>€</p>
+            <p>-<?= number_format($_SESSION['discount']['amount'], 2, ',') ?>€</p>
         </div>
         <div class="d-flex justify-content-between mt-1">
             <p><?= $_SESSION['discount']['code'] ?></p> <a class="rm-link-checkout"
@@ -66,6 +66,13 @@ foreach ($_SESSION['cart'] as $product) {
     <p class="p-items-checkout p-total-checkout ">TOTAL</p>
     <p class="p-items-checkout p-total-checkout ">
         <?php
-        echo number_format($_GET['delivery'] == 'true' ? $totalAmount + 3.5 : $totalAmount, 2, ',') ?>€
+        if (isset($_GET['delivery']) && $_GET['delivery'] == 'true') {
+            $_SESSION['totalAmount'] = $totalAmount + 3.5;
+        } else {
+            $_SESSION['totalAmount'] = $totalAmount;
+        }
+
+        echo number_format($_SESSION['totalAmount'], 2, ',');
+        ?>€
     </p>
 </div>

@@ -10,7 +10,7 @@ class Promotion
     private $discount_value;
 
     private $discount_type;
-    private $object;
+    private $product_id;
 
     public function __construct()
     {
@@ -137,22 +137,24 @@ class Promotion
         return $this;
     }
 
+
+
     /**
-     * Get the value of object
+     * Get the value of product_id
      */
-    public function getObject()
+    public function getProduct_id()
     {
-        return $this->object;
+        return $this->product_id;
     }
 
     /**
-     * Set the value of object
+     * Set the value of product_id
      *
      * @return  self
      */
-    public function setObject($object)
+    public function setProduct_id($product_id)
     {
-        $this->object = $object;
+        $this->product_id = $product_id;
 
         return $this;
     }
