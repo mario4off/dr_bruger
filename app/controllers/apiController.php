@@ -53,6 +53,11 @@ class apiController
         include_once('config/apiHeaders.php');
 
         $order = json_decode(file_get_contents('php://input'), true);
+        if (strlen($order['cardNumber']) != 4 && $order['cardNumber'] != null) {
+            http_response_code(400);
+            echo json_encode(['status' => 400, 'message' => 'El valor introducido no tiene 4 dígitos']);
+            return;
+        }
         var_dump($order);
         $response = OrderDAO::updateOrder($order);
 

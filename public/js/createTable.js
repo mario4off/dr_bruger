@@ -1,16 +1,30 @@
 import { Order } from "/drburger.com/public/js/models/Order.js";
 
 const API_URL = "?controller=api&action=show";
+const API_URL_EXCHANGE =
+  "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_UXueennePKw2L8XXZXJeraNXgruKGimO7dVZYM5w";
+const API_KEY = "fca_live_UXueennePKw2L8XXZXJeraNXgruKGimO7dVZYM5w";
+
+const select = (e) => document.querySelector(e);
+const tHead = select("thead");
+const tBody = select("tbody");
+const userFilter = select("#user-filter");
+const dateFrom = select(".date-from");
+const dateUntil = select(".date-until");
+const priceFrom = select(".price-from");
+const priceUntil = select(".price-until");
+const table = select("table");
+const toDollar = select("#convert-to-dollar");
+const toEuro = select("#convert-to-euro");
+const orderBtn = select("#order-btn");
+const userBtn = select("#user-btn");
+const productBtn = select("#product-btn");
+const activityBtn = select("#activity-btn");
+
+toDollar.addEventListener("click", getDollar);
+toEuro.addEventListener("click", getEuro);
 
 const orderSelect = document.getElementById("select-order");
-const tHead = document.querySelector("thead");
-const tBody = document.querySelector("tbody");
-const userFilter = document.querySelector("#user-filter");
-const dateFrom = document.querySelector(".date-from");
-const dateUntil = document.querySelector(".date-until");
-const priceFrom = document.querySelector(".price-from");
-const priceUntil = document.querySelector(".price-until");
-const table = document.querySelector("table");
 
 let allOrders = [];
 let headersOrders = [
@@ -24,7 +38,7 @@ let headersOrders = [
   "PRECIO",
   "IVA",
   "PROMOCION",
-  "PRECIO",
+  "ENVÍO",
 ];
 
 document.addEventListener("DOMContentLoaded", initTable);
@@ -32,7 +46,11 @@ document.addEventListener("DOMContentLoaded", initTable);
 async function initTable() {
   const response = await fetch(API_URL);
   const data = await response.json();
-  console.log(data);
+
+  orderBtn.classList.add("snd-btn-selected");
+  userBtn.classList.remove("snd-btn-selected");
+  productBtn.classList.remove("snd-btn-selected");
+  activityBtn.classList.remove("snd-btn-selected");
 
   if (!response.ok) {
     table.innerHTML = "<p>No hay pedidos por mostrar</p>";
@@ -69,7 +87,7 @@ async function initTable() {
 
         switch (cell.cellIndex) {
           case 2:
-            cell.innerHTML = `<select class="mod" value="${currenValue}"><option>Pendiente de aceptación</option>
+            cell.innerHTML = `<select class="mod" value="${currenValue}"><option>Pendiente</option>
       <option>En preparación</option><option>Listo para recoger</option><option>Recogido/Enviado</option></select>`;
             addConfirmButton(row);
             break;
@@ -88,13 +106,18 @@ async function initTable() {
                     "Introduce los últimos 4 dígitos de la tarjeta de pago."
                   );
 
-                  cellNumCard.innerHTML = `<input class="mod card-num-input" type="number" value="${currenValue}" maxlength="4" pattern="[0-9]* required">`;
+                  cellNumCard.innerHTML = `<input class="mod card-num-input" type="number" value="${currenValue}" maxlength="3" pattern="[0-9]* required">`;
 
                   const inputCardNum =
                     cellNumCard.querySelector(".card-num-input");
 
                   inputCardNum.addEventListener("blur", () => {
-                    cellNumCard.innerHTML = "···· " + inputCardNum.value;
+                    if (inputCardNum.value.length == 4) {
+                      cellNumCard.innerHTML = "···· " + inputCardNum.value;
+                    } else {
+                      cellNumCard.innerHTML = "Núm. error";
+                    }
+
                     const orderId =
                       cell.parentElement.querySelector("td").innerHTML;
 
@@ -104,7 +127,6 @@ async function initTable() {
                       }
                       return e;
                     });
-                    console.log(allOrders);
                   });
                 } else if (
                   e.target.value === "PayPal" ||
@@ -131,7 +153,6 @@ async function initTable() {
             case 2:
               allOrders = allOrders.map((e) => {
                 if (e.orderId == orderId) {
-                  alert(updateValue);
                   e.status = updateValue;
                 }
                 return e;
@@ -189,22 +210,41 @@ function createHTMLTable(data, headers = headersOrders) {
   }
   tHead.append(tr);
 
+  let rate = 1;
+  let currency = "€";
+
+  if (localStorage.getItem("rate")) {
+    rate = localStorage.getItem("rate");
+    currency = "$";
+  }
+
   for (const obj of data) {
     const tr = document.createElement("tr");
+
     tr.innerHTML = `
 <td class="text-center border-table">${obj.orderId ?? "-"}</td>
 <td class="text-center border-table">${obj.userId ?? "-"}</td>
-<td class="text-center border-table">${obj.status ?? "-"}</td>
+<td class="text-center border-table edit-td">${
+      obj.status ?? "-"
+    } <i class="fa-solid fa-pencil"></i></td>
 <td class="text-center border-table">${obj.dateTime ?? "-"}</td>
-<td class="text-center border-table">${obj.paymentMethod ?? "-"}</td>
+<td class="text-center border-table edit-td">${
+      obj.paymentMethod ?? "-"
+    } <i class="fa-solid fa-pencil align-self-end"></i></td>
 <td class="text-center border-table">${
       obj.cardNumber == null ? "-" : `···· ${obj.cardNumber}`
     }</td>
 <td class="text-center border-table">${obj.comments ?? "-"}</td>
-<td class="text-center border-table">${obj.totalAmount ?? "-"}</td>
-<td class="text-center border-table">${obj.iva ?? "-"}</td>
+<td class="text-center border-table">${
+      (obj.totalAmount / rate).toFixed(2) ?? "-"
+    } ${currency}</td>
+<td class="text-center border-table">${
+      (obj.iva / rate).toFixed(2) ?? "-"
+    } ${currency}</td>
 <td class="text-center border-table">${obj.promotionId ?? "-"}</td>
-<td class="text-center border-table">${obj.deliveryPrice ?? "-"}</td>
+<td class="text-center border-table">${
+      (obj.deliveryPrice / rate).toFixed(2) ?? "-"
+    } ${currency}</td>
 <td class="text-center border-table"><div class="d-flex gap-3"><button data-id="${
       obj.orderId
     }" class="update-order-button order-button" hidden><i class="fa-solid fa-check"></i></button><button data-id="${
@@ -286,7 +326,8 @@ async function updateOrder(order) {
       alert("Pedido editado con éxito");
       createHTMLTable(allOrders);
     } else {
-      alert("No se pudo editar el pedido.");
+      const data = await response.json();
+      alert(data.message);
     }
   }
 }
@@ -377,7 +418,7 @@ function applyPriceFilters() {
 
 priceFrom.addEventListener("input", (e) => {
   e.preventDefault();
-  let priceFilter = e.target.value;
+  let priceFilter = parseFloat(e.target.value);
 
   priceFromFilter = priceFilter;
 
@@ -386,9 +427,27 @@ priceFrom.addEventListener("input", (e) => {
 
 priceUntil.addEventListener("input", (e) => {
   e.preventDefault();
-  let priceFilter = e.target.value;
+  let priceFilter = parseFloat(e.target.value);
 
   priceUntilFilter = priceFilter;
 
   applyPriceFilters();
 });
+
+async function getDollar() {
+  const response = await fetch(API_URL_EXCHANGE);
+  const data = await response.json();
+  localStorage.setItem("rate", data.data.EUR);
+  createHTMLTable(allOrders);
+  toDollar.setAttribute("hidden", true);
+  toEuro.removeAttribute("hidden");
+}
+
+async function getEuro() {
+  const response = await fetch(API_URL_EXCHANGE);
+  const data = await response.json();
+  localStorage.removeItem("rate", data.data.EUR);
+  createHTMLTable(allOrders);
+  toEuro.setAttribute("hidden", true);
+  toDollar.removeAttribute("hidden");
+}

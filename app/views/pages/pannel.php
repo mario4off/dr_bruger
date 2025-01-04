@@ -15,8 +15,10 @@
 
             </form>
 
-            <button class="snd-btn-1 mb-2 w-100 mt-4">ADMINISTRAR PEDIDOS</button>
-            <button class="snd-btn-1 w-100">HISTORIAL DE ACTIVIDAD</button>
+            <button id="order-btn" class="snd-btn-1 mb-2 w-100 mt-5">PEDIDOS</button>
+            <button id="user-btn" class="snd-btn-1 mb-2 w-100">USUARIOS</button>
+            <button id="product-btn" class="snd-btn-1 mb-2 w-100 ">PRODUCTOS</button>
+            <button id="activity-btn" class="snd-btn-1 w-100">ACTIVIDAD</button>
 
         </aside>
         <div class="col-10 ">
@@ -24,7 +26,7 @@
 
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
+                        <div class="accordion-header d-flex gap-2" id="flush-headingOne">
                             <button
                                 class="w-100 d-flex align-items-center justify-content-end gap-4 collapsed snd-btn-2"
                                 type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
@@ -32,7 +34,16 @@
 
                                 <p>AÑADIR PEDIDO</p>
                             </button>
-                        </h2>
+                            <button id="convert-to-dollar" class="snd-btn-2">
+                                <p class="d-flex gap-4 fs-5 align-items-center">€<i
+                                        class="fa-solid fa-arrow-right"></i>$</p>
+                            </button>
+                            <button id="convert-to-euro" class="snd-btn-2" hidden>
+                                <p class="d-flex gap-4 fs-5 align-items-center">$<i
+                                        class="fa-solid fa-arrow-right"></i>€</p>
+                            </button>
+
+                        </div>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">Placeholder content for this accordion, which is intended to
