@@ -73,4 +73,38 @@ class apiController
 
     }
 
+    public function createOrder()
+    {
+        include_once('config/apiHeaders.php');
+
+        $response = json_decode(file_get_contents('php://input'), true);
+        if (strlen($response['cardNumber']) != 4 && $response['cardNumber'] != null) {
+            http_response_code(400);
+            echo json_encode(['status' => 400, 'message' => 'El valor introducido no tiene 4 dígitos']);
+            return;
+        }
+        $order = new Order();
+        $order->setUser_id($response['userId']);
+        $order->setStatus($response['status']);
+        $order->setTotal_amount($response['totalAmount']);
+        $order->setCard_number($response['cardNumber']);
+        $order->setPromotion_id($response['promotionId']);
+        $order->setPayment_method($response['paymentMethod']);
+        $order->setDelivery_cost($response['deliveryCost']);
+        $order->setIva($response['iva']);
+
+        $result = OrderDAO::insertOrder($order);
+
+        if ($result) {
+
+            http_response_code(200);
+            echo json_encode(['status' => 200, 'message' => 'Pedido introducido con éxito']);
+
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 500, 'message' => 'No se pudo introducir el pedido']);
+        }
+
+    }
+
 }

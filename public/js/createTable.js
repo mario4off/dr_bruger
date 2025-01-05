@@ -314,29 +314,25 @@ async function removeOrder(id) {
 }
 
 async function insertOrder() {
-  const API_URL = "?controller=api&action=insertOrder";
-
-  inputNum.value;
-  inputAllergies.value;
-  inputPrice.value;
-  inputDelivery.value;
-
+  const API_URL = "?controller=api&action=createOrder";
+  alert("ahi vamos");
   const response = await fetch(API_URL, {
-    method: "PUT",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      userid: order.inputUser.value,
-      status: "Aceptado",
+      userId: inputUser.value,
+      status: "En preparación",
       paymentMethod: inputPayment.value,
-      cardNumber: inputNum.value,
+      cardNumber: inputNum.value ?? null,
       promotionId: null,
-      totalAmount: inputPrice.value,
-      deliveryCost: inputDelivery.value,
-      iva: inputPrice * 0.21,
+      totalAmount: inputPrice.value ?? 0.0,
+      deliveryCost: inputDelivery.value ?? 0.0,
+      iva: inputPrice.value * 0.21,
     }),
   });
   if (response.ok) {
-    alert("Pedido introducido con éxito");
+    tBody.innerHTML = "";
+    location.reload();
   } else {
     alert("No se ha podido introducir el pedido");
   }
