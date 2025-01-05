@@ -875,6 +875,8 @@ li {
 .filters-admin-div {
   margin-top: 29px !important;
   border: 1px solid #828282;
+  display: flex;
+  flex-direction: row;
 }
 
 .warning {

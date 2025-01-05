@@ -1,7 +1,9 @@
 <?php
 
-include_once('/Applications/XAMPP/xamppfiles/htdocs/drburger.com/config/params.php');
+include_once('config/params.php');
 include_once('app/models/OrderDAO.php');
+include_once('app/models/Log.php');
+include_once('app/models/LogDAO.php');
 class apiController
 {
 
@@ -22,6 +24,30 @@ class apiController
 
     }
 
+    public function showLogs()
+    {
+        include_once('config/apiHeaders.php');
+
+
+        $data = LogDAO::getLogs();
+
+        if (!empty($data)) {
+
+            $log = new Log();
+            $log->setAction('SELECT');
+            $log->setUser_id($_SESSION['id']);
+            $log->setAltered_table('ORDERS');
+            $log->setObject_id(null);
+
+            LogDAO::insertLog($log);
+            echo json_encode(['status' => 200, 'data' => $data]);
+        } else {
+            http_response_code(404);
+            echo json_encode(['status' => 404, 'data' => 'No data found']);
+        }
+
+    }
+
 
 
     public function deleteOrder()
@@ -34,6 +60,13 @@ class apiController
             $result = OrderDAO::removeOrder($id);
             if ($result) {
 
+                $log = new Log();
+                $log->setAction('DELETE');
+                $log->setUser_id($_SESSION['id']);
+                $log->setAltered_table('ORDERS');
+                $log->setObject_id($id);
+
+                LogDAO::insertLog($log);
                 http_response_code(200);
                 echo json_encode(['status' => 200, 'message' => 'Pedido eliminado con éxito']);
             } else {
@@ -63,6 +96,13 @@ class apiController
 
         if ($response) {
 
+            $log = new Log();
+            $log->setAction('UPDATE');
+            $log->setUser_id($_SESSION['id']);
+            $log->setAltered_table('ORDERS');
+            $log->setObject_id($order['id']);
+
+            LogDAO::insertLog($log);
             http_response_code(200);
             echo json_encode(['status' => 200, 'message' => 'Pedido eliminado con éxito']);
 
@@ -96,6 +136,13 @@ class apiController
         $result = OrderDAO::insertOrder($order);
 
         if ($result) {
+            $log = new Log();
+            $log->setAction('INSERT');
+            $log->setUser_id($_SESSION['id']);
+            $log->setAltered_table('ORDERS');
+            $log->setObject_id($result);
+
+            LogDAO::insertLog($log);
 
             http_response_code(200);
             echo json_encode(['status' => 200, 'message' => 'Pedido introducido con éxito']);

@@ -10,10 +10,14 @@ const tHead = select("thead");
 const tBody = select("tbody");
 const userFilter = select("#user-filter");
 const dateFrom = select(".date-from");
+const btnToggle = select("#accordionFlushExample");
 const dateUntil = select(".date-until");
+const btnActivity = select("#activity-btn");
 const priceFrom = select(".price-from");
+const priceFilter = select("#filter-price");
 const priceUntil = select(".price-until");
 const table = select("table");
+const filters = select("#filters");
 const toDollar = select("#convert-to-dollar");
 const toEuro = select("#convert-to-euro");
 const orderBtn = select("#order-btn");
@@ -27,6 +31,11 @@ const inputAllergies = select("#input-allergies");
 const inputPrice = select("#input-total-price");
 const inputDelivery = select("#input-delivery");
 const btnInsert = select("#btn-insert");
+
+orderBtn.addEventListener("click", () => {
+  setOrderElements();
+  initTable();
+});
 
 btnInsert.addEventListener("click", (e) => {
   e.preventDefault();
@@ -486,4 +495,16 @@ async function getEuro() {
   createHTMLTable(allOrders);
   toEuro.setAttribute("hidden", true);
   toDollar.removeAttribute("hidden");
+}
+
+function setOrderElements() {
+  orderBtn.classList.add("snd-btn-selected");
+  btnActivity.classList.remove("snd-btn-selected");
+  toDollar.setAttribute("hidden", true);
+  toEuro.setAttribute("hidden", true);
+  btnToggle.removeAttribute("hidden");
+  priceFilter.removeAttribute("hidden", true);
+  filters.removeAttribute("hidden", true);
+  //   filters.classList.add("mt-5");
+  table.classList.remove("mt-5");
 }

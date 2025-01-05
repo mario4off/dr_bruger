@@ -21,13 +21,13 @@
             <button id="activity-btn" class="snd-btn-1 w-100">ACTIVIDAD</button>
 
         </aside>
-        <div class="col-10 ">
+        <div class="col-10">
             <div class="d-flex justify-content-end w-100">
 
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <div class="accordion-header d-flex gap-2" id="flush-headingOne">
-                            <button
+                            <button id="btn-toggle"
                                 class="w-100 d-flex align-items-center justify-content-end gap-4 collapsed snd-btn-2"
                                 type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
                                 aria-expanded="false" aria-controls="flush-collapseOne">
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-row filters-admin-div p-2 mt-2 gap-5">
+            <div class="filters-admin-div p-2 mt-2 gap-5" id="filters">
                 <!-- <h2 class="fs-6 mb-2">FILTROS</h2> -->
 
                 <div>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div id="filter-price">
                     <p>PRECIO
                     </p>
                     <div class="d-flex">
@@ -136,3 +136,4 @@
     </section>
 </main>
 <script type="module" src="public/js/createTable.js"></script>
+<script type="module" src="public/js/showLogs.js"></script>
