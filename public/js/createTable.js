@@ -20,7 +20,18 @@ const orderBtn = select("#order-btn");
 const userBtn = select("#user-btn");
 const productBtn = select("#product-btn");
 const activityBtn = select("#activity-btn");
+const inputUser = select("#input-user");
+const inputPayment = select("#input-payment");
+const inputNum = select("#input-card");
+const inputAllergies = select("#input-allergies");
+const inputPrice = select("#input-total-price");
+const inputDelivery = select("#input-delivery");
+const btnInsert = select("#btn-insert");
 
+btnInsert.addEventListener("click", (e) => {
+  e.preventDefault();
+  insertOrder();
+});
 toDollar.addEventListener("click", getDollar);
 toEuro.addEventListener("click", getEuro);
 
@@ -299,6 +310,35 @@ async function removeOrder(id) {
     } else {
       alert("No se pudo eliminar el pedido.");
     }
+  }
+}
+
+async function insertOrder() {
+  const API_URL = "?controller=api&action=insertOrder";
+
+  inputNum.value;
+  inputAllergies.value;
+  inputPrice.value;
+  inputDelivery.value;
+
+  const response = await fetch(API_URL, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userid: order.inputUser.value,
+      status: "Aceptado",
+      paymentMethod: inputPayment.value,
+      cardNumber: inputNum.value,
+      promotionId: null,
+      totalAmount: inputPrice.value,
+      deliveryCost: inputDelivery.value,
+      iva: inputPrice * 0.21,
+    }),
+  });
+  if (response.ok) {
+    alert("Pedido introducido con éxito");
+  } else {
+    alert("No se ha podido introducir el pedido");
   }
 }
 

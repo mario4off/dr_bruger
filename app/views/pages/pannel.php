@@ -44,12 +44,49 @@
                             </button>
 
                         </div>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        <form id="flush-collapseOne" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                                body.</div>
-                        </div>
+                            <div class="accordion-body w-100 pb-0">
+                                <div class="d-flex gap-4">
+                                    <div class="d-flex flex-column">
+                                        <label for="">USUARIO</label>
+                                        <input id="input-user" class="" type="number">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="">PAGO</label>
+                                        <select class="h-100" id="input-payment" value="Efectivo">
+                                            <option value="Efectivo">Efectivo</option>
+                                            <option value="Tarjeta">Tarjeta</option>
+                                            <option value="Paypal">Paypal</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="">Núm. tarjeta</label>
+                                        <input id="input-card" class="" type="number">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="">Alergias</label>
+                                        <input id="input-allergies" type="text">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="">PRECIO</label>
+                                        <input id="input-total-price" type="text">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="">ENVÍO</label>
+                                        <select class="h-100" id="input-delivery" value="Recogida">
+                                            <option value="0.00">Recogida</option>
+                                            <option value="3.50">A domicilio</option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit" id="btn-insert" class="snd-btn-2">REGISTRAR PEDIDO</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
                 </div>
