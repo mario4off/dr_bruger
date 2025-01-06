@@ -1,3 +1,6 @@
+// Con una asiganación a una variable de la función queryselector se crea una versión reducida del selector y se
+// se recogen todos los elementos que interesan del dom
+
 const select = (e) => document.querySelector(e);
 
 const btnOrders = select("#order-btn");
@@ -15,10 +18,13 @@ const dateUntil = select(".date-until");
 const table = select("table");
 const orderFilters = select("#order-filter");
 
+// Array que almacenará los logs cargados de la api
 let allLogs = [];
 
+// Inicia la tabla de logs al hacer click en el botón de Actividad
 btnActivity.addEventListener("click", initTable);
 
+// Función que prepara todos los elementos HTML para mostrar los logs
 function setActivityElements() {
   btnOrders.classList.remove("snd-btn-selected");
   btnActivity.classList.add("snd-btn-selected");
@@ -31,10 +37,11 @@ function setActivityElements() {
   priceFilter.setAttribute("hidden", true);
   filters.setAttribute("hidden", true);
   orderFilters.setAttribute("hidden", true);
-  //   filters.classList.add("mt-5");
+
   table.classList.add("mt-5");
 }
 
+// Llamada a la API que carga los logs
 async function initTable() {
   setActivityElements();
   const API_URL = "?controller=api&action=showLogs";
@@ -50,6 +57,7 @@ async function initTable() {
   }
 }
 
+// Función que crea la tabla
 function createHTMLTable(data) {
   tBody.innerHTML = "";
   tHead.innerHTML = "";

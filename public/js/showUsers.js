@@ -1,13 +1,13 @@
-import { User } from "/drburger.com/public/js/models/User.js";
+// Se importa la clase User
 
+import { User } from "/drburger.com/public/js/models/User.js";
+// Con una asiganación a una variable de la función queryselector se crea una versión reducida del selector y se
+// se recogen todos los elementos que interesan del dom
 const select = (e) => document.querySelector(e);
 const tHead = select("thead");
 const tBody = select("tbody");
-
 const btnToggle = select("#accordionFlushExample");
-
 const btnActivity = select("#activity-btn");
-
 const priceFilter = select("#filter-price");
 const textInsert = select("#text-insert");
 const table = select("table");
@@ -29,20 +29,23 @@ const role = select("#input-role");
 const city = select("#input-city");
 const cp = select("#input-cp");
 
+// Se asocia al botón de la barra lateral el iniciar la tabla e inicializar los elementos HTML en el estado adecuado
+// para mostrar usuarios
 userBtn.addEventListener("click", () => {
   setUserElements();
   initTable();
 });
 
+// Evento de click que activa el insert con desplegable abierto
 btnInsertUser.addEventListener("click", (e) => {
   e.preventDefault();
   insertUser();
 });
 
-// const orderSelect = document.getElementById("select-order");
-
+// Array que almacenará todos los objetos users y que configura la tabla
 let allUsers = [];
 
+// Función asíncrona que inicia la tabla con los datos de la api
 async function initTable() {
   const API_URL = "?controller=api&action=showUsers";
   const response = await fetch(API_URL);
@@ -70,13 +73,14 @@ async function initTable() {
       );
     }
 
-    console.log(allUsers);
+    //  Se crea la tabla con los datos de la llamada a la api
 
     createHTMLTable(allUsers);
 
+    // e configura un evento de click en el body de la tabla para permitir modidicaciones en la tabla
     tBody.addEventListener("click", (e) => {
       const cell = e.target;
-
+      // Cuando el índice de la fila es el 6 el td incluye un select quer permite cambiar el rol del usuario
       if (cell.cellIndex == 6) {
         const currenValue = cell.innerText;
         const row = cell.parentElement;
@@ -88,12 +92,13 @@ async function initTable() {
         const input = cell.querySelector(".mod");
         input.focus();
 
+        // El efecto blur hace que al hacer click fuera de la celda se haga el cambio en la tabla alterando también el array
         input.addEventListener("blur", () => {
           const updateValue = input.value;
 
           cell.innerHTML = updateValue;
           const userId = cell.parentElement.querySelector("td").innerHTML;
-
+          // El array se altera con la función map
           allUsers = allUsers.map((e) => {
             if (e.userId == userId) {
               e.role = updateValue;
@@ -106,9 +111,11 @@ async function initTable() {
   }
 }
 
+// Función que crea la tabla con los datos que se le pasan como argument
 function createHTMLTable(data) {
   tBody.innerHTML = "";
   tHead.innerHTML = "";
+  // Se vacía y se crea el encabezado de la tabla
   const headersUsers = [
     "USUARIO",
     "NOMBRE",
@@ -130,6 +137,7 @@ function createHTMLTable(data) {
   }
   tHead.append(tr);
 
+  // Para el tbody se cogen los datos del array y se crea la tabla de usuarios usando las propiedades de los objetos User
   for (const obj of data) {
     const tr = document.createElement("tr");
 
@@ -159,6 +167,7 @@ function createHTMLTable(data) {
     tBody.append(tr);
   }
 
+  // Se configuran los botones para modificar y eliminar añadiendo evento de click que con el id activa el borrado o el update
   const updateButtons = document.querySelectorAll(".update-order-button");
   const removeButtons = document.querySelectorAll(".remove-order-button");
 
@@ -183,6 +192,7 @@ function createHTMLTable(data) {
   }
 }
 
+// Funcióin asíncrona que gestiona el borrado de usuarios mediante el id con llamada a la api
 async function removeUser(id) {
   const API_URL = "?controller=api&action=deleteUser";
   const question = confirm(
@@ -204,7 +214,7 @@ async function removeUser(id) {
     }
   }
 }
-
+// Funcióin asíncrona que gestiona la inserción de usurios con llamada a la api
 async function insertUser() {
   const API_URL = "?controller=api&action=createUser";
 
@@ -230,7 +240,7 @@ async function insertUser() {
     alert("No se ha podido introducir al usuario");
   }
 }
-
+// Funcióin asíncrona que gestiona la actualización mediante el objeto user y llamada a la api
 async function updateUser(user) {
   const API_URL = "?controller=api&action=updateUser";
   const question = confirm(
@@ -266,11 +276,14 @@ async function updateUser(user) {
   }
 }
 
+// Activa el botón para actualizar y confirmar
 function addConfirmButton(row) {
   const confirmButton = row.querySelector(".update-order-button");
   confirmButton.removeAttribute("hidden");
 }
 
+// Está es una función que establece el estado predeterminado de los elementos HTML cuando se está en la sección
+// de usuarios en el panel de admin
 function setUserElements() {
   textInsert.innerText = "AÑADIR USUARIO";
   userBtn.classList.add("snd-btn-selected");
