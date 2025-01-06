@@ -74,7 +74,6 @@ async function initTable() {
 
   orderBtn.classList.add("snd-btn-selected");
   userBtn.classList.remove("snd-btn-selected");
-  productBtn.classList.remove("snd-btn-selected");
   activityBtn.classList.remove("snd-btn-selected");
 
   if (localStorage.getItem("rate")) {

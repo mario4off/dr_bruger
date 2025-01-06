@@ -135,16 +135,20 @@ function createHTMLTable(data) {
 
     tr.innerHTML = `
     <td class="text-center border-table">${obj.userId ?? "-"}</td>
-    <td class="text-center border-table">${obj.name ?? "-"}</td>
-        <td class="text-center border-table">${obj.lastName ?? "-"}</td>
-    <td class="text-center border-table">${obj.address ?? "-"}</td>
+    <td class="text-center border-table">${obj.name.toUpperCase() ?? "-"}</td>
+        <td class="text-center border-table">${
+          obj.lastName.toUpperCase() ?? "-"
+        }</td>
+    <td class="text-center border-table">${
+      obj.address.toUpperCase() ?? "-"
+    }</td>
 <td class="text-center border-table">${obj.mail ?? "-"}</td>
 <td class="text-center border-table">${obj.phone ?? "-"}</td>
     <td class="text-center border-table edit-td">${
       obj.role ?? "-"
     } <i class="fa-solid fa-pencil align-self-end"></i></td>
     
-    <td class="text-center border-table">${obj.city ?? "-"}</td>
+    <td class="text-center border-table">${obj.city.toUpperCase() ?? "-"}</td>
     <td class="text-center border-table">${obj.cp ?? "-"}</td>
     <td class="text-center border-table"><div class="d-flex gap-3"><button data-id="${
       obj.userId
@@ -194,6 +198,7 @@ async function removeUser(id) {
     if (response.ok) {
       alert("Usuario eliminado con éxito");
       document.querySelector(`button[data-id="${id}"]`).closest("tr").remove();
+      initTable();
     } else {
       alert("No se pudo eliminar al usuario.");
     }

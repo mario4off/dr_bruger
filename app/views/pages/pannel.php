@@ -17,7 +17,7 @@
 
             <button id="order-btn" class="snd-btn-1 mb-2 w-100 mt-5">PEDIDOS</button>
             <button id="user-btn" class="snd-btn-1 mb-2 w-100">USUARIOS</button>
-            <button id="product-btn" class="snd-btn-1 mb-2 w-100 ">PRODUCTOS</button>
+
             <button id="activity-btn" class="snd-btn-1 w-100">ACTIVIDAD</button>
 
         </aside>
@@ -151,7 +151,7 @@
             </div>
 
             <div class="filters-admin-div p-2 mt-2 gap-5" id="filters">
-                <!-- <h2 class="fs-6 mb-2">FILTROS</h2> -->
+
 
                 <div>
                     <p>FECHA</p>
