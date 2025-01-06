@@ -98,7 +98,7 @@ class orderController
 
             // Con los datos recibidos por POST se completan los datos del pedido
             $user_id = $_SESSION['id'];
-            $status = 'Pendiente de aceptación';
+            $status = 'Pendiente';
             $total_amount = $_SESSION['totalAmount'];
             $card_number = (isset($_POST['card-num']) && !empty($_POST['card-num'])) ? substr($_POST['card-num'], 12, 16) : null;
             $payment_method = $_POST['payment-option'];
