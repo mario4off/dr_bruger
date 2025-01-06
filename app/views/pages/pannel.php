@@ -2,7 +2,7 @@
     <h1 class="ms-0 m-4">PANEL DE ADMINISTRACIÓN</h1>
     <section class="d-flex">
         <aside class="col-2 me-3">
-            <form class="">
+            <form id="order-filter">
                 <div class="d-flex gap-3 mt-2">
                     <p>Ordenar por:</p><select name="order" id="select-order">
 
@@ -32,7 +32,7 @@
                                 type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
                                 aria-expanded="false" aria-controls="flush-collapseOne">
 
-                                <p>AÑADIR PEDIDO</p>
+                                <p id="text-insert">AÑADIR PEDIDO</p>
                             </button>
                             <button id="convert-to-dollar" class="snd-btn-2">
                                 <p class="d-flex gap-4 fs-5 align-items-center">€<i
@@ -136,4 +136,5 @@
     </section>
 </main>
 <script type="module" src="public/js/createTable.js"></script>
-<script type="module" src="public/js/showLogs.js"></script>
+<script type="module" src="public/js/showUsers.js"></script>
+<script src="public/js/showLogs.js"></script>

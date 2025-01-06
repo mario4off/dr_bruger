@@ -2,10 +2,11 @@
     <div class="upper-banner-header container-fluid d-flex justify-content-center">
         <div class="row div-upper-header container p-1 flex-column flex-md-row">
             <div class="col-12 col-md-6 col-ld-6  d-flex justify-content-center align-items-center mt-1 mb-1">
-                <a class="header-promos h-1" href="">Regístrate Ahora: -10% de descuento en tu primer pedido</a>
+                <a class="header-promos h-1" href="">Regístrate Ahora: -10% de descuento
+                    WELCOME10</a>
             </div>
             <div class="col-12 col-md-6 col-ld-6 d-flex justify-content-center align-items-center">
-                <a class="header-promos h-1" href="">Todos los Martes: TODAS las hamburguesas al mismo precio</a>
+                <a class="header-promos h-1" href="">Disfruta de descuentos en tus hamburguesas favoritas</a>
 
             </div>
         </div>

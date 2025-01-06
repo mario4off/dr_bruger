@@ -9,9 +9,11 @@ const priceFilter = select("#filter-price");
 const tHead = select("thead");
 const tBody = select("tbody");
 const filters = select("#filters");
+const userBtn = select("#user-btn");
 const dateFrom = select(".date-from");
 const dateUntil = select(".date-until");
 const table = select("table");
+const orderFilters = select("#order-filter");
 
 let allLogs = [];
 
@@ -20,6 +22,7 @@ btnActivity.addEventListener("click", initTable);
 function setActivityElements() {
   btnOrders.classList.remove("snd-btn-selected");
   btnActivity.classList.add("snd-btn-selected");
+  userBtn.classList.remove("snd-btn-selected");
   toDollar.removeAttribute("hidden");
   toEuro.removeAttribute("hidden");
   toDollar.setAttribute("hidden", true);
@@ -27,6 +30,7 @@ function setActivityElements() {
   btnToggle.setAttribute("hidden", true);
   priceFilter.setAttribute("hidden", true);
   filters.setAttribute("hidden", true);
+  orderFilters.setAttribute("hidden", true);
   //   filters.classList.add("mt-5");
   table.classList.add("mt-5");
 }
@@ -38,19 +42,9 @@ async function initTable() {
   const data = await response.json();
   console.log(data);
   if (!response.ok) {
+    table.innerHTML = "No hay registros por mostrar";
     table.innerHTML = "<p>No hay registro de actividad por mostrar</p>";
   } else {
-    // for (const el of data.data) {
-    //   allLogs.push(
-    //     new Log(
-    //       el.log_id,
-    //       el.action,
-    //       el.altered_table,
-    //       el.object_id,
-    //       el.date_time,
-    //       el.user_id
-    //     )
-    //   );
     allLogs = data.data;
     createHTMLTable(data.data);
   }
@@ -64,7 +58,7 @@ function createHTMLTable(data) {
     "USUARIO",
     "ACCION",
     "TABLA",
-    "ID MODIFICADO",
+    "ID AFECTADO",
     "FECHA",
   ];
 

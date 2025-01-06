@@ -28,6 +28,29 @@ class UserDAO
         return $userMail;
 
     }
+    public static function getAllUsers()
+    {
+
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT * FROM users");
+
+        $stmnt->execute();
+
+        $result = $stmnt->get_result();
+
+        $users = [];
+        while ($row = $result->fetch_assoc()) {
+
+            $users[] = $row;
+
+        }
+
+        $con->close();
+
+        return $users;
+
+    }
 
     public static function insertUser($user)
     {
@@ -60,7 +83,7 @@ class UserDAO
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $con->close();
-
+        return 'ok';
     }
 
     public static function updateUser($user)
@@ -83,6 +106,7 @@ class UserDAO
         );
         $stmnt->execute();
         $con->close();
+        return 'ok';
 
     }
 

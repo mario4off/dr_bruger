@@ -22,6 +22,7 @@ const toDollar = select("#convert-to-dollar");
 const toEuro = select("#convert-to-euro");
 const orderBtn = select("#order-btn");
 const userBtn = select("#user-btn");
+const orderFilters = select("#order-filter");
 const productBtn = select("#product-btn");
 const activityBtn = select("#activity-btn");
 const inputUser = select("#input-user");
@@ -31,6 +32,7 @@ const inputAllergies = select("#input-allergies");
 const inputPrice = select("#input-total-price");
 const inputDelivery = select("#input-delivery");
 const btnInsert = select("#btn-insert");
+const textInsert = select("#text-insert");
 
 orderBtn.addEventListener("click", () => {
   setOrderElements();
@@ -72,6 +74,7 @@ async function initTable() {
   productBtn.classList.remove("snd-btn-selected");
   activityBtn.classList.remove("snd-btn-selected");
 
+  allOrders.splice(0, allOrders.length);
   if (!response.ok) {
     table.innerHTML = "<p>No hay pedidos por mostrar</p>";
   } else {
@@ -324,7 +327,7 @@ async function removeOrder(id) {
 
 async function insertOrder() {
   const API_URL = "?controller=api&action=createOrder";
-  alert("ahi vamos");
+
   const response = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -348,7 +351,6 @@ async function insertOrder() {
 }
 
 async function updateOrder(order) {
-  console.log(allOrders);
   const API_URL = "?controller=api&action=updateOrder";
   const question = confirm(
     `¿Estás seguro que quieres EDITAR el pedido con ID ${order.orderId}?`
@@ -498,13 +500,18 @@ async function getEuro() {
 }
 
 function setOrderElements() {
+  textInsert.innerText = "AÑADIR PEDIDO";
   orderBtn.classList.add("snd-btn-selected");
   btnActivity.classList.remove("snd-btn-selected");
-  toDollar.setAttribute("hidden", true);
-  toEuro.setAttribute("hidden", true);
+  orderFilters.removeAttribute("hidden");
   btnToggle.removeAttribute("hidden");
   priceFilter.removeAttribute("hidden", true);
   filters.removeAttribute("hidden", true);
   //   filters.classList.add("mt-5");
   table.classList.remove("mt-5");
+  if (localStorage.getItem("rate")) {
+    toEuro.removeAttribute("hidden");
+  } else {
+    toDollar.removeAttribute("hidden");
+  }
 }
