@@ -1,10 +1,14 @@
 import { Order } from "/drburger.com/public/js/models/Order.js";
+//Impotamos la clase order
 
+// En primer lugar se ha establecido la ruta para cargar todos los datos de la api
 const API_URL = "?controller=api&action=show";
+// A continuación se establece la ruta y la clave de la api de free currency
 const API_URL_EXCHANGE =
   "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_UXueennePKw2L8XXZXJeraNXgruKGimO7dVZYM5w";
 const API_KEY = "fca_live_UXueennePKw2L8XXZXJeraNXgruKGimO7dVZYM5w";
-
+// Con una asiganación a una variable de la función queryselector se crea una versión reducida del selector y se
+// se recogen todos los elementos que interesan del dom
 const select = (e) => document.querySelector(e);
 const tHead = select("thead");
 const tBody = select("tbody");
@@ -37,15 +41,17 @@ const divOrder = select("#div-insert-order");
 const divUser = select("#div-insert-user");
 const textInsert = select("#text-insert");
 
+// Este evento hace que se inicia la tbla correctamente al hacer click en el botón de pedidos
 orderBtn.addEventListener("click", () => {
   setOrderElements();
   initTable();
 });
-
+// Evento que inserta el pedido cuando el desplegable está baierto
 btnInsertOrder.addEventListener("click", (e) => {
   e.preventDefault();
   insertOrder();
 });
+// Se configuran los eventos del botón que gestiona el cambio de divisa
 toDollar.addEventListener("click", getDollar);
 toEuro.addEventListener("click", getEuro);
 
@@ -65,23 +71,26 @@ let headersOrders = [
   "PROMOCION",
   "ENVÍO",
 ];
-
+// Se configura que por defecto al cargar el dom se cargue la tabla de pedidos con el método initTable
 document.addEventListener("DOMContentLoaded", initTable);
 
 async function initTable() {
   const response = await fetch(API_URL);
   const data = await response.json();
 
+  // Gestiona los estados selected de los botones
   orderBtn.classList.add("snd-btn-selected");
   userBtn.classList.remove("snd-btn-selected");
   activityBtn.classList.remove("snd-btn-selected");
 
+  // Gestiona el estado del botón de divisa
   if (localStorage.getItem("rate")) {
     toEuro.removeAttribute("hidden");
   } else {
     toDollar.removeAttribute("hidden");
   }
-
+  // Al obtener la respuesta de la api con los pedidos nos aseguramos que el array de pedidos esté vacío
+  // y lo completamos con objetos de tipo order
   allOrders.splice(0, allOrders.length);
   if (!response.ok) {
     table.innerHTML = "<p>No hay pedidos por mostrar</p>";
@@ -104,11 +113,13 @@ async function initTable() {
       );
     }
 
-    console.log(allOrders);
-
+    // Lo pasamos a la función que crea la tabla HTML con los datos de la api
     createHTMLTable(allOrders);
 
     tBody.addEventListener("click", (e) => {
+      // Este evento gestiona la mopdificación haciendo click en las casillas de estado y metodo de pago
+      // al hacer click se enfoca directamente al elemento del dom y podemos obtener sus datos y los
+      //del nodo padre que sería el tr
       const cell = e.target;
 
       if (cell.cellIndex == 2 || cell.cellIndex == 4) {
@@ -116,6 +127,7 @@ async function initTable() {
         const row = cell.parentElement;
         const cellNumCard = row.children[5];
 
+        // Dependiendo de la celda se incrusta un HTML u otro y se añaden botones de confirmación del update
         switch (cell.cellIndex) {
           case 2:
             cell.innerHTML = `<select class="mod" value="${currenValue}"><option>Pendiente</option>
@@ -125,13 +137,14 @@ async function initTable() {
           case 4:
             cell.innerHTML = `<select class="mod card-input" value="${currenValue}"><option>Efectivo</option>
       <option>Tarjeta</option><option>PayPal</option></select>`;
+            //Con este evento hacemos que el usuario al introducir tarjeta como método de pago deba cambiar los dígitos de la tarjerta
             document
               .querySelector(".card-input")
               .addEventListener("change", (e) => {
                 e.preventDefault();
 
                 cellNumCard.innerText = "";
-
+                // Esto se accionna cuando se evalúa el contenido del input/td seleccionado
                 if (e.target.value === "Tarjeta") {
                   alert(
                     "Introduce los últimos 4 dígitos de la tarjeta de pago."
@@ -141,7 +154,7 @@ async function initTable() {
 
                   const inputCardNum =
                     cellNumCard.querySelector(".card-num-input");
-
+                  //El último evento de la casilla hace que al hacer lick fuera de ella se guarde el nuevo valor
                   inputCardNum.addEventListener("blur", () => {
                     if (inputCardNum.value.length == 4) {
                       cellNumCard.innerHTML = "···· " + inputCardNum.value;
@@ -151,7 +164,7 @@ async function initTable() {
 
                     const orderId =
                       cell.parentElement.querySelector("td").innerHTML;
-
+                    // Aqu;i actualizamos el valor a través de la función map de los cambios en el número de tarjeta
                     allOrders = allOrders.map((e) => {
                       if (e.orderId == orderId) {
                         e.cardNumber = inputCardNum.value;
@@ -159,6 +172,7 @@ async function initTable() {
                       return e;
                     });
                   });
+                  // Si no son tarjeta el método dee pago se pone un guión en el número de tarjeta
                 } else if (
                   e.target.value === "PayPal" ||
                   e.target.value === "Efectivo"
@@ -173,8 +187,10 @@ async function initTable() {
             console.log("Campo no disponible para edición");
         }
         const input = cell.querySelector(".mod");
+        // Se centra el cursor en el input
         input.focus();
-
+        // Se an1ade un nuevo evento que lo que hará será al clicar fuera del input actualizar el método de pago o
+        // el estado del pedido dependiendo de la celda clicada con la función map
         input.addEventListener("blur", () => {
           const updateValue = input.value;
 
@@ -207,6 +223,8 @@ async function initTable() {
       }
     });
 
+    // Este evento gestiona el orden con el que se muestra la tabla reordenando el array con la función sort
+    // y se activa con un cambio en el input select
     orderSelect.addEventListener("change", () => {
       const option = orderSelect.value;
 
@@ -227,10 +245,13 @@ async function initTable() {
   }
 }
 
+// Esta función gestiona la creación de la tabla HTML
 function createHTMLTable(data, headers = headersOrders) {
+  // Primero la vacía para asegurarse de que no se duplican datos
   tBody.innerHTML = "";
   tHead.innerHTML = "";
 
+  // Primero crea los encabezados
   const tr = document.createElement("tr");
   for (const header of headers) {
     const th = document.createElement("th");
@@ -241,14 +262,18 @@ function createHTMLTable(data, headers = headersOrders) {
   }
   tHead.append(tr);
 
+  // Se hace aqu;i la gestión de localstorage para personalizar el uso de la divisa
   let rate = 1;
   let currency = "€";
 
+  // Si existe la divisa se aplican dolares, si no, se aplican euros al cambio obtenido de la api.
+  // Se multiplicarán las cantidades con este índice al crear la tbla y se añadirá el símbolo de divisa
   if (localStorage.getItem("rate")) {
     rate = localStorage.getItem("rate");
     currency = "$";
   }
 
+  // A contninuación con los objetos Order obtenidos de la api se completa la tabla
   for (const obj of data) {
     const tr = document.createElement("tr");
 
@@ -285,6 +310,7 @@ function createHTMLTable(data, headers = headersOrders) {
     tBody.append(tr);
   }
 
+  // Se capturan los elmentos para crear los botones de eliminar y actualizar añadiendo los eventos a cada uno en bucle
   const updateButtons = document.querySelectorAll(".update-order-button");
   const removeButtons = document.querySelectorAll(".remove-order-button");
 
@@ -312,6 +338,7 @@ function createHTMLTable(data, headers = headersOrders) {
   }
 }
 
+// función asíncrona que gestiona el borrado de pedidos
 async function removeOrder(id) {
   const API_URL = "?controller=api&action=deleteOrder";
   const question = confirm(
@@ -333,6 +360,7 @@ async function removeOrder(id) {
   }
 }
 
+// función asíncrona que gestiona el insert de pedidos
 async function insertOrder() {
   const API_URL = "?controller=api&action=createOrder";
 
@@ -358,6 +386,7 @@ async function insertOrder() {
   }
 }
 
+// función asíncrona que gestiona el update de pedidos
 async function updateOrder(order) {
   const API_URL = "?controller=api&action=updateOrder";
   const question = confirm(
@@ -387,11 +416,13 @@ async function updateOrder(order) {
   }
 }
 
+// Función que añade el boton de aceptar actualización
 function addConfirmButton(row) {
   const confirmButton = row.querySelector(".update-order-button");
   confirmButton.removeAttribute("hidden");
 }
 
+// Gestión con filter del input que obtiene del array los usuarios con el mismo id
 userFilter.addEventListener("input", (e) => {
   e.preventDefault();
   const userId = e.target.value;
@@ -405,10 +436,14 @@ userFilter.addEventListener("input", (e) => {
   }
 });
 
+// El filtro de la fecha se hace con una función para el desde, otra para el hasta y otra que las une y permite aplicar ambos
+// filtros al mismo tiempo.
 let dateFromFilter;
 let dateUntilFilter;
 
 function applyDateFilters() {
+  // Esta función es la que comprueba si existen ambos filtros y aplica mbios mostrando un nuevo array
+  // con comparaciones de tipodate y filter para terminar creandoi de nuevo la tabla
   let filteredOrders = allOrders;
 
   if (dateFromFilter) {
@@ -429,9 +464,10 @@ function applyDateFilters() {
 dateFrom.addEventListener("input", (e) => {
   e.preventDefault();
   let dateFilter = e.target.value;
-
+  // El evento siempre que se dispara converite el valore en tipo date
   dateFromFilter = dateFilter ? new Date(dateFilter) : null;
   if (dateFromFilter) {
+    // Utiliza el segundo 0 del día para incluir todo el día
     dateFromFilter.setHours(0, 0, 0);
   }
 
@@ -441,15 +477,18 @@ dateFrom.addEventListener("input", (e) => {
 dateUntil.addEventListener("input", (e) => {
   e.preventDefault();
   let dateFilter = e.target.value;
-
+  // El evento siempre que se dispara converite el valore en tipo date
   dateUntilFilter = dateFilter ? new Date(dateFilter) : null;
   if (dateUntilFilter) {
+    // Se ponen las 12 de la noche para incluir también el último dái
     dateUntilFilter.setHours(23, 59, 59);
   }
 
   applyDateFilters();
 });
 
+// Con los precios se ha hecho lo mismo que con fechas pero en vez de utilizar objetos date se
+// ha parseado a float las cifras y ordenarlas con la función filter
 let priceFromFilter;
 let priceUntilFilter;
 
@@ -488,7 +527,7 @@ priceUntil.addEventListener("input", (e) => {
 
   applyPriceFilters();
 });
-
+// Función asíncrona que llama a la api y btiene el cambio y lo guarda en el local storage para aplicarlo
 async function getDollar() {
   const response = await fetch(API_URL_EXCHANGE);
   const data = await response.json();
@@ -497,7 +536,7 @@ async function getDollar() {
   toDollar.setAttribute("hidden", true);
   toEuro.removeAttribute("hidden");
 }
-
+// Gestiona el cambio a euro quitando del local storage la divisa
 async function getEuro() {
   const response = await fetch(API_URL_EXCHANGE);
   const data = await response.json();
@@ -507,6 +546,8 @@ async function getEuro() {
   toDollar.removeAttribute("hidden");
 }
 
+// Está es una función que establece el estado predeterminado de los elementos HTML cuando se está en la sección
+// de pedidos en el panel de admin
 function setOrderElements() {
   textInsert.innerText = "AÑADIR PEDIDO";
   orderBtn.classList.add("snd-btn-selected");

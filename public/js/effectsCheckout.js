@@ -14,6 +14,7 @@ const cardName = select("event-name");
 const collapseElement = select("collapse-Element");
 const collapseExample = select("collapseExample");
 
+// Cuando está expandido el campo con los datos de tarjeta en finalizar compra los campos se convierten en required
 inputCard.addEventListener("click", () => {
   let isExpanded = collapseElement.getAttribute("aria-expanded");
   let isCollapsed = collapseElement.getAttribute("aria-expanded");
@@ -31,12 +32,11 @@ inputCard.addEventListener("click", () => {
 
 inputCash.addEventListener("click", removeRequired);
 inputPaypal.addEventListener("click", removeRequired);
-
+// Quita el estado required al colapsar el campo con datos de tarjeta
 function removeRequired() {
   let isExpanded = collapseElement.getAttribute("aria-expanded");
   collapseElement.setAttribute("aria-expanded", "false");
   collapseExample.classList.remove("show");
-  console.log("PATATA");
   unsetRequired(cardNum);
   unsetRequired(cardExpiration);
   unsetRequired(cardCvv);
