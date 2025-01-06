@@ -46,7 +46,7 @@
                     <p class="p-1 p-link">Pago en efectivo</p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="payment-icons" src="/drburger.com/public/images/euro.webp" alt="">
+                    <img class="payment-icons" src="/drburger.com/public/images/euro.webp" alt="Billete">
                 </div>
             </label>
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1" data-bs-toggle="collapse"
@@ -97,7 +97,7 @@
                     <p class=" p-1 p-link">PayPal</p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="payment-icons" src="/drburger.com/public/images/paypal.webp" alt="">
+                    <img class="payment-icons" src="/drburger.com/public/images/paypal.webp" alt="Logo de paypal">
                 </div>
             </label>
         </div>
@@ -136,7 +136,8 @@
                         <a class="img-product"
                             href="?controller=product&action=addToCart&productId=<?= $product['product_id'] ?>"><img
                                 class="card-img-top pb-5 ps-3 pe-3"
-                                src="/drburger.com/public/images/<?= $product['main_photo'] ?>" alt="Card image cap"></a>
+                                src="/drburger.com/public/images/<?= $product['main_photo'] ?>"
+                                alt="Imagen de producto sugerido"></a>
                         <div class="card-body ps-0 pt-2 d-flex flex-column justify-content-between">
                             <h5 class="card-title"><?= strtoupper($product['product_name']) ?></h5>
                             <p class="card-text"><?= number_format($product['base_price'], '2', ',') ?>€</p>

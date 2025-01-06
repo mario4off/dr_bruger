@@ -8,7 +8,8 @@
         } else {
             include_once('app/views/partials/login.php');
         } ?>
-        <section class="col-5 cart p-3 pt-0 pb-1  mt-4 mb-4 checkout-box d-flex flex-column justify-content-between">
+        <section
+            class="col-12 col-md-5 cart p-3 pt-0 pb-1  mt-4 mb-4 checkout-box d-flex flex-column justify-content-between">
             <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
                 include_once('app/views/partials/cart_section.php');
             } else {

@@ -14,7 +14,7 @@
                                 href="?controller=product&action=addToCart&productId=<?= $product->getProduct_id() ?>"><img
                                     class="card-img-top pb-5 ps-3 pe-3"
                                     src="/drburger.com/public/images/<?= $product->getMain_photo() ?>"
-                                    alt="Card image cap"></a>
+                                    alt="Hamburguesa"></a>
                             <div class="card-body ps-0 pt-2">
                                 <h5 class="card-title"><?= strtoupper($product->getProduct_name()) ?></h5>
                                 <p class="card-text"><?= number_format($product->getBase_Price(), '2', ',') ?>€</p>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="mt-5 mb-4 col-8 col-md-3 align-self-center">
                     <div class="text-center">
-                        <a class="pri-btn" href="">VER TODOS LOS PRODUCTOS</a>
+                        <a class="pri-btn" href="?controller=product&action=showMenu">VER TODOS LOS PRODUCTOS</a>
                     </div>
                 </div>
 
@@ -42,7 +42,9 @@
 
                     <?php foreach ($categories as $category) { ?>
 
-                        <div><a class="snd-btn-1" href=""><?= strtoupper($category->getCategory_name()) ?></a></div>
+                        <div><a class="snd-btn-1"
+                                href="?controller=product&action=showMenu&filter=<?= $category->getCategory_name() ?>"><?= strtoupper($category->getCategory_name()) ?></a>
+                        </div>
 
                     <?php }
                     ?>
@@ -50,8 +52,10 @@
                 <div class="row justify-content-center">
 
                     <article class="div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-5">
-                        <a class=" w-100 category-img-link" href=""><img class=" image-fluidcard-img-to category-img"
-                                src="/drburger.com/public/images/ad-burger.avif" alt="Card image cap"></a>
+                        <a class=" w-100 category-img-link"
+                            href="?controller=product&action=showMenu&filter=Hamburguesas"><img
+                                class=" image-fluidcard-img-to category-img"
+                                src="/drburger.com/public/images/ad-burger.avif" alt="Manos soteniendo hamburguesa"></a>
                         <div class="card-body body-ctagory h-auto ps-0 pt-0">
                             <h5 class="card-title p-1 title-categories">PRODUCTOS CON INGREDIENTES FRESCOS</h5>
                             <p class="card-text p-index-categories">PROCEDENTES DE PRODUCTORES LOCALES</p>
@@ -60,8 +64,11 @@
 
 
                     <article class=" div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-0">
-                        <a class=" w-100 category-img-link" href=""><img class="image-fluid card-img-top category-img"
-                                src="/drburger.com/public/images/fries.jpeg" alt="Card image cap"></a>
+                        <a class=" w-100 category-img-link"
+                            href="?controller=product&action=showMenu&filter=Complementos"><img
+                                class="image-fluid card-img-top category-img"
+                                src="/drburger.com/public/images/fries.jpeg"
+                                alt="Chicos comiendo patatas sobre cesped"></a>
                         <div class="card-body body-ctagory h-auto ps-0 pt-0">
                             <h5 class="card-title p-1 title-categories">COMPLEMENTOS QUE TE SIENTAN BIEN</h5>
                             <p class="card-text p-index-categories">COMPLEMENTOS SANOS Y VARIADOS SIN GLUTEN</p>
@@ -70,8 +77,10 @@
 
 
                     <article class=" div-category col-sm-12 col-md-12 col-lg-4 mt-5 mt-md-0 mb-sm-5 mb-md-0">
-                        <a class="category-img-link  w-100" href=""><img class="image-fluid card-img-top category-img"
-                                src="/drburger.com/public/images/cola-zero.webp" alt="Card image cap"></a>
+                        <a class="category-img-link  w-100"
+                            href="?controller=product&action=showMenu&filter=Bebidas"><img
+                                class="image-fluid card-img-top category-img"
+                                src="/drburger.com/public/images/cola-zero.webp" alt="Mano sosteniendo cola zero"></a>
                         <div class="card-body body-ctagory h-auto ps-0 pt-0 ">
                             <h5 class="card-title p-1 title-categories">ACOMPÁÑATE DE NUESTRAS BEBIDAS</h5>
                             <p class="card-text p-index-categories">CON REFRESCOS LIBRES DE AZÚCARES</p>
@@ -82,7 +91,7 @@
                 </div>
                 <div class="container  mt-4 mt-md-1">
                     <div class="w-100 d-flex justify-content-center">
-                        <a class="mt-5 mb-2 pri-btn" href="">VER AHORA</a>
+                        <a class="mt-5 mb-2 pri-btn" href="?controller=product&action=showMenu">VER AHORA</a>
                     </div>
                 </div>
             </div>
