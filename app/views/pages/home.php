@@ -1,4 +1,5 @@
 <body>
+    <!-- Se incluye el banner que va en el header -->
     <?php
     include_once('app/views/partials/header_banner.php');
     ?>
@@ -8,6 +9,7 @@
                 <h2 class="mb-5">TOP VENTAS</h2>
                 <div class="row justify-content-center">
                     <?php
+                    //Inclusión de las hamburguesas más vendidas de la base de datos
                     foreach ($topProducts as $product) { ?>
                         <article class="card div-best-seller col-6 col-sm-6 col-md-2">
                             <a class="img-product"
@@ -31,6 +33,7 @@
             </div>
         </section>
 
+        <!-- Se incluye el banner del cuerpo de la página para poder modificar dado el caso -->
         <?php
         include_once('app/views/partials/body_banner.php');
         ?>
@@ -42,6 +45,7 @@
 
                     <?php foreach ($categories as $category) { ?>
 
+                        <!-- Se cargan todos los nombres de las categorías de la base de datos-->
                         <div><a class="snd-btn-1"
                                 href="?controller=product&action=showMenu&filter=<?= $category->getCategory_name() ?>"><?= strtoupper($category->getCategory_name()) ?></a>
                         </div>

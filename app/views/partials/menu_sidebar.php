@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
         <div class="container d-flex flex-column mt-3 mb-3">
-
+            <!-- Se controlan los filtros que están selected -->
             <a class="<?= empty($_GET['filter']) ? 'snd-btn-2-selected' : 'snd-btn-2' ?> d-flex justify-content-between align-items-center mb-2"
                 href="?controller=product&action=showMenu">
                 <p>VER TODO</p>
@@ -10,6 +10,7 @@
             </a>
 
             <?php
+            //Se realiza una carga de las categorías para crear botones con sus nombre quacturarán como filtro
             foreach ($categories as $category) {
                 ?>
 

@@ -3,6 +3,8 @@
     <section class="d-flex">
         <aside class="col-2 me-3">
             <form id="order-filter">
+
+                <!-- Filtro de orden por pedido, usuario, fecha y precio de pedidos-->
                 <div class="d-flex gap-3 mt-2">
                     <p>Ordenar por:</p><select name="order" id="select-order">
 
@@ -15,6 +17,7 @@
 
             </form>
 
+            <!-- Aquí están los botones con los que se juega en el DOM para mostrar pedidos, usuarios o logs -->
             <button id="order-btn" class="snd-btn-1 mb-2 w-100 mt-5">PEDIDOS</button>
             <button id="user-btn" class="snd-btn-1 mb-2 w-100">USUARIOS</button>
 
@@ -23,7 +26,7 @@
         </aside>
         <div class="col-10">
             <div class="d-flex justify-content-end w-100">
-
+                <!-- Esto se corresponde con el acordeón que muestra los inputs para introducir datos sobre pedids o usuarios. -->
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <div class="accordion-header d-flex gap-2" id="flush-headingOne">
@@ -34,6 +37,7 @@
 
                                 <p id="text-insert">AÑADIR PEDIDO</p>
                             </button>
+                            <!-- Los botones van cambiando en función de la categoría mostrada -->
                             <button id="convert-to-dollar" class="snd-btn-2" hidden>
                                 <p class="d-flex gap-4 fs-5 align-items-center">€<i
                                         class="fa-solid fa-arrow-right"></i>$</p>
@@ -151,8 +155,7 @@
             </div>
 
             <div class="filters-admin-div p-2 mt-2 gap-5" id="filters">
-
-
+                <!-- Esto se corresponde con los filtros de búsqueda de pedidos por fecha, precio y usuario -->
                 <div>
                     <p>FECHA</p>
                     <div class="d-flex">
@@ -193,6 +196,7 @@
         </div>
     </section>
 </main>
+<!-- Se incluyen los scripts para crear tabla de pedidos, mostrar usuarios y logs -->
 <script type="module" src="public/js/createTable.js"></script>
 <script type="module" src="public/js/showUsers.js"></script>
 <script src="public/js/showLogs.js"></script>

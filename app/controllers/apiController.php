@@ -9,30 +9,15 @@ class apiController
 
     public function show()
     {
+        // Este método gestiona la entrada al panel de administración y la carga de sus datos a través de la llamada
+        // a la api. Carga todos los datos de cada pedido
         include_once('config/apiHeaders.php');
 
 
         $data = OrderDAO::findAllOrders();
 
+        // Esto es recurrente en toda las acciones de select que registran en la tabla de logs la acción realizada
         if (!empty($data)) {
-
-            echo json_encode(['status' => 200, 'data' => $data]);
-        } else {
-            http_response_code(404);
-            echo json_encode(['status' => 404, 'data' => 'No data found']);
-        }
-
-    }
-
-    public function showLogs()
-    {
-        include_once('config/apiHeaders.php');
-
-
-        $data = LogDAO::getLogs();
-
-        if (!empty($data)) {
-
             $log = new Log();
             $log->setAction('SELECT');
             $log->setUser_id($_SESSION['id']);
@@ -48,12 +33,28 @@ class apiController
 
     }
 
+    public function showLogs()
+    {
+        include_once('config/apiHeaders.php');
+        // Método para mostrar los logs en llamada de la api y los carga
+        $data = LogDAO::getLogs();
+
+        if (!empty($data)) {
+
+            echo json_encode(['status' => 200, 'data' => $data]);
+        } else {
+            http_response_code(404);
+            echo json_encode(['status' => 404, 'data' => 'No data found']);
+        }
+
+    }
+
 
     public function showUsers()
     {
         include_once('config/apiHeaders.php');
 
-
+        // Carga todos los usuarios de la base de datos y realiza el registro de actividad
         $data = UserDAO::getAllUsers();
 
         if (!empty($data)) {
@@ -77,6 +78,7 @@ class apiController
 
     public function deleteOrder()
     {
+        // Llamada de la api que a partide un id elimina un pedido
         include_once('config/apiHeaders.php');
         $id = json_decode(file_get_contents('php://input'), true);
         $response = OrderDAO::removeOrderDetails($id);
@@ -110,7 +112,7 @@ class apiController
     {
         include_once('config/apiHeaders.php');
         $id = json_decode(file_get_contents('php://input'), true);
-
+        // Llamada a la api que elimina un usuario con el id del pedido
         $result = UserDAO::destroyUser($id);
         if ($result) {
 
@@ -135,13 +137,14 @@ class apiController
     {
         include_once('config/apiHeaders.php');
 
+        // Se realiza la actualización del pedido si el datos de la tarjeta tiene 4 números
         $order = json_decode(file_get_contents('php://input'), true);
         if (strlen($order['cardNumber']) != 4 && $order['cardNumber'] != null) {
             http_response_code(400);
             echo json_encode(['status' => 400, 'message' => 'El valor introducido no tiene 4 dígitos']);
             return;
         }
-        var_dump($order);
+
         $response = OrderDAO::updateOrder($order);
 
         if ($response) {
@@ -165,7 +168,7 @@ class apiController
     public function updateUser()
     {
         include_once('config/apiHeaders.php');
-
+        // Se manda al dao un objeto user para modificarlo en la base de datos
         $response = json_decode(file_get_contents('php://input'), true);
 
         $user = new User();
@@ -176,7 +179,7 @@ class apiController
         $user->setCity($response['city']);
         $user->setCp($response['cp']);
         $user->setPhone($response['phone']);
-        $user->setPass(password_hash($response['pass'], PASSWORD_DEFAULT));
+        $user->setPass($response['pass']);
         $user->setRole($response['role']);
         $user->setUser_id($response['user_id']);
 
@@ -203,14 +206,17 @@ class apiController
 
     public function createOrder()
     {
-        include_once('config/apiHeaders.php');
 
+        // Método que crea un pedido
+        include_once('config/apiHeaders.php');
+        // Comprueba que la tarjeta tenga 4 d'ígitos
         $response = json_decode(file_get_contents('php://input'), true);
         if (strlen($response['cardNumber']) != 4 && $response['cardNumber'] != null) {
             http_response_code(400);
             echo json_encode(['status' => 400, 'message' => 'El valor introducido no tiene 4 dígitos']);
             return;
         }
+        // Se crea un objeto order que se mandará al DAO para registrar el pedido
         $order = new Order();
         $order->setUser_id($response['userId']);
         $order->setStatus($response['status']);
@@ -246,7 +252,8 @@ class apiController
         include_once('config/apiHeaders.php');
 
         $response = json_decode(file_get_contents('php://input'), true);
-
+        // Función que crea un usuario nuevo mandado al dao los datos recibidos del javascript en forma de
+        // objeto User
         $user = new User();
         $user->setName($response['name']);
         $user->setLast_name($response['lastName']);

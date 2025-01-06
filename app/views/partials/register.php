@@ -1,4 +1,6 @@
 <div class="col-12 col-md-5 d-flex flex-column align-items-center mt-sm-4 p-3">
+    <!-- A través de la variable GET warning, success y error se muestran en diferentes partes mensajes que
+     enuncian avisos en relación a errores con el proceso de registro-->
     <?php
     if (isset($_GET['warning']) && $_GET['warning'] == 'user_exist') {
 
@@ -36,7 +38,8 @@
         <p class="p-user-page ">Crea una cuenta para finalizar tus compras más
             rápidamente.</p>
     </div>
-
+    <!-- Se configuran los inputs por tipo en función de texto, mail o número y se establecen patrones, campos obligatorios 
+     para poder hacer el registro -->
     <form class="d-flex flex-column w-100" action="?controller=user&action=createUser" method="POST">
         <label class="label-style " for="">Nombre</label><input class="input-user mt-3 mb-3" name="name" type="text"
             placeholder="Nombre" required>

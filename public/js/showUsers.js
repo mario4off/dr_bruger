@@ -63,7 +63,7 @@ async function initTable() {
           el.mail,
           el.phone,
           el.role,
-          "Informatica_1",
+          el.pass,
           el.city,
           el.cp
         )

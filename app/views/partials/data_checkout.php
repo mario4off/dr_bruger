@@ -1,4 +1,5 @@
 <section class="col-md-6 mt-4">
+    <!-- De nuevo gestión de error por si no hubiera conexión con la base de datos u otro -->
     <?php
     if (isset($_GET['error']) && $_GET['error'] == 'insert_order') {
 
@@ -11,6 +12,7 @@
 
         <?php
     } ?>
+    <!-- Se envía un formulario por POST con los detalles del envío -->
     <form id="form-checkout" action="?controller=order&action=makeOrder&delivery=<?= $_GET['delivery'] ?>"
         method="POST">
         <div class="delivery-div">
@@ -121,6 +123,9 @@
         </div>
     </form>
 
+    <!-- Esto es interesante porque es la aplicación de la cookie. Lo que sucede aquí, es que si la cookie existe
+     y tiene contenido, hará una sugerencia sobre la última categoría vista por el usuario y le recomendará los productos
+     más vendidos de esta categoría -->
     <?php
     if (isset($_COOKIE['suggest']) && !empty($_COOKIE['suggest']) && ($_COOKIE['suggest']) != "a:0:{}") {
 
@@ -153,7 +158,8 @@
         <?php
     }
     ?>
-
+    <!-- Se inserta javascript porque ha sido elúnico modo de poder gestionar el desplegable colapsable de los datos de la tarjeta
+ tan solo a nivel visual. Los datos se gestionan con PHP. -->
 </section>
 <script src="public/js/effectsCheckout.js
 "></script>

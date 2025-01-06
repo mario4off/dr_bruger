@@ -2,7 +2,8 @@
 $totalAmount = 0;
 foreach ($_SESSION['cart'] as $product) {
     ?>
-
+    <!-- Se realiza una extracción de los datos de la variable de sesión que contiene los datos del carrito y se muestran 
+ pantalla los productos con todos sus datos-->
     <article class="d-flex gap-3 checkout-border pb-3 pt-3">
         <img class="w-25 p-3 img-product" src="/drburger.com/public/images/<?= $product->getMain_photo() ?>">
         <div class=" w-75  d-flex flex-column justify-content-between">
@@ -15,18 +16,21 @@ foreach ($_SESSION['cart'] as $product) {
             <div class="d-flex justify-content-between h-50 align-items-center">
                 <div class="d-flex gap-4">
                     <p class="snd-p-items-checkout">CANTIDAD: <?= $product->getQuantity() ?></p>
+                    <!-- Aquí se insertan los botones que gestionan la lógica para reducir las cantidades del producto -->
                     <div><a class="add-quantity-btn"
                             href="?controller=order&action=addUnit&productId=<?= $product->getProduct_id() ?>"><i
                                 class="fa-solid fa-plus"></i></a><a class="rm-quantity-btn"
                             href="?controller=order&action=removeUnit&productId=<?= $product->getProduct_id() ?>"><i
                                 class="fa-solid fa-minus"></i></a></div>
                     </a>
+                    <!-- Aquí el link para eliminar directamente un producto del carrito -->
                 </div> <a class="rm-link-checkout"
                     href="?controller=order&action=removeItem&productId=<?= $product->getProduct_id() ?>">Eliminar</a>
             </div>
         </div>
     </article>
     <?php
+    // Aquí obtenemos el calculadop acumulado con las cantidades del total del carrito
     $totalAmount += $product->getBase_price() * $product->getQuantity();
     $_SESSION['totalAmount'] = $totalAmount;
 } ?>
@@ -39,6 +43,8 @@ foreach ($_SESSION['cart'] as $product) {
         <p class="snd-p-items-checkout">ENVÍO</p>
         <p><?= $_GET['delivery'] == 'true' ? '3,50€' : '0,00€' ?></p>
     </div>
+    <!-- Aquí si hay algún descuento activo permite quitar el código así como ver el código
+     aplicado y el descuento en números a través de la sesión -->
     <?php if ($_SESSION['discount']) { ?>
         <div class="d-flex w-100 mt-2 justify-content-between">
             <p class="snd-p-items-checkout">DESCUENTO</p>
@@ -50,6 +56,8 @@ foreach ($_SESSION['cart'] as $product) {
         </div>
         <?php $totalAmount -= $_SESSION['discount']['amount'];
     } ?>
+    <!-- Este formulario se ubica aquí para no dar confilcto con el otro formulario, y envía con un input oculto el importe
+     del pedido para poder calcular de este modo el descuento en caso de introducir algún código válido -->
     <form action="?controller=order&action=applyPromo" method="POST"
         class="d-flex justify-content-between w-100 mb-2 mt-3">
         <div class="d-flex flex-column"><label class="mb-1 fs-6" hidden for="discount-code">¿Tienes algún código de
@@ -61,6 +69,7 @@ foreach ($_SESSION['cart'] as $product) {
         </div>
 
     </form>
+    <!-- Aqui se informan todos los avisos relacionados con la aplicación del descuento -->
     <?php
     if (isset($_GET['warning']) && $_GET['warning'] == 'invalid_code') {
 
@@ -95,6 +104,7 @@ foreach ($_SESSION['cart'] as $product) {
     <p class="p-items-checkout p-total-checkout ">TOTAL</p>
     <p class="p-items-checkout p-total-checkout ">
         <?php
+        // Aquí finalmente mostramos el toal del pedido con costes de envío si los hubiera
         if (isset($_GET['delivery']) && $_GET['delivery'] == 'true') {
             $_SESSION['totalAmount'] = $totalAmount + 3.5;
         } else {

@@ -20,6 +20,7 @@
         <p><?php
         $orderQuantity = 0;
         $auxId = 0;
+        // Se realiza una cuenta de todos los pedidos que existen en la base de datos
         foreach ($orderHistory as $data) {
             if ($auxId != $data->getOrder_id()) {
                 $auxId = $data->getOrder_id();
@@ -36,7 +37,8 @@
             <?php
             $lastIdChecked = 0;
             foreach ($orderHistory as $order) {
-                //  $lastIdChecked= $data->getOrder_id();
+                //En este caso concreto, se tienen todos los pedidos con todas las líneas de cada pedido, por lo que se hace
+                // un bucle que comprueba el id de cada pedido, lo asocia, y muestra los detalles de cada pedido en concreto 
                 if ($lastIdChecked != $order->getOrder_id()) {
 
                     $lastIdChecked = $order->getOrder_id();
@@ -53,6 +55,8 @@
                                 </strong>
                             </div>
                         </div>
+                        <!-- Este es el bucle interno que recoge los detalles concretos de cada pedido cuando
+                         el id coincide con el del pedido -->
                         <?php
                         foreach ($orderHistory as $product) {
                             if ($product->getOrder_id() == $lastIdChecked) {
@@ -76,6 +80,8 @@
                         <p><?= str_replace('.', ',', $order->getTotal_amount()) ?>€</p>
                         <p class="mt-2 small mb-3"><?= $order->getPayment_method() == 'Tarjeta' ? 'Pagado con tarjeta: <strong>**** ' . $order->getCard_number() . '</strong>' :
                             'Pagado con ' . strtoupper($order->getPayment_method()) ?></p>
+                        <!-- Este enlace es importante porque es el que activa toda la repetción del pedido para volver
+                             a añadir los productos al carrito a partir del id del pedido -->
                         <a class="snd-btn-1 "
                             href="?controller=order&action=repeatOrder&orderId=<?= $order->getOrder_id() ?>">REPETIR
                             PEDIDO</a>

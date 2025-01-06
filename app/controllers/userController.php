@@ -10,6 +10,8 @@ class userController
 {
     public function showUser()
     {
+        // Este método evalúa si la sección corresponde al perfil de usuario de datos o a su historial
+        // de pedidos, y llama al DAO para cargar todo el historial
         $section = isset($_GET['section']) ? $_GET['section'] : 'profile';
 
         if ($section == 'orders') {
@@ -28,8 +30,11 @@ class userController
 
     public function createUser($role = 'customer')
     {
+        // Se valida el mail por si el filtro del HTML no fuera suficiente
         $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
 
+        // Se gestionan errores pero si todo es corecto se recogen por POST todos los datos
+        // introducidos en el form para registrar en el DAO
         if (!$mail) {
             header('Location: ?controller=user&action=showUser&warning=mail_format');
         } else if ($_POST['pwd'] != $_POST['pwd-r']) {
@@ -44,8 +49,13 @@ class userController
                 $city = $_POST['city'];
                 $cp = $_POST['cp'];
                 $phone = $_POST['phone'];
+
+                // Se encripta la contraseña
                 $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
+
+                // Para nbo tener que pasar muchas variables como argumentos al DAO, se crea un objeto
+                // user
                 $user = new User();
 
                 $user->setName($name);
@@ -71,12 +81,14 @@ class userController
 
     public function userLogin()
     {
-
+        //Mismo proceso de validación del mail 
         $mail = filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL);
 
         if (!$mail) {
             header('Location: ?controller=user&action=showUser&warning=mail_format');
         }
+
+        // Se validará si el usuario existe en primer lugar comprobando el mail
         $pass = $_POST['pwd'];
 
         $result = UserDAO::getUserByEmail($mail);
@@ -85,9 +97,10 @@ class userController
             header('Location: ?controller=user&action=showUser&warning=not_exist_user');
         }
 
+        // Se verifica la contraseña encriptada si es correcta
         if (password_verify($pass, $result->getPass())) {
 
-
+            // Se establecen todas las variables de sesión relativas al usuario
             $_SESSION['name'] = $result->getName();
             $_SESSION['lastName'] = $result->getLast_name();
             $_SESSION['address'] = $result->getAddress();
@@ -100,6 +113,8 @@ class userController
             $_SESSION['id'] = $result->getUser_id();
 
 
+            // Como el proceso de login puede proceder de diversas páginas, se evalúa la url anterior
+            // y en función de ello se realiza una carga o un reenvío al lugar correcto
             $reference = explode('=', ($_SERVER['HTTP_REFERER']));
             $method = explode('&', $reference[2]);
 
@@ -125,6 +140,8 @@ class userController
         if (!$mail) {
             header('Location: ?controller=user&action=showUser&warning=mail_format');
         }
+
+        // Se recogen por post todos los datos introducidos en el form de datos personales
         $name = $_POST['name'];
         $last_name = $_POST['lastname'];
         $address = $_POST['address'];
@@ -132,6 +149,8 @@ class userController
         $cp = $_POST['cp'];
         $phone = $_POST['phone'];
         $pass = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+
+        // Se crea un objeto user que será la nueva versión del usuario
 
         $user = new User();
 
@@ -148,6 +167,7 @@ class userController
 
         UserDAO::updateUser($user);
 
+        // Aquí se actualizan las variables de sesión
         $_SESSION['name'] = $user->getName();
         $_SESSION['lastName'] = $user->getLast_name();
         $_SESSION['address'] = $user->getAddress();
@@ -168,6 +188,7 @@ class userController
 
     public function logout()
     {
+        // Destrucción de la sesión
         session_destroy();
 
         header('Location:  ?controller=product&action=index');

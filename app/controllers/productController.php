@@ -25,6 +25,7 @@ class productController
 
     public function index()
     {
+        // Es la carga para la home de los productos más vendidos y de los nombres de todas las categorías
         $topProducts = ProductDAO::getBestSeller();
         $categories = CategoryDAO::getAllCategories();
 
@@ -35,15 +36,17 @@ class productController
 
     public function showMenu()
     {
+        // Este método carga todas las categorías para la página del menú para mostrar
         $categories = CategoryDAO::getAllCategories();
 
+        // Determina si hay un filtro o no en la url
         if (!isset($_GET['filter']) || empty($_GET['filter'])) {
 
             $products = ProductDAO::getAllProducts();
         } else {
 
             $filter = $_GET['filter'];
-
+            //Con un switch lo que se hace es ver qué tipop de producto debemos mostrar 
             switch ($filter) {
                 case 'Hamburguesas':
                     $products = BurgerDAO::getAll($filter);
@@ -70,6 +73,8 @@ class productController
             }
         }
         if ($filter) {
+            // La cookie se crea en el momento en el que el filtro existe por un tiempo de un cuarto de hora aproximado
+            // con los productos más vendidos de la última categoría más visitada por el usuario
             $suggestedProducts = ProductDAO::getBestSellerByCategory($filter);
             setcookie('suggest', serialize($suggestedProducts), time() + 1000, '/');
         }
@@ -82,6 +87,8 @@ class productController
 
     public function addToCart()
     {
+        // Este método se encarga de añadir al carrito en variable de sessión como un objeto CartItem a través
+        // del id del producto
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'];
         }
@@ -90,6 +97,8 @@ class productController
 
         $product = CartItemDAO::getCartItem($productId);
 
+        // Se comprueba si la id ya está en el carrito para si no aumentar la cantidad en vez de volver a crear
+        // una posición para el mismo id
         if (!isset($_SESSION['cart'][$productId])) {
             $_SESSION['cart'][$productId] = $product;
             $_SESSION['cart'][$productId]->setQuantity(1);
@@ -97,6 +106,9 @@ class productController
         } else {
             $_SESSION['cart'][$productId]->setQuantity($_SESSION['cart'][$productId]->getQuantity() + 1);
         }
+
+        // Como anteriormente, como se pueden añadir productos desde la home o el menú o la página de finalizar pedido
+        // se debe estabalecer a través de la url anterior a qué página debe redirigirse
         $reference = explode('=', ($_SERVER['HTTP_REFERER']));
 
         if (end($reference) == 'index' || end($reference) == 'logout') {

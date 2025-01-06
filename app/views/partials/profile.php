@@ -15,6 +15,8 @@
             </li>
         </ul>
     </div>
+    <!-- Básicamente es un formulario con los datos precargados existentes del usuario que se encuentran guardados
+     en las variables de sesión -->
     <div class="col-sm-12 col-md-5">
         <div class="container">
             <h2 class="mb-1">MI PERFIL</h2>

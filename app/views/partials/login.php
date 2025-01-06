@@ -1,4 +1,6 @@
 <div class="col-12 col-md-5 d-flex flex-column align-items-center p-3 mt-sm-4">
+    <!-- A través de la variable GET warning se muestran en diferentes partes mensajes que
+     enuncian avisos en relación a errores con el proceso de login-->
     <?php
     if (isset($_GET['warning']) && $_GET['warning'] == 'not_exist_user') {
 
@@ -17,6 +19,8 @@
         </div>
 
     <?php } ?>
+    <!-- Al ser reutilizado en el carrito este componente, en función del método se enseñan unos mensajes en el login u otro
+     en la página del carrito -->
     <h2><?= $_GET['action'] == 'showUser' ? 'CLIENTE REGISTRADO' : '¿TIENES UNA CUENTA?' ?>
     </h2>
     <p class="p-user-page mb-2 mt-1">
@@ -34,6 +38,8 @@
             value="INICIAR SESION">
     </form>
     <?php
+    // Como este módulo es reutilizable y se utiliza también en la parte del carrito, está parte de aquí solo
+    // se muestra en la página del carrito
     if ($_GET["controller"] == 'order') {
         ?>
         <div class="mb-3 d-flex w-100 align-items-center gap-3 mt-3">

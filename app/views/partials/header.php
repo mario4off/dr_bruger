@@ -15,8 +15,9 @@
         <div class=" container header-container p-2 d-flex flex-row align-items-center ">
             <a href=""><img id="header-logo" class="image-fluid" src="/drburger.com/public/images/dr_burger_logo.svg"
                     alt="logo"></a>
-
-
+            <!-- 
+            Se han credo varias configuraciones del menú para que se visualicen correctamente en diferentes formatos
+            de pantalla -->
             <ul class="d-flex flex-row d-none d-sm-flex mb-0 justify-content-around">
                 <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
                         href="?controller=product&action=index">INICIO</a>
@@ -27,6 +28,7 @@
                         #">CONTACTO</a></li>
                 <?php
 
+                //Se controla el acceso al admin con esta comprobación de rol de usuario
                 if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
                     ?>
 
@@ -46,7 +48,7 @@
                 <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
                         href="#">CONTACTO</a></li>
                 <?php
-
+                //Se controla el acceso al admin con esta comprobación de rol de usuario en el otro tamaño del responsive
                 if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
                     ?>
 
@@ -60,6 +62,7 @@
 
 
             <ul class="navbar-nav-right ms-auto d-md-flex header-icons">
+                <!-- Se cambian los iconos a activos comprobando el contenido de la variable de sesión del mail -->
                 <li class="pt-2 pb-2"><a class="nav-link" href="?controller=user&action=showUser"><i
                             class="fa-solid fa-user-large fa-lg d-none d-sm-inline icon-header-size <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i><i
                             class=" fa-solid fa-user-large fa-sm d-sm-none <?= isset($_SESSION['mail']) ? 'icon-active' : ' ' ?>"></i></a>
@@ -67,6 +70,7 @@
                 <li class="cart-container pt-2"><a class="nav-link"
                         href="?controller=order&action=getCheckout&delivery=false"><i
                             class="fa-solid fa-bag-shopping fa-lg d-none d-sm-inline icon-header-size <?= isset($_SESSION['cart']) ? 'icon-active' : ' ' ?>">
+                            <!-- Se gestiona el icono que muestra los elementos que hay en le carrito dentro del navegador -->
                             <?php if (isset($_SESSION['cart'])) {
                                 ?><span class="cart-count d-flex justify-content-center align-items-center">
                                     <?php $count = 0;

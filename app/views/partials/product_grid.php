@@ -1,5 +1,7 @@
 <div class="container row grid-products-area mt-3 w-100 ">
     <?php
+    // Aquí según lo estiupulado por el filtro, se cargan los productos y se muestran sus datos para su elección
+    // y poder añadirlos al carrito
     foreach ($products as $product) { ?>
         <article id="#anchor-menu"
             class="card div-best-seller col-5 col-sm-3 col-md-2 me-2 mb-4 p-1 pt-0 d-flex flex-column">

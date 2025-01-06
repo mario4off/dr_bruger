@@ -9,6 +9,8 @@ class AdminController
 
     public function showPannel()
     {
+        require('config/adminProtection.php');
+        // Incluye la vista del panel de administración
         $view = 'app/views/pages/pannel.php';
         include_once('app/views/layouts/main.php');
     }
