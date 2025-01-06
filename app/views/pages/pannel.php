@@ -34,7 +34,7 @@
 
                                 <p id="text-insert">AÑADIR PEDIDO</p>
                             </button>
-                            <button id="convert-to-dollar" class="snd-btn-2">
+                            <button id="convert-to-dollar" class="snd-btn-2" hidden>
                                 <p class="d-flex gap-4 fs-5 align-items-center">€<i
                                         class="fa-solid fa-arrow-right"></i>$</p>
                             </button>
@@ -47,7 +47,7 @@
                         <form id="flush-collapseOne" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body w-100 pb-0">
-                                <div class="d-flex gap-4">
+                                <div id="div-insert-order" class="d-flex gap-4">
                                     <div class="d-flex flex-column">
                                         <label for="">USUARIO</label>
                                         <input id="input-user" class="" type="number">
@@ -82,8 +82,66 @@
                                     </div>
 
                                 </div>
+                                <div id="div-insert-user" hidden="true">
+                                    <div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">NOMBRE</label>
+                                            <input id="input-name" class="" type="text">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">APELLIDO</label>
+                                            <input id="input-lastname" class="" type="text">
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">MAIL</label>
+                                            <input id="input-mail" class="" type="mail">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">ROL</label>
+                                            <select class="h-100" id="input-role" value="customer">
+                                                <option value="customer">customer</option>
+                                                <option value="admin">admin</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column">
+                                        <label for="">TELÉFONO</label>
+                                        <input id="input-phone" class="" type="text">
+                                    </div>
+                                    <div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">DIRECCIÓN</label>
+                                            <input id="input-address" class="" type="text">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">CIUDAD</label>
+                                            <input id="input-city" class="" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div class="d-flex flex-column">
+                                            <label for="">CP</label>
+                                            <input id="input-cp" class="" type="text">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
                                 <div class="d-flex justify-content-end mt-4">
-                                    <button type="submit" id="btn-insert" class="snd-btn-2">REGISTRAR PEDIDO</button>
+                                    <button type="submit" id="btn-insert-order" class="snd-btn-2">REGISTRAR
+                                        PEDIDO</button>
+                                </div>
+
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit" id="btn-insert-user" class="snd-btn-2" hidden="true">REGISTRAR
+                                        USUARIO</button>
                                 </div>
                             </div>
                         </form>

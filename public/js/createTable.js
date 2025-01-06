@@ -31,7 +31,10 @@ const inputNum = select("#input-card");
 const inputAllergies = select("#input-allergies");
 const inputPrice = select("#input-total-price");
 const inputDelivery = select("#input-delivery");
-const btnInsert = select("#btn-insert");
+const btnInsertOrder = select("#btn-insert-order");
+const btnInsertUser = select("#btn-insert-user");
+const divOrder = select("#div-insert-order");
+const divUser = select("#div-insert-user");
 const textInsert = select("#text-insert");
 
 orderBtn.addEventListener("click", () => {
@@ -39,7 +42,7 @@ orderBtn.addEventListener("click", () => {
   initTable();
 });
 
-btnInsert.addEventListener("click", (e) => {
+btnInsertOrder.addEventListener("click", (e) => {
   e.preventDefault();
   insertOrder();
 });
@@ -73,6 +76,12 @@ async function initTable() {
   userBtn.classList.remove("snd-btn-selected");
   productBtn.classList.remove("snd-btn-selected");
   activityBtn.classList.remove("snd-btn-selected");
+
+  if (localStorage.getItem("rate")) {
+    toEuro.removeAttribute("hidden");
+  } else {
+    toDollar.removeAttribute("hidden");
+  }
 
   allOrders.splice(0, allOrders.length);
   if (!response.ok) {
@@ -503,12 +512,23 @@ function setOrderElements() {
   textInsert.innerText = "AÑADIR PEDIDO";
   orderBtn.classList.add("snd-btn-selected");
   btnActivity.classList.remove("snd-btn-selected");
+  btnInsertOrder.removeAttribute("hidden");
+  btnInsertUser.setAttribute("hidden", true);
   orderFilters.removeAttribute("hidden");
   btnToggle.removeAttribute("hidden");
   priceFilter.removeAttribute("hidden", true);
   filters.removeAttribute("hidden", true);
   //   filters.classList.add("mt-5");
+  divOrder.removeAttribute("hidden");
+  divUser.removeAttribute("hidden");
+  divOrder.classList.add("d-flex");
+  divOrder.classList.add("gap-4");
+  divUser.classList.remove("d-flex");
+  divUser.classList.remove("gap-4");
+  divUser.setAttribute("hidden", true);
   table.classList.remove("mt-5");
+  toEuro.setAttribute("hidden", true);
+  toDollar.setAttribute("hidden", true);
   if (localStorage.getItem("rate")) {
     toEuro.removeAttribute("hidden");
   } else {

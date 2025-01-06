@@ -241,5 +241,43 @@ class apiController
         }
 
     }
+    public function createUser()
+    {
+        include_once('config/apiHeaders.php');
+
+        $response = json_decode(file_get_contents('php://input'), true);
+
+        $user = new User();
+        $user->setName($response['name']);
+        $user->setLast_name($response['lastName']);
+        $user->setMail($response['mail']);
+        $user->setPhone($response['phone']);
+        $user->setRole($response['role']);
+        $user->setPass(password_hash($response['pass'], PASSWORD_DEFAULT));
+        $user->setCity($response['city']);
+        $user->setCp($response['cp']);
+        $user->setAddress($response['address']);
+
+        $result = userDAO::insertUser($user);
+
+        if ($result) {
+            $log = new Log();
+            $log->setAction('INSERT');
+            $log->setUser_id($_SESSION['id']);
+            $log->setAltered_table('USERS');
+            $log->setObject_id($result);
+
+            LogDAO::insertLog($log);
+
+            http_response_code(200);
+            echo json_encode(['status' => 200, 'message' => 'Pedido introducido con éxito']);
+
+        } else {
+            http_response_code(500);
+            echo json_encode(['status' => 500, 'message' => 'No se pudo introducir el pedido']);
+        }
+
+    }
+
 
 }

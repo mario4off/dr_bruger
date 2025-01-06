@@ -3,39 +3,40 @@ import { User } from "/drburger.com/public/js/models/User.js";
 const select = (e) => document.querySelector(e);
 const tHead = select("thead");
 const tBody = select("tbody");
-const userFilter = select("#user-filter");
-const dateFrom = select(".date-from");
+
 const btnToggle = select("#accordionFlushExample");
-const dateUntil = select(".date-until");
+
 const btnActivity = select("#activity-btn");
-const priceFrom = select(".price-from");
+
 const priceFilter = select("#filter-price");
-const priceUntil = select(".price-until");
+const textInsert = select("#text-insert");
 const table = select("table");
 const filters = select("#filters");
 const toDollar = select("#convert-to-dollar");
 const toEuro = select("#convert-to-euro");
 const orderBtn = select("#order-btn");
 const userBtn = select("#user-btn");
-const productBtn = select("#product-btn");
-const activityBtn = select("#activity-btn");
-const inputUser = select("#input-user");
-const inputPayment = select("#input-payment");
-const inputNum = select("#input-card");
-const inputAllergies = select("#input-allergies");
-const inputPrice = select("#input-total-price");
-const inputDelivery = select("#input-delivery");
-const btnInsert = select("#btn-insert");
-const textInsert = select("#text-insert");
+const btnInsertOrder = select("#btn-insert-order");
+const btnInsertUser = select("#btn-insert-user");
+const divOrder = select("#div-insert-order");
+const divUser = select("#div-insert-user");
+const name = select("#input-name");
+const lastName = select("#input-lastname");
+const mail = select("#input-mail");
+const phone = select("#input-phone");
+const address = select("#input-address");
+const role = select("#input-role");
+const city = select("#input-city");
+const cp = select("#input-cp");
 
 userBtn.addEventListener("click", () => {
   setUserElements();
   initTable();
 });
 
-btnInsert.addEventListener("click", (e) => {
+btnInsertUser.addEventListener("click", (e) => {
   e.preventDefault();
-  insertOrder();
+  insertUser();
 });
 
 // const orderSelect = document.getElementById("select-order");
@@ -206,21 +207,22 @@ async function insertUser() {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      userId: inputUser.value,
-      status: "En preparación",
-      paymentMethod: inputPayment.value,
-      cardNumber: inputNum.value ?? " ",
-      promotionId: null,
-      totalAmount: inputPrice.value ?? 0.0,
-      deliveryCost: inputDelivery.value ?? 0.0,
-      iva: inputPrice.value * 0.21,
+      name: name.value,
+      lastName: lastName.value,
+      pass: "Informatica_1",
+      mail: mail.value,
+      phone: phone.value,
+      role: role.value,
+      address: address.value,
+      city: city.value,
+      cp: cp.value,
     }),
   });
   if (response.ok) {
-    tBody.innerHTML = "";
-    location.reload();
+    alert("Usuario introducido con éxito");
+    initTable();
   } else {
-    alert("No se ha podido introducir el pedido");
+    alert("No se ha podido introducir al usuario");
   }
 }
 
@@ -394,4 +396,13 @@ function setUserElements() {
   toEuro.removeAttribute("hidden");
   toDollar.setAttribute("hidden", true);
   toEuro.setAttribute("hidden", true);
+  divOrder.removeAttribute("hidden");
+  divUser.removeAttribute("hidden");
+  divOrder.classList.remove("d-flex");
+  divOrder.classList.remove("gap-4");
+  divUser.classList.add("d-flex");
+  divUser.classList.add("gap-4");
+  divOrder.setAttribute("hidden", true);
+  btnInsertUser.removeAttribute("hidden");
+  btnInsertOrder.setAttribute("hidden", true);
 }

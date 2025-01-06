@@ -72,7 +72,7 @@ class UserDAO
         );
         $stmnt->execute();
         $con->close();
-
+        return $stmnt->insert_id;
     }
 
     public static function destroyUser($id)
