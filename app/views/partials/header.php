@@ -13,8 +13,7 @@
     </div>
     <nav class="container-fluid custom-navbar">
         <div class=" container header-container p-2 d-flex flex-row align-items-center ">
-            <a href=""><img id="header-logo" class="image-fluid" src="/drburger.com/public/images/dr_burger_logo.svg"
-                    alt="logo"></a>
+            <a href=""><img id="header-logo" class="image-fluid" src="public/images/dr_burger_logo.svg" alt="logo"></a>
             <!-- 
             Se han credo varias configuraciones del menú para que se visualicen correctamente en diferentes formatos
             de pantalla -->

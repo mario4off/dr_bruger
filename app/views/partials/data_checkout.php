@@ -48,7 +48,7 @@
                     <p class="p-1 p-link">Pago en efectivo</p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="payment-icons" src="/drburger.com/public/images/euro.webp" alt="Billete">
+                    <img class="payment-icons" src="public/images/euro.webp" alt="Billete">
                 </div>
             </label>
             <label class="p-2 mb-3 w-100 d-flex justify-content-between payment-option p-1" data-bs-toggle="collapse"
@@ -60,14 +60,13 @@
                     <p class="p-1 p-link">Tarjeta bancaria</p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="payment-icons" src="/drburger.com/public/images/visa.webp" alt="visa">
+                    <img class="payment-icons" src="public/images/visa.webp" alt="visa">
 
-                    <img class="payment-icons l-icon" src="/drburger.com/public/images/mastercard.webp" alt="mastercad">
+                    <img class="payment-icons l-icon" src="public/images/mastercard.webp" alt="mastercad">
 
-                    <img class="payment-icons l-icon" src="/drburger.com/public/images/maestro.webp" alt="maestro">
+                    <img class="payment-icons l-icon" src="public/images/maestro.webp" alt="maestro">
 
-                    <img class="payment-icons" src="/drburger.com/public/images/american-express.webp"
-                        alt="american express">
+                    <img class="payment-icons" src="public/images/american-express.webp" alt="american express">
                 </div>
 
             </label>
@@ -99,7 +98,7 @@
                     <p class=" p-1 p-link">PayPal</p>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="payment-icons" src="/drburger.com/public/images/paypal.webp" alt="Logo de paypal">
+                    <img class="payment-icons" src="public/images/paypal.webp" alt="Logo de paypal">
                 </div>
             </label>
         </div>
@@ -140,8 +139,7 @@
                     <article class="card div-best-seller col-6 col-sm-6 col-md-3 justify-content-around">
                         <a class="img-product"
                             href="?controller=product&action=addToCart&productId=<?= $product['product_id'] ?>"><img
-                                class="card-img-top pb-5 ps-3 pe-3"
-                                src="/drburger.com/public/images/<?= $product['main_photo'] ?>"
+                                class="card-img-top pb-5 ps-3 pe-3" src="public/images/<?= $product['main_photo'] ?>"
                                 alt="Imagen de producto sugerido"></a>
                         <div class="card-body ps-0 pt-2 d-flex flex-column justify-content-between">
                             <h5 class="card-title"><?= strtoupper($product['product_name']) ?></h5>
