@@ -15,7 +15,7 @@
                 ?>
 
                 <a href="?controller=product&action=showMenu&filter=<?= $category->getCategory_name() ?>"
-                    class="d-flex justify-content-between align-items-center mb-2 <?= strtoupper($_GET['filter']) == strtoupper($category->getCategory_name()) ? 'snd-btn-2-selected' : 'snd-btn-2 ' ?>">
+                    class="d-flex justify-content-between align-items-center mb-2 <?= isset($_GET['filter']) && strtoupper($_GET['filter']) == strtoupper($category->getCategory_name()) ? 'snd-btn-2-selected' : 'snd-btn-2 ' ?>">
                     <p><?= strtoupper($category->getCategory_name()) ?></p>
                     <i class="fa-solid fa-plus fa-add-icon"></i>
                 </a>
