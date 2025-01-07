@@ -18,11 +18,7 @@ class userController
             $user_id = $_SESSION['id'];
             $orderHistory = OrderHistoryDAO::getOrderHistoryByUser($user_id);
 
-            $productsInOrder = [];
 
-            foreach ($orderHistory as $order) {
-
-            }
         }
         $view = 'app/views/pages/account.php';
         include_once('app/views/layouts/main.php');
