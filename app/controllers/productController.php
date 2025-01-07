@@ -68,7 +68,7 @@ class productController
                     break;
 
                 default:
-                    header('Location: ?controller=product&action=showMenu#anchormenu');
+                    header("Location: ?controller=product&action=showMenu&filter=$filter#anchormenu");
 
             }
         }
@@ -114,7 +114,7 @@ class productController
         } else if ($reference[1] == 'order&action') {
             header('Location: ?controller=order&action=getCheckout#anchor');
         } else {
-            header('Location: ?controller=product&action=showMenu&filter=' . $reference[2]);
+            header('Location: ?controller=product&action=showMenu&filter=' . end($reference));
         }
 
     }
