@@ -68,7 +68,7 @@ class productController
                     break;
 
                 default:
-                    header('Location: ?controller=product&action=showMenu&error=category_not_found');
+                    header('Location: ?controller=product&action=showMenu#anchormenu');
 
             }
         }
@@ -89,9 +89,7 @@ class productController
     {
         // Este método se encarga de añadir al carrito en variable de sessión como un objeto CartItem a través
         // del id del producto
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'];
-        }
+
 
         $productId = $_GET['productId'];
 
