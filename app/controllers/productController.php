@@ -68,7 +68,7 @@ class productController
                     break;
 
                 default:
-                    header("Location: ?controller=product&action=showMenu&filter=$filter#anchormenu");
+                    header("Location: ?controller=product&action=showMenu#anchormenu");
 
             }
         }

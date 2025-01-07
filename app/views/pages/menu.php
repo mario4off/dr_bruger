@@ -7,7 +7,7 @@
                 </div>
                 <div class="container-fluid ms-4">
                     <!-- Se crea un contador para la muestra del total de artículos mostrados -->
-                    <p><?= count($products) ?> artículos | Filtrar por: </p>
+                    <p><?= count($products) ?? '0' ?> artículos | Filtrar por: </p>
 
 
                 </div>
