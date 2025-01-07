@@ -72,10 +72,10 @@ class productController
 
             }
         }
-        if ($filter) {
+        if (isset($_GET['filter'])) {
             // La cookie se crea en el momento en el que el filtro existe por un tiempo de un cuarto de hora aproximado
             // con los productos más vendidos de la última categoría más visitada por el usuario
-            $suggestedProducts = ProductDAO::getBestSellerByCategory($filter);
+            $suggestedProducts = ProductDAO::getBestSellerByCategory($_GET['filter']);
             setcookie('suggest', serialize($suggestedProducts), time() + 1000, '/');
         }
 
