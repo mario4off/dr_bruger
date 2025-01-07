@@ -18,6 +18,7 @@ class apiController
 
         // Esto es recurrente en toda las acciones de select que registran en la tabla de logs la acción realizada
         if (!empty($data)) {
+            echo json_encode(['status' => 200, 'data' => $data]);
             $log = new Log();
             $log->setAction('SELECT');
             $log->setUser_id($_SESSION['id']);
@@ -25,7 +26,7 @@ class apiController
             $log->setObject_id(null);
 
             LogDAO::insertLog($log);
-            echo json_encode(['status' => 200, 'data' => $data]);
+
         } else {
             http_response_code(404);
             echo json_encode(['status' => 404, 'data' => 'No data found']);
@@ -58,7 +59,7 @@ class apiController
         $data = UserDAO::getAllUsers();
 
         if (!empty($data)) {
-
+            echo json_encode(['status' => 200, 'data' => $data]);
             $log = new Log();
             $log->setAction('SELECT');
             $log->setUser_id($_SESSION['id']);
@@ -66,7 +67,7 @@ class apiController
             $log->setObject_id(null);
 
             LogDAO::insertLog($log);
-            echo json_encode(['status' => 200, 'data' => $data]);
+
         } else {
             http_response_code(404);
             echo json_encode(['status' => 404, 'data' => 'No data found']);
