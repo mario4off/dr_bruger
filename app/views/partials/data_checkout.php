@@ -11,6 +11,15 @@
         </div>
 
         <?php
+    } else if (isset($_GET['warning']) && $_GET['warning'] == 'empty_cart') {
+
+        ?>
+            <div class="warning mb-4 w-100 text-center">
+                <p class="m-2"><strong>EL CARRITO ESTÁ VACÍO</strong></p>
+                <p class="m-2">Aún estás a tiempo de disfrutar de tus productos favoritos agregandolos a tu carrito.</p>
+            </div>
+
+        <?php
     } ?>
     <!-- Se envía un formulario por POST con los detalles del envío -->
     <form id="form-checkout" action="?controller=order&action=makeOrder&delivery=<?= $_GET['delivery'] ?>"

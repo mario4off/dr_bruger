@@ -151,6 +151,8 @@ class orderController
                 header('Location: ?controller=order&action=getCheckout&error=insert_order');
             }
 
+        } else {
+            header('Location: ?controller=order&action=getCheckout&warning=empty_cart');
         }
 
     }
