@@ -19,9 +19,10 @@
             <h2 class="mt-4 mb-4">OPCIONES DE ENTREGA</h2>
         </div>
         <div class="d-flex justify-content-between  mb-4">
-            <input type="hidden" name="delivery" value="<?= $_GET['delivery'] == 'true' ? 'true' : 'false' ?>">
+            <input type="hidden" name="delivery"
+                value="<?= isset($_GET['delivery']) && $_GET['delivery'] == 'true' ? 'true' : 'false' ?>">
             <a href="?controller=order&action=getCheckout&delivery=false"
-                class="delivery-option<?= $_GET['delivery'] == 'false' ? '-active' : '' ?> p-3">
+                class="delivery-option<?= isset($_GET['delivery']) && $_GET['delivery'] == 'false' ? '-active' : '' ?> p-3">
                 <p class="mb-2 p-link">Recoger en la tienda</p>
                 <div class="d-flex gap-3 align-items-center">
                     <p class="w-75 p-link">Deberás recoger tu pedido en la tienda a la hora establecida</p>
@@ -29,7 +30,7 @@
                 </div>
             </a>
             <a href="?controller=order&action=getCheckout&delivery=true"
-                class="delivery-option<?= $_GET['delivery'] == 'true' ? '-active' : '' ?> p-3">
+                class="delivery-option<?= isset($_GET['delivery']) && $_GET['delivery'] == 'true' ? '-active' : '' ?> p-3">
                 <p class="mb-2 p-link">Entrega a domicilio</p>
                 <div class="d-flex gap-3 align-items-center">
                     <p class="p-link w-75">El repartidor recogerá tu pedido y te lo repartirá en tu dirección</p>
