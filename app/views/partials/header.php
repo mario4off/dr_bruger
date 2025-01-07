@@ -18,10 +18,11 @@
             Se han credo varias configuraciones del menú para que se visualicen correctamente en diferentes formatos
             de pantalla -->
             <ul class="d-flex flex-row d-none d-sm-flex mb-0 justify-content-around">
-                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                <li><a class="navisset($_GET['action'])&&-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'index' ? 'active' : '' ?>"
                         href="?controller=product&action=index">INICIO</a>
                 </li>
-                <li><a class="nav-link header-link <?= $_GET['action'] == 'showMenu' ? 'active' : '' ?>" href="
+                <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'showMenu' ? 'active' : '' ?>"
+                        href="
                         ?controller=product&action=showMenu">MENÚ</a></li>
                 <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'showContact' ? 'active' : '' ?>"
                         href="
@@ -32,7 +33,7 @@
                 if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
                     ?>
 
-                    <li><a class="nav-link header-link <?= $_GET['action'] == 'showPannel' ? 'active' : '' ?>"
+                    <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'showPannel' ? 'active' : '' ?>"
                             href="?controller=admin&action=showPannel">ADMINISTRACIÓN</a></li>
 
                     <?php
@@ -40,12 +41,12 @@
                 ?>
             </ul>
             <ul class="d-flex flex-column d-sm-none mb-0 justify-content-center">
-                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'index' ? 'active' : '' ?>"
                         aria-current="page" href="#">INICIO</a></li>
-                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'index' ? 'active' : '' ?>"
                         href="?controller=product&action=showMenu">MENÚ</a>
                 </li>
-                <li><a class="nav-link header-link <?= $_GET['action'] == 'index' ? 'active' : '' ?>"
+                <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'index' ? 'active' : '' ?>"
                         href="#">CONTACTO</a></li>
                 <?php
                 //Se controla el acceso al admin con esta comprobación de rol de usuario en el otro tamaño del responsive
