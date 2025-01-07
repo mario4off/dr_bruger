@@ -116,7 +116,7 @@ class productController
         } else if ($reference[1] == 'order&action') {
             header('Location: ?controller=order&action=getCheckout#anchor');
         } else {
-            header('Location: ?controller=product&action=showMenu&filter=' . $reference[3]);
+            header('Location: ?controller=product&action=showMenu&filter=' . $reference[2]);
         }
 
     }
