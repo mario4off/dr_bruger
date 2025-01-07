@@ -76,6 +76,10 @@
                         }
 
                         ?>
+                        <div class="mt-3">
+                            <p><strong>ENVÍO:</strong></p>
+                            <p><?= $order->getDelivery_cost() ?>€</p>
+                        </div>
                         <h3 class="text-dark mt-3 mb-1">TOTAL PEDIDO</h3>
                         <p><?= str_replace('.', ',', $order->getTotal_amount()) ?>€</p>
                         <p class="mt-2 small mb-3"><?= $order->getPayment_method() == 'Tarjeta' ? 'Pagado con tarjeta: <strong>**** ' . $order->getCard_number() . '</strong>' :

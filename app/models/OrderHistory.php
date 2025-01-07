@@ -19,6 +19,7 @@ class OrderHistory
     private $quantity;
     private $product_name;
     private $line_price;
+    private $delivery_cost;
 
 
     public function __construct()
@@ -264,6 +265,26 @@ class OrderHistory
     public function setMain_photo($main_photo)
     {
         $this->main_photo = $main_photo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of delivery_cost
+     */
+    public function getDelivery_cost()
+    {
+        return $this->delivery_cost;
+    }
+
+    /**
+     * Set the value of delivery_cost
+     *
+     * @return  self
+     */
+    public function setDelivery_cost($delivery_cost)
+    {
+        $this->delivery_cost = $delivery_cost;
 
         return $this;
     }
