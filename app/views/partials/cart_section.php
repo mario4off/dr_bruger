@@ -5,7 +5,7 @@ foreach ($_SESSION['cart'] as $product) {
     <!-- Se realiza una extracción de los datos de la variable de sesión que contiene los datos del carrito y se muestran 
  pantalla los productos con todos sus datos-->
     <article class="d-flex gap-3 checkout-border pb-3 pt-3">
-        <img class="w-25 p-3 img-product" src="/drburger.com/public/images/<?= $product->getMain_photo() ?>">
+        <img class="w-25 p-3 img-product" src="public/images/<?= $product->getMain_photo() ?>">
         <div class=" w-75  d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
                 <p class="p-items-checkout "><?= strtoupper($product->getProduct_name()) ?></p>
@@ -41,11 +41,11 @@ foreach ($_SESSION['cart'] as $product) {
     </div>
     <div class="d-flex w-100 justify-content-between">
         <p class="snd-p-items-checkout">ENVÍO</p>
-        <p><?= $_GET['delivery'] == 'true' ? '3,50€' : '0,00€' ?></p>
+        <p><?= isset($_GET['delivery']) && $_GET['delivery'] == 'true' ? '3,50€' : '0,00€' ?></p>
     </div>
     <!-- Aquí si hay algún descuento activo permite quitar el código así como ver el código
      aplicado y el descuento en números a través de la sesión -->
-    <?php if ($_SESSION['discount']) { ?>
+    <?php if (isset($_SESSION['discount'])) { ?>
         <div class="d-flex w-100 mt-2 justify-content-between">
             <p class="snd-p-items-checkout">DESCUENTO</p>
             <p>-<?= number_format($_SESSION['discount']['amount'], 2, ',') ?>€</p>
