@@ -23,7 +23,8 @@
                 </li>
                 <li><a class="nav-link header-link <?= $_GET['action'] == 'showMenu' ? 'active' : '' ?>" href="
                         ?controller=product&action=showMenu">MENÚ</a></li>
-                <li><a class="nav-link header-link <?= $_GET['action'] == 'showContact' ? 'active' : '' ?>" href="
+                <li><a class="nav-link header-link <?= isset($_GET['action']) && $_GET['action'] == 'showContact' ? 'active' : '' ?>"
+                        href="
                         #">CONTACTO</a></li>
                 <?php
 
