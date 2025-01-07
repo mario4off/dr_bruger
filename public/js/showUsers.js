@@ -23,6 +23,7 @@ const divUser = select("#div-insert-user");
 const name = select("#input-name");
 const lastName = select("#input-lastname");
 const mail = select("#input-mail");
+const btnProduct = select("#product-btn");
 const phone = select("#input-phone");
 const address = select("#input-address");
 const role = select("#input-role");
@@ -305,6 +306,7 @@ function setUserElements() {
   divOrder.classList.remove("gap-4");
   divUser.classList.add("d-flex");
   divUser.classList.add("gap-4");
+  btnProduct.classList.remove("snd-btn-selected");
   divOrder.setAttribute("hidden", true);
   btnInsertUser.removeAttribute("hidden");
   btnInsertOrder.setAttribute("hidden", true);

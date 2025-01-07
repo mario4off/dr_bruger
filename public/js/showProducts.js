@@ -23,30 +23,30 @@ const orderFilters = select("#order-filter");
 let allLogs = [];
 
 // Inicia la tabla de logs al hacer click en el botón de Actividad
-btnActivity.addEventListener("click", initTable);
+btnProduct.addEventListener("click", initTable);
 
 // Función que prepara todos los elementos HTML para mostrar los logs
 function setActivityElements() {
   btnOrders.classList.remove("snd-btn-selected");
-  btnActivity.classList.add("snd-btn-selected");
+  btnActivity.classList.remove("snd-btn-selected");
+  btnProduct.classList.add("snd-btn-selected");
   userBtn.classList.remove("snd-btn-selected");
   toDollar.removeAttribute("hidden");
   toEuro.removeAttribute("hidden");
   toDollar.setAttribute("hidden", true);
   toEuro.setAttribute("hidden", true);
   btnToggle.setAttribute("hidden", true);
-  btnProduct.classList.remove("snd-btn-selected");
   priceFilter.setAttribute("hidden", true);
   filters.setAttribute("hidden", true);
   orderFilters.setAttribute("hidden", true);
-  btnProduct.classList.remove("snd-btn-selected");
+
   table.classList.add("mt-5");
 }
 
 // Llamada a la API que carga los logs
 async function initTable() {
   setActivityElements();
-  const API_URL = "?controller=api&action=showLogs";
+  const API_URL = "?controller=api&action=showProducts";
   const response = await fetch(API_URL);
   const data = await response.json();
   console.log(data);
@@ -64,12 +64,11 @@ function createHTMLTable(data) {
   tBody.innerHTML = "";
   tHead.innerHTML = "";
   const headersLogs = [
-    "LOG ID",
-    "USUARIO",
-    "ACCION",
-    "TABLA",
-    "ID AFECTADO",
-    "FECHA",
+    "PRODUCTO ID",
+    "NOMBRE PRODUCTO",
+    "FOTOGRAFÍA",
+    "CATEGORÍA",
+    "PRECIO",
   ];
 
   const tr = document.createElement("tr");
@@ -86,15 +85,46 @@ function createHTMLTable(data) {
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
-  <td class="text-center border-table">${obj.log_id ?? "-"}</td>
-       <td class="text-center border-table">${obj.user_id ?? "-"}</td>
- <td class="text-center border-table">${obj.action ?? "-"}</td>
-  <td class="text-center border-table">${obj.altered_table ?? "-"}</td>
-   <td class="text-center border-table">${obj.object_id ?? "-"}</td>
-    <td class="text-center border-table">${obj.date_time ?? "-"}</td>
-
-
+  <td class="text-center border-table">${obj.product_id ?? "-"}</td>
+       <td class="text-center border-table">${obj.product_name ?? "-"}</td>
+ <td class="text-center border-table">${obj.main_photo ?? "-"}</td>
+  <td class="text-center border-table">${obj.category_id ?? "-"}</td>
+   <td class="text-center border-table">${
+     obj.base_price ?? "-"
+   }€</td><td class="text-center border-table">
+ <button data-id="${
+   obj.product_id
+ }" class="remove-order-button order-button"><i class="fa-solid fa-trash"></i></button></td>
   `;
     tBody.append(tr);
+  }
+  const removeButtons = document.querySelectorAll(".remove-order-button");
+  for (const button of removeButtons) {
+    button.addEventListener("click", (e) => {
+      const buttonSelected = e.target.closest(".remove-order-button");
+      const id = buttonSelected.getAttribute("data-id");
+      removeProduct(id);
+    });
+  }
+}
+
+async function removeProduct(id) {
+  const API_URL = "?controller=api&action=deleteProduct";
+  const question = confirm(
+    `¿Estás seguro que quieres ELIMINAR el producto con ID ${id}?`
+  );
+  if (question) {
+    const response = await fetch(API_URL, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(id),
+    });
+
+    if (response.ok) {
+      alert("Producto el eliminado con éxito");
+      document.querySelector(`button[data-id="${id}"]`).closest("tr").remove();
+    } else {
+      alert("No se pudo eliminar el producto.");
+    }
   }
 }

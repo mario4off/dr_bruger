@@ -14,6 +14,7 @@ const tHead = select("thead");
 const tBody = select("tbody");
 const userFilter = select("#user-filter");
 const dateFrom = select(".date-from");
+const btnProduct = select("#product-btn");
 const btnToggle = select("#accordionFlushExample");
 const dateUntil = select(".date-until");
 const btnActivity = select("#activity-btn");
@@ -559,6 +560,7 @@ function setOrderElements() {
   priceFilter.removeAttribute("hidden", true);
   filters.removeAttribute("hidden", true);
   //   filters.classList.add("mt-5");
+  btnProduct.classList.remove("snd-btn-selected");
   divOrder.removeAttribute("hidden");
   divUser.removeAttribute("hidden");
   divOrder.classList.add("d-flex");

@@ -74,6 +74,29 @@ class apiController
         }
 
     }
+    public function showProducts()
+    {
+        include_once('config/apiHeaders.php');
+
+        // Carga todos los usuarios de la base de datos y realiza el registro de actividad
+        $data = ProductDAO::getProducts();
+
+        if (!empty($data)) {
+            echo json_encode(['status' => 200, 'data' => $data]);
+            $log = new Log();
+            $log->setAction('SELECT');
+            $log->setUser_id($_SESSION['id']);
+            $log->setAltered_table('PRODUCTS');
+            $log->setObject_id(null);
+
+            LogDAO::insertLog($log);
+
+        } else {
+            http_response_code(404);
+            echo json_encode(['status' => 404, 'data' => 'No data found']);
+        }
+
+    }
 
 
 
@@ -121,6 +144,31 @@ class apiController
             $log->setAction('DELETE');
             $log->setUser_id($_SESSION['id']);
             $log->setAltered_table('USERS');
+            $log->setObject_id($id);
+
+            LogDAO::insertLog($log);
+            http_response_code(200);
+            echo json_encode(['status' => 200, 'message' => 'Usuario eliminado con éxito']);
+        } else {
+
+            http_response_code(500);
+            echo json_encode(['status' => 500, 'message' => 'No se pudo eliminar al usuario']);
+        }
+
+
+    }
+    public function deleteProduct()
+    {
+        include_once('config/apiHeaders.php');
+        $id = json_decode(file_get_contents('php://input'), true);
+        // Llamada a la api que elimina un usuario con el id del pedido
+        $result = ProductDAO::destroyProduct($id);
+        if ($result) {
+
+            $log = new Log();
+            $log->setAction('DELETE');
+            $log->setUser_id($_SESSION['id']);
+            $log->setAltered_table('PRODUCTS');
             $log->setObject_id($id);
 
             LogDAO::insertLog($log);

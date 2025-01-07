@@ -20,7 +20,7 @@
             <!-- Aquí están los botones con los que se juega en el DOM para mostrar pedidos, usuarios o logs -->
             <button id="order-btn" class="snd-btn-1 mb-2 w-100 mt-5">PEDIDOS</button>
             <button id="user-btn" class="snd-btn-1 mb-2 w-100">USUARIOS</button>
-
+            <button id="product-btn" class="snd-btn-1 mb-2 w-100">PRODUCTOS</button>
             <button id="activity-btn" class="snd-btn-1 w-100">ACTIVIDAD</button>
 
         </aside>
@@ -199,4 +199,5 @@
 <!-- Se incluyen los scripts para crear tabla de pedidos, mostrar usuarios y logs -->
 <script type="module" src="public/js/createTable.js"></script>
 <script type="module" src="public/js/showUsers.js"></script>
+<script type="module" src="public/js/showProducts.js"></script>
 <script src="public/js/showLogs.js"></script>

@@ -26,6 +26,30 @@ class ProductDAO
         return $products;
     }
 
+    public static function getProducts()
+    {
+
+        $con = Database::connect();
+
+        $stmnt = $con->prepare("SELECT * FROM products");
+
+        $stmnt->execute();
+
+        $result = $stmnt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+
+            $products[] = $row;
+
+        }
+
+        $con->close();
+
+        return $products;
+
+    }
+
     public static function getProduct($id)
     {
         $con = Database::connect();
@@ -137,6 +161,16 @@ where promo.promotion_id  = ?");
         $con->close();
 
         return $product;
+    }
+    public static function destroyProduct($id)
+    {
+
+        $con = Database::connect();
+        $stmt = $con->prepare('DELETE FROM products WHERE product_id = ?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $con->close();
+        return 'ok';
     }
 
 }
