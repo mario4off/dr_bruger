@@ -1,7 +1,7 @@
 <?php
 $totalAmount = 0;
 foreach ($_SESSION['cart'] as $product) {
-    ?>
+?>
     <!-- Se realiza una extracción de los datos de la variable de sesión que contiene los datos del carrito y se muestran 
  pantalla los productos con todos sus datos-->
     <article class="d-flex gap-3 checkout-border pb-3 pt-3">
@@ -29,7 +29,7 @@ foreach ($_SESSION['cart'] as $product) {
             </div>
         </div>
     </article>
-    <?php
+<?php
     // Aquí obtenemos el calculadop acumulado con las cantidades del total del carrito
     $totalAmount += $product->getBase_price() * $product->getQuantity();
     $_SESSION['totalAmount'] = $totalAmount;
@@ -54,7 +54,7 @@ foreach ($_SESSION['cart'] as $product) {
             <p><?= $_SESSION['discount']['code'] ?></p> <a class="rm-link-checkout"
                 href="?controller=order&action=removeDiscount">Quitar descuento</a>
         </div>
-        <?php $totalAmount -= $_SESSION['discount']['amount'];
+    <?php $totalAmount -= $_SESSION['discount']['amount'];
     } ?>
     <!-- Este formulario se ubica aquí para no dar confilcto con el otro formulario, y envía con un input oculto el importe
      del pedido para poder calcular de este modo el descuento en caso de introducir algún código válido -->
@@ -73,26 +73,26 @@ foreach ($_SESSION['cart'] as $product) {
     <?php
     if (isset($_GET['warning']) && $_GET['warning'] == 'invalid_code') {
 
-        ?>
+    ?>
         <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">EL CÓDIGO DE DESCUENTO NO EXISTE</p>
         </div>
 
-        <?php
+    <?php
     } elseif (isset($_GET['warning']) && $_GET['warning'] == 'code_already_applied') {
-        ?>
+    ?>
         <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">EL CÓDIGO YA HA SIDO USADO</p>
         </div>
 
     <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'promo_expired') {
-        ?>
+    ?>
         <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">LA PROMOCIÓN YA HA EXPIRADO</p>
         </div>
 
     <?php } elseif (isset($_GET['warning']) && $_GET['warning'] == 'login_needed') {
-        ?>
+    ?>
         <div class="warning p-1 mb-2 w-100 text-center">
             <p class="m-2">INICIA SESIÓN PARA APLICAR EL CÓDIGO</p>
         </div>
