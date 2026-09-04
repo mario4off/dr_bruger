@@ -1,6 +1,6 @@
 <section class="container-fluid p-0">
-    <div class="container-fluid upper-header-banner d-flex justify-content-center p-3">
-        <a id="link-header-banner" href>ENVÍOS A DOMICILIO PARA QUE DISFRUTES EN CASA</a>
+    <div class="container-fluid upper-header-banner d-flex justify-content-center small py-3">
+        <a id="link-header-banner" href>ENVÍOS A DOMICILIO PARA DISFRUTAR EN CASA</a>
     </div>
     <div class="container-fluid lower-header-banner">
         <div class=" imgs-header-banner d-flex justify-content-center ">

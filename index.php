@@ -1,5 +1,7 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
 include_once('config/params.php');
 include_once('app/controllers/productController.php');
 include_once('app/controllers/userController.php');
@@ -11,7 +13,6 @@ include_once('app/controllers/apiController.php');
 if (!isset($_GET['controller'])) {
 
     header('Location: ' . url_base . 'index.php?controller=product');
-
 } else {
 
 
@@ -26,23 +27,14 @@ if (!isset($_GET['controller'])) {
         if (isset($_GET['action']) && method_exists($controllerName, $_GET['action'])) {
 
             $action = $_GET['action'];
-
         } else {
 
             $action = default_action;
-
         }
 
         $controller->$action();
-
     } else {
 
         header('Location: ' . url_base . 'index.php?controller=product');
-
     }
-
-
-
-
-
 }

@@ -28,10 +28,10 @@
                 </div>
 
                 <div
-                    class="row newsletter-form-mail col-12 col-md-6 w-md-50 d-flex justify-content-center justify-content-md-end">
+                    class="row newsletter-form-mail col-12 col-md-6 w-md-50 d-flex gap-0 justify-content-center justify-content-md-end">
                     <div class="col-12 col-md-8 input-mail">
-                        <input class="input-textbox  me-md-1" type="email"
-                            placeholder="Introduce tu dirección de correo electrónico" required>
+                        <input class="input-textbox p-2 me-md-1" type="email"
+                            placeholder="Introduce tu email" required>
                     </div>
                     <div class="col-12 col-md-4 input-mail">
                         <button type="submit" class="input-submit  w-99">SUSCRIBIRME</button>
